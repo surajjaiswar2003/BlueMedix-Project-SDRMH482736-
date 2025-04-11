@@ -1,0 +1,193 @@
+health_condition,severity,food_group,detailed_food_group,quantitative_threshold,meal_timing_recommendation,specific_foods_to_avoid,note
+Diabetes Type 1,Mild,Grains,Whole Grains,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Whole Grains,Limit high glycemic index foods
+Diabetes Type 1,Mild,Grains,Refined Grains,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Refined Grains,Limit high glycemic index foods
+Diabetes Type 1,Mild,Grains,Cereals,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Cereals,Limit high glycemic index foods
+Diabetes Type 1,Mild,Grains,Bread,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Bread,Limit high glycemic index foods
+Diabetes Type 1,Mild,Grains,Pasta,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Pasta,Limit high glycemic index foods
+Diabetes Type 1,Mild,Grains,Rice,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Rice,Limit high glycemic index foods
+Diabetes Type 1,Moderate,Grains,Whole Grains,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Whole Grains,Limit high glycemic index foods
+Diabetes Type 1,Moderate,Grains,Refined Grains,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Refined Grains,Limit high glycemic index foods
+Diabetes Type 1,Moderate,Grains,Cereals,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Cereals,Limit high glycemic index foods
+Diabetes Type 1,Moderate,Grains,Bread,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Bread,Limit high glycemic index foods
+Diabetes Type 1,Moderate,Grains,Pasta,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Pasta,Limit high glycemic index foods
+Diabetes Type 1,Moderate,Grains,Rice,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Rice,Limit high glycemic index foods
+Diabetes Type 1,Severe,Grains,Whole Grains,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Whole Grains,Limit high glycemic index foods
+Diabetes Type 1,Severe,Grains,Refined Grains,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Refined Grains,Limit high glycemic index foods
+Diabetes Type 1,Severe,Grains,Cereals,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Cereals,Limit high glycemic index foods
+Diabetes Type 1,Severe,Grains,Bread,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Bread,Limit high glycemic index foods
+Diabetes Type 1,Severe,Grains,Pasta,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Pasta,Limit high glycemic index foods
+Diabetes Type 1,Severe,Grains,Rice,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Rice,Limit high glycemic index foods
+Diabetes Type 1,Mild,Fruits,Berries,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Berries,Choose low glycemic fruits
+Diabetes Type 1,Mild,Fruits,Citrus,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Citrus,Choose low glycemic fruits
+Diabetes Type 1,Mild,Fruits,Tropical,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Tropical,Choose low glycemic fruits
+Diabetes Type 1,Mild,Fruits,Stone Fruits,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Stone Fruits,Choose low glycemic fruits
+Diabetes Type 1,Mild,Fruits,Apples/Pears,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Apples/Pears,Choose low glycemic fruits
+Diabetes Type 1,Mild,Fruits,Melons,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Melons,Choose low glycemic fruits
+Diabetes Type 1,Moderate,Fruits,Berries,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Berries,Choose low glycemic fruits
+Diabetes Type 1,Moderate,Fruits,Citrus,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Citrus,Choose low glycemic fruits
+Diabetes Type 1,Moderate,Fruits,Tropical,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Tropical,Choose low glycemic fruits
+Diabetes Type 1,Moderate,Fruits,Stone Fruits,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Stone Fruits,Choose low glycemic fruits
+Diabetes Type 1,Moderate,Fruits,Apples/Pears,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Apples/Pears,Choose low glycemic fruits
+Diabetes Type 1,Moderate,Fruits,Melons,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Melons,Choose low glycemic fruits
+Diabetes Type 1,Severe,Fruits,Berries,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Berries,Choose low glycemic fruits
+Diabetes Type 1,Severe,Fruits,Citrus,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Citrus,Choose low glycemic fruits
+Diabetes Type 1,Severe,Fruits,Tropical,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Tropical,Choose low glycemic fruits
+Diabetes Type 1,Severe,Fruits,Stone Fruits,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Stone Fruits,Choose low glycemic fruits
+Diabetes Type 1,Severe,Fruits,Apples/Pears,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Apples/Pears,Choose low glycemic fruits
+Diabetes Type 1,Severe,Fruits,Melons,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 1,Specific foods to avoid for Melons,Choose low glycemic fruits
+Diabetes Type 2,Mild,Grains,Whole Grains,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Whole Grains,Limit refined carbohydrates
+Diabetes Type 2,Mild,Grains,Refined Grains,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Refined Grains,Limit refined carbohydrates
+Diabetes Type 2,Mild,Grains,Cereals,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Cereals,Limit refined carbohydrates
+Diabetes Type 2,Mild,Grains,Bread,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Bread,Limit refined carbohydrates
+Diabetes Type 2,Mild,Grains,Pasta,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Pasta,Limit refined carbohydrates
+Diabetes Type 2,Mild,Grains,Rice,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Rice,Limit refined carbohydrates
+Diabetes Type 2,Moderate,Grains,Whole Grains,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Whole Grains,Limit refined carbohydrates
+Diabetes Type 2,Moderate,Grains,Refined Grains,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Refined Grains,Limit refined carbohydrates
+Diabetes Type 2,Moderate,Grains,Cereals,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Cereals,Limit refined carbohydrates
+Diabetes Type 2,Moderate,Grains,Bread,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Bread,Limit refined carbohydrates
+Diabetes Type 2,Moderate,Grains,Pasta,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Pasta,Limit refined carbohydrates
+Diabetes Type 2,Moderate,Grains,Rice,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Rice,Limit refined carbohydrates
+Diabetes Type 2,Severe,Grains,Whole Grains,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Whole Grains,Limit refined carbohydrates
+Diabetes Type 2,Severe,Grains,Refined Grains,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Refined Grains,Limit refined carbohydrates
+Diabetes Type 2,Severe,Grains,Cereals,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Cereals,Limit refined carbohydrates
+Diabetes Type 2,Severe,Grains,Bread,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Bread,Limit refined carbohydrates
+Diabetes Type 2,Severe,Grains,Pasta,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Pasta,Limit refined carbohydrates
+Diabetes Type 2,Severe,Grains,Rice,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Rice,Limit refined carbohydrates
+Diabetes Type 2,Mild,Fruits,Berries,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Berries,Limit high sugar fruits
+Diabetes Type 2,Mild,Fruits,Citrus,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Citrus,Limit high sugar fruits
+Diabetes Type 2,Mild,Fruits,Tropical,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Tropical,Limit high sugar fruits
+Diabetes Type 2,Mild,Fruits,Stone Fruits,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Stone Fruits,Limit high sugar fruits
+Diabetes Type 2,Mild,Fruits,Apples/Pears,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Apples/Pears,Limit high sugar fruits
+Diabetes Type 2,Mild,Fruits,Melons,"GI < 70, max 45g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Melons,Limit high sugar fruits
+Diabetes Type 2,Moderate,Fruits,Berries,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Berries,Limit high sugar fruits
+Diabetes Type 2,Moderate,Fruits,Citrus,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Citrus,Limit high sugar fruits
+Diabetes Type 2,Moderate,Fruits,Tropical,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Tropical,Limit high sugar fruits
+Diabetes Type 2,Moderate,Fruits,Stone Fruits,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Stone Fruits,Limit high sugar fruits
+Diabetes Type 2,Moderate,Fruits,Apples/Pears,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Apples/Pears,Limit high sugar fruits
+Diabetes Type 2,Moderate,Fruits,Melons,"GI < 55, max 30g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Melons,Limit high sugar fruits
+Diabetes Type 2,Severe,Fruits,Berries,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Berries,Limit high sugar fruits
+Diabetes Type 2,Severe,Fruits,Citrus,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Citrus,Limit high sugar fruits
+Diabetes Type 2,Severe,Fruits,Tropical,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Tropical,Limit high sugar fruits
+Diabetes Type 2,Severe,Fruits,Stone Fruits,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Stone Fruits,Limit high sugar fruits
+Diabetes Type 2,Severe,Fruits,Apples/Pears,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Apples/Pears,Limit high sugar fruits
+Diabetes Type 2,Severe,Fruits,Melons,"GI < 40, max 15g carbs per meal",Appropriate for Diabetes Type 2,Specific foods to avoid for Melons,Limit high sugar fruits
+Hypertension,Mild,Protein,Red Meat,Sodium < 2300mg/day,Appropriate for Hypertension,Specific foods to avoid for Red Meat,Limit red meat
+Hypertension,Mild,Protein,Poultry,Sodium < 2300mg/day,Appropriate for Hypertension,Specific foods to avoid for Poultry,Limit red meat
+Hypertension,Mild,Protein,Fish,Sodium < 2300mg/day,Appropriate for Hypertension,Specific foods to avoid for Fish,Limit red meat
+Hypertension,Mild,Protein,Legumes,Sodium < 2300mg/day,Appropriate for Hypertension,Specific foods to avoid for Legumes,Limit red meat
+Hypertension,Mild,Protein,Eggs,Sodium < 2300mg/day,Appropriate for Hypertension,Specific foods to avoid for Eggs,Limit red meat
+Hypertension,Mild,Protein,Tofu/Tempeh,Sodium < 2300mg/day,Appropriate for Hypertension,Specific foods to avoid for Tofu/Tempeh,Limit red meat
+Hypertension,Moderate,Protein,Red Meat,Sodium < 1500mg/day,Appropriate for Hypertension,Specific foods to avoid for Red Meat,Limit red meat
+Hypertension,Moderate,Protein,Poultry,Sodium < 1500mg/day,Appropriate for Hypertension,Specific foods to avoid for Poultry,Limit red meat
+Hypertension,Moderate,Protein,Fish,Sodium < 1500mg/day,Appropriate for Hypertension,Specific foods to avoid for Fish,Limit red meat
+Hypertension,Moderate,Protein,Legumes,Sodium < 1500mg/day,Appropriate for Hypertension,Specific foods to avoid for Legumes,Limit red meat
+Hypertension,Moderate,Protein,Eggs,Sodium < 1500mg/day,Appropriate for Hypertension,Specific foods to avoid for Eggs,Limit red meat
+Hypertension,Moderate,Protein,Tofu/Tempeh,Sodium < 1500mg/day,Appropriate for Hypertension,Specific foods to avoid for Tofu/Tempeh,Limit red meat
+Hypertension,Severe,Protein,Red Meat,Sodium < 1000mg/day,Appropriate for Hypertension,Specific foods to avoid for Red Meat,Limit red meat
+Hypertension,Severe,Protein,Poultry,Sodium < 1000mg/day,Appropriate for Hypertension,Specific foods to avoid for Poultry,Limit red meat
+Hypertension,Severe,Protein,Fish,Sodium < 1000mg/day,Appropriate for Hypertension,Specific foods to avoid for Fish,Limit red meat
+Hypertension,Severe,Protein,Legumes,Sodium < 1000mg/day,Appropriate for Hypertension,Specific foods to avoid for Legumes,Limit red meat
+Hypertension,Severe,Protein,Eggs,Sodium < 1000mg/day,Appropriate for Hypertension,Specific foods to avoid for Eggs,Limit red meat
+Hypertension,Severe,Protein,Tofu/Tempeh,Sodium < 1000mg/day,Appropriate for Hypertension,Specific foods to avoid for Tofu/Tempeh,Limit red meat
+Hypertension,Mild,Dairy,Dairy,Sodium < 2300mg/day,Appropriate for Hypertension,Specific foods to avoid for Dairy,Choose low sodium options
+Hypertension,Moderate,Dairy,Dairy,Sodium < 1500mg/day,Appropriate for Hypertension,Specific foods to avoid for Dairy,Choose low sodium options
+Hypertension,Severe,Dairy,Dairy,Sodium < 1000mg/day,Appropriate for Hypertension,Specific foods to avoid for Dairy,Choose low sodium options
+Cardiovascular,Mild,Oils,Oils,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Oils,Limit saturated fats
+Cardiovascular,Moderate,Oils,Oils,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Oils,Limit saturated fats
+Cardiovascular,Severe,Oils,Oils,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Oils,Limit saturated fats
+Cardiovascular,Mild,Protein,Red Meat,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Red Meat,Prefer plant proteins and fish
+Cardiovascular,Mild,Protein,Poultry,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Poultry,Prefer plant proteins and fish
+Cardiovascular,Mild,Protein,Fish,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Fish,Prefer plant proteins and fish
+Cardiovascular,Mild,Protein,Legumes,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Legumes,Prefer plant proteins and fish
+Cardiovascular,Mild,Protein,Eggs,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Eggs,Prefer plant proteins and fish
+Cardiovascular,Mild,Protein,Tofu/Tempeh,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Tofu/Tempeh,Prefer plant proteins and fish
+Cardiovascular,Moderate,Protein,Red Meat,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Red Meat,Prefer plant proteins and fish
+Cardiovascular,Moderate,Protein,Poultry,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Poultry,Prefer plant proteins and fish
+Cardiovascular,Moderate,Protein,Fish,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Fish,Prefer plant proteins and fish
+Cardiovascular,Moderate,Protein,Legumes,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Legumes,Prefer plant proteins and fish
+Cardiovascular,Moderate,Protein,Eggs,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Eggs,Prefer plant proteins and fish
+Cardiovascular,Moderate,Protein,Tofu/Tempeh,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Tofu/Tempeh,Prefer plant proteins and fish
+Cardiovascular,Severe,Protein,Red Meat,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Red Meat,Prefer plant proteins and fish
+Cardiovascular,Severe,Protein,Poultry,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Poultry,Prefer plant proteins and fish
+Cardiovascular,Severe,Protein,Fish,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Fish,Prefer plant proteins and fish
+Cardiovascular,Severe,Protein,Legumes,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Legumes,Prefer plant proteins and fish
+Cardiovascular,Severe,Protein,Eggs,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Eggs,Prefer plant proteins and fish
+Cardiovascular,Severe,Protein,Tofu/Tempeh,Individualized restriction,Appropriate for Cardiovascular,Specific foods to avoid for Tofu/Tempeh,Prefer plant proteins and fish
+IBS,Mild,Vegetables,Leafy Greens,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Leafy Greens,Limit high FODMAP vegetables
+IBS,Mild,Vegetables,Root Vegetables,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Root Vegetables,Limit high FODMAP vegetables
+IBS,Mild,Vegetables,Cruciferous,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Cruciferous,Limit high FODMAP vegetables
+IBS,Mild,Vegetables,Nightshades,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Nightshades,Limit high FODMAP vegetables
+IBS,Mild,Vegetables,Alliums,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Alliums,Limit high FODMAP vegetables
+IBS,Mild,Vegetables,Squashes,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Squashes,Limit high FODMAP vegetables
+IBS,Moderate,Vegetables,Leafy Greens,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Leafy Greens,Limit high FODMAP vegetables
+IBS,Moderate,Vegetables,Root Vegetables,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Root Vegetables,Limit high FODMAP vegetables
+IBS,Moderate,Vegetables,Cruciferous,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Cruciferous,Limit high FODMAP vegetables
+IBS,Moderate,Vegetables,Nightshades,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Nightshades,Limit high FODMAP vegetables
+IBS,Moderate,Vegetables,Alliums,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Alliums,Limit high FODMAP vegetables
+IBS,Moderate,Vegetables,Squashes,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Squashes,Limit high FODMAP vegetables
+IBS,Severe,Vegetables,Leafy Greens,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Leafy Greens,Limit high FODMAP vegetables
+IBS,Severe,Vegetables,Root Vegetables,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Root Vegetables,Limit high FODMAP vegetables
+IBS,Severe,Vegetables,Cruciferous,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Cruciferous,Limit high FODMAP vegetables
+IBS,Severe,Vegetables,Nightshades,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Nightshades,Limit high FODMAP vegetables
+IBS,Severe,Vegetables,Alliums,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Alliums,Limit high FODMAP vegetables
+IBS,Severe,Vegetables,Squashes,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Squashes,Limit high FODMAP vegetables
+IBS,Mild,Fruits,Berries,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Berries,Limit high FODMAP fruits
+IBS,Mild,Fruits,Citrus,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Citrus,Limit high FODMAP fruits
+IBS,Mild,Fruits,Tropical,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Tropical,Limit high FODMAP fruits
+IBS,Mild,Fruits,Stone Fruits,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Stone Fruits,Limit high FODMAP fruits
+IBS,Mild,Fruits,Apples/Pears,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Apples/Pears,Limit high FODMAP fruits
+IBS,Mild,Fruits,Melons,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Melons,Limit high FODMAP fruits
+IBS,Moderate,Fruits,Berries,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Berries,Limit high FODMAP fruits
+IBS,Moderate,Fruits,Citrus,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Citrus,Limit high FODMAP fruits
+IBS,Moderate,Fruits,Tropical,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Tropical,Limit high FODMAP fruits
+IBS,Moderate,Fruits,Stone Fruits,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Stone Fruits,Limit high FODMAP fruits
+IBS,Moderate,Fruits,Apples/Pears,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Apples/Pears,Limit high FODMAP fruits
+IBS,Moderate,Fruits,Melons,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Melons,Limit high FODMAP fruits
+IBS,Severe,Fruits,Berries,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Berries,Limit high FODMAP fruits
+IBS,Severe,Fruits,Citrus,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Citrus,Limit high FODMAP fruits
+IBS,Severe,Fruits,Tropical,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Tropical,Limit high FODMAP fruits
+IBS,Severe,Fruits,Stone Fruits,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Stone Fruits,Limit high FODMAP fruits
+IBS,Severe,Fruits,Apples/Pears,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Apples/Pears,Limit high FODMAP fruits
+IBS,Severe,Fruits,Melons,Individualized restriction,Appropriate for IBS,Specific foods to avoid for Melons,Limit high FODMAP fruits
+Celiac,Mild,Grains,Whole Grains,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Whole Grains,Avoid all gluten
+Celiac,Mild,Grains,Refined Grains,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Refined Grains,Avoid all gluten
+Celiac,Mild,Grains,Cereals,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Cereals,Avoid all gluten
+Celiac,Mild,Grains,Bread,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Bread,Avoid all gluten
+Celiac,Mild,Grains,Pasta,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Pasta,Avoid all gluten
+Celiac,Mild,Grains,Rice,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Rice,Avoid all gluten
+Celiac,Moderate,Grains,Whole Grains,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Whole Grains,Avoid all gluten
+Celiac,Moderate,Grains,Refined Grains,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Refined Grains,Avoid all gluten
+Celiac,Moderate,Grains,Cereals,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Cereals,Avoid all gluten
+Celiac,Moderate,Grains,Bread,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Bread,Avoid all gluten
+Celiac,Moderate,Grains,Pasta,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Pasta,Avoid all gluten
+Celiac,Moderate,Grains,Rice,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Rice,Avoid all gluten
+Celiac,Severe,Grains,Whole Grains,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Whole Grains,Avoid all gluten
+Celiac,Severe,Grains,Refined Grains,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Refined Grains,Avoid all gluten
+Celiac,Severe,Grains,Cereals,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Cereals,Avoid all gluten
+Celiac,Severe,Grains,Bread,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Bread,Avoid all gluten
+Celiac,Severe,Grains,Pasta,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Pasta,Avoid all gluten
+Celiac,Severe,Grains,Rice,Individualized restriction,Appropriate for Celiac,Specific foods to avoid for Rice,Avoid all gluten
+Allergy - Nuts,Mild,Nuts/Seeds,Nuts/Seeds,Individualized restriction,Appropriate for Allergy - Nuts,Specific foods to avoid for Nuts/Seeds,Avoid all nuts
+Allergy - Nuts,Moderate,Nuts/Seeds,Nuts/Seeds,Individualized restriction,Appropriate for Allergy - Nuts,Specific foods to avoid for Nuts/Seeds,Avoid all nuts
+Allergy - Nuts,Severe,Nuts/Seeds,Nuts/Seeds,Individualized restriction,Appropriate for Allergy - Nuts,Specific foods to avoid for Nuts/Seeds,Avoid all nuts
+Allergy - Dairy,Mild,Dairy,Dairy,Individualized restriction,Appropriate for Allergy - Dairy,Specific foods to avoid for Dairy,Avoid all dairy
+Allergy - Dairy,Moderate,Dairy,Dairy,Individualized restriction,Appropriate for Allergy - Dairy,Specific foods to avoid for Dairy,Avoid all dairy
+Allergy - Dairy,Severe,Dairy,Dairy,Individualized restriction,Appropriate for Allergy - Dairy,Specific foods to avoid for Dairy,Avoid all dairy
+Allergy - Shellfish,Mild,Protein,Red Meat,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Red Meat,Avoid shellfish
+Allergy - Shellfish,Mild,Protein,Poultry,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Poultry,Avoid shellfish
+Allergy - Shellfish,Mild,Protein,Fish,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Fish,Avoid shellfish
+Allergy - Shellfish,Mild,Protein,Legumes,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Legumes,Avoid shellfish
+Allergy - Shellfish,Mild,Protein,Eggs,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Eggs,Avoid shellfish
+Allergy - Shellfish,Mild,Protein,Tofu/Tempeh,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Tofu/Tempeh,Avoid shellfish
+Allergy - Shellfish,Moderate,Protein,Red Meat,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Red Meat,Avoid shellfish
+Allergy - Shellfish,Moderate,Protein,Poultry,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Poultry,Avoid shellfish
+Allergy - Shellfish,Moderate,Protein,Fish,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Fish,Avoid shellfish
+Allergy - Shellfish,Moderate,Protein,Legumes,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Legumes,Avoid shellfish
+Allergy - Shellfish,Moderate,Protein,Eggs,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Eggs,Avoid shellfish
+Allergy - Shellfish,Moderate,Protein,Tofu/Tempeh,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Tofu/Tempeh,Avoid shellfish
+Allergy - Shellfish,Severe,Protein,Red Meat,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Red Meat,Avoid shellfish
+Allergy - Shellfish,Severe,Protein,Poultry,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Poultry,Avoid shellfish
+Allergy - Shellfish,Severe,Protein,Fish,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Fish,Avoid shellfish
+Allergy - Shellfish,Severe,Protein,Legumes,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Legumes,Avoid shellfish
+Allergy - Shellfish,Severe,Protein,Eggs,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Eggs,Avoid shellfish
+Allergy - Shellfish,Severe,Protein,Tofu/Tempeh,Individualized restriction,Appropriate for Allergy - Shellfish,Specific foods to avoid for Tofu/Tempeh,Avoid shellfish

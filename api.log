@@ -1,0 +1,95 @@
+2025-04-10 06:07:53,993 - INFO - Connected to database: enhanced_diet_recommendation.db
+2025-04-10 06:07:54,058 - INFO - Loaded 1000 recipes and 200 ingredients
+2025-04-10 06:07:54,137 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-10 06:07:54,137 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-10 06:07:54,165 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-10 06:07:55,165 - INFO - Connected to database: enhanced_diet_recommendation.db
+2025-04-10 06:07:55,228 - INFO - Loaded 1000 recipes and 200 ingredients
+2025-04-10 06:07:55,249 - WARNING -  * Debugger is active!
+2025-04-10 06:07:55,258 - INFO -  * Debugger PIN: 182-422-266
+2025-04-10 06:08:00,704 - INFO - 127.0.0.1 - - [10/Apr/2025 06:08:00] "GET / HTTP/1.1" 200 -
+2025-04-10 06:08:46,476 - INFO - Received recommendation request with 40 parameters
+2025-04-10 06:08:46,477 - INFO - Generating recommendations for: diabetes=None, hypertension=Yes, height=170, weight=70, target_weight=65
+2025-04-10 06:08:46,477 - INFO - Generating personalized recommendations
+2025-04-10 06:08:46,478 - INFO - User parameters: {'diabetes': 'None', 'hypertension': 'Yes', 'cardiovascular': 'Present', 'digestive_disorder': 'Celiac', 'food_allergies': 'Shellfish', 'food_intolerances': '', 'height': 170, 'weight': 70, 'target_weight': 65, 'bmi_category': 'Overweight', 'weight_change_history': 'Fluctuating', 'exercise_frequency': 3, 'exercise_duration': 30, 'exercise_type': 'Mixed', 'daily_steps': 7500, 'physical_job_activity': 'Sedentary', 'work_schedule': 'Regular', 'sleep_duration': 7, 'sleep_quality': 'Fair', 'stress_level': 'High', 'meal_timing_regularity': 'Somewhat Regular', 'cooking_skills': 'Intermediate', 'available_cooking_time': 45, 'food_budget': 'Medium', 'alcohol_consumption': 'Occasional', 'smoking_status': 'Non-smoker', 'water_intake': 6, 'eating_out_frequency': 2, 'snacking_behavior': 'Evening Snacker', 'food_prep_time': 30, 'travel_frequency': 'Monthly', 'diet_type': 'Regular', 'meal_size_preference': 'Regular 3 meals', 'spice_tolerance': 'Medium', 'cuisine_preferences': 'Mediterranean', 'food_texture_preferences': 'Mixed', 'portion_control_ability': 'Fair', 'previous_diet_success': 'Moderate with low-carb', 'preferred_meal_complexity': 'Moderate', 'seasonal_food_preferences': 'Yes'}
+2025-04-10 06:08:46,479 - INFO - Creating 7-day meal plan
+2025-04-10 06:08:46,480 - INFO - Starting health filtering with 1000 recipes
+2025-04-10 06:08:46,485 - INFO - After health filtering: 3 recipes (removed 997)
+2025-04-10 06:08:46,485 - WARNING - Too few recipes (3) after health filtering - relaxing constraints
+2025-04-10 06:08:46,487 - INFO - Relaxed cardiovascular filters: now 1000 recipes
+2025-04-10 06:08:46,489 - INFO - Starting lifestyle filtering with 1000 recipes
+2025-04-10 06:08:46,493 - INFO - After lifestyle filtering: 244 recipes (removed 756)
+2025-04-10 06:08:46,493 - INFO - Starting preference filtering with 244 recipes
+2025-04-10 06:08:46,495 - INFO - Filtered to 42 recipes with cuisine: Mediterranean
+2025-04-10 06:08:46,498 - INFO - After preference filtering: 42 recipes (removed 202)
+2025-04-10 06:08:46,498 - INFO - Target: 1843 calories/day with P:30.0% C:50.0% F:20.0%
+2025-04-10 06:08:46,543 - ERROR - Error generating shopping list: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 13500 and this is thread id 10892.
+2025-04-10 06:08:46,543 - INFO - Successfully generated personalized recommendations
+2025-04-10 06:08:46,544 - INFO - Successfully generated meal plan with 28 meals
+2025-04-10 06:08:46,546 - INFO - 127.0.0.1 - - [10/Apr/2025 06:08:46] "POST /api/recommend HTTP/1.1" 200 -
+2025-04-10 06:17:09,818 - INFO - Received recommendation request with 40 parameters
+2025-04-10 06:17:09,819 - INFO - Generating recommendations for: diabetes=Type 2, hypertension=Yes, height=170, weight=70, target_weight=65
+2025-04-10 06:17:09,820 - INFO - Generating personalized recommendations
+2025-04-10 06:17:09,821 - INFO - User parameters: {'diabetes': 'Type 2', 'hypertension': 'Yes', 'cardiovascular': 'Present', 'digestive_disorder': 'IBS', 'food_allergies': 'Dairy, Nuts', 'food_intolerances': '', 'height': 170, 'weight': 70, 'target_weight': 65, 'bmi_category': 'Overweight', 'weight_change_history': 'Fluctuating', 'exercise_frequency': 3, 'exercise_duration': 30, 'exercise_type': 'Mixed', 'daily_steps': 7500, 'physical_job_activity': 'Sedentary', 'work_schedule': 'Regular', 'sleep_duration': 7, 'sleep_quality': 'Fair', 'stress_level': 'High', 'meal_timing_regularity': 'Somewhat Regular', 'cooking_skills': 'Intermediate', 'available_cooking_time': 45, 'food_budget': 'Medium', 'alcohol_consumption': 'Occasional', 'smoking_status': 'Non-smoker', 'water_intake': 6, 'eating_out_frequency': 2, 'snacking_behavior': 'Evening Snacker', 'food_prep_time': 30, 'travel_frequency': 'Monthly', 'diet_type': 'Regular', 'meal_size_preference': 'Regular 3 meals', 'spice_tolerance': 'Medium', 'cuisine_preferences': 'Mediterranean', 'food_texture_preferences': 'Mixed', 'portion_control_ability': 'Fair', 'previous_diet_success': 'Moderate with low-carb', 'preferred_meal_complexity': 'Moderate', 'seasonal_food_preferences': 'Yes'}
+2025-04-10 06:17:09,823 - INFO - Creating 7-day meal plan
+2025-04-10 06:17:09,824 - INFO - Starting health filtering with 1000 recipes
+2025-04-10 06:17:09,833 - INFO - After health filtering: 1 recipes (removed 999)
+2025-04-10 06:17:09,833 - WARNING - Too few recipes (1) after health filtering - relaxing constraints
+2025-04-10 06:17:09,835 - INFO - Relaxed cardiovascular filters: now 1000 recipes
+2025-04-10 06:17:09,836 - INFO - Starting lifestyle filtering with 1000 recipes
+2025-04-10 06:17:09,848 - INFO - After lifestyle filtering: 244 recipes (removed 756)
+2025-04-10 06:17:09,849 - INFO - Starting preference filtering with 244 recipes
+2025-04-10 06:17:09,851 - INFO - Filtered to 42 recipes with cuisine: Mediterranean
+2025-04-10 06:17:09,853 - INFO - After preference filtering: 42 recipes (removed 202)
+2025-04-10 06:17:09,853 - INFO - Target: 1751 calories/day with P:33.0% C:32.0% F:35.0%
+2025-04-10 06:17:09,912 - ERROR - Error generating shopping list: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 13500 and this is thread id 16720.
+2025-04-10 06:17:09,912 - INFO - Successfully generated personalized recommendations
+2025-04-10 06:17:09,912 - INFO - Successfully generated meal plan with 28 meals
+2025-04-10 06:17:09,915 - INFO - 127.0.0.1 - - [10/Apr/2025 06:17:09] "POST /api/recommend HTTP/1.1" 200 -
+2025-04-10 23:02:27,310 - INFO - Connected to database: enhanced_diet_recommendation.db
+2025-04-10 23:02:27,488 - INFO - Loaded 1000 recipes and 200 ingredients
+2025-04-10 23:02:27,586 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-10 23:02:27,587 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-10 23:02:27,613 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-10 23:02:28,955 - INFO - Connected to database: enhanced_diet_recommendation.db
+2025-04-10 23:02:29,027 - INFO - Loaded 1000 recipes and 200 ingredients
+2025-04-10 23:02:29,057 - WARNING -  * Debugger is active!
+2025-04-10 23:02:29,092 - INFO -  * Debugger PIN: 182-422-266
+2025-04-10 23:02:33,178 - INFO - 127.0.0.1 - - [10/Apr/2025 23:02:33] "GET / HTTP/1.1" 200 -
+2025-04-10 23:02:33,390 - INFO - 127.0.0.1 - - [10/Apr/2025 23:02:33] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-10 23:02:44,800 - INFO - Received recommendation request with 40 parameters
+2025-04-10 23:02:44,801 - INFO - Generating recommendations for: diabetes=Type 2, hypertension=No, height=170, weight=70, target_weight=65
+2025-04-10 23:02:44,801 - INFO - Generating personalized recommendations
+2025-04-10 23:02:44,802 - INFO - User parameters: {'diabetes': 'Type 2', 'hypertension': 'No', 'cardiovascular': 'Absent', 'digestive_disorder': 'None', 'food_allergies': 'None', 'food_intolerances': '', 'height': 170, 'weight': 70, 'target_weight': 65, 'bmi_category': 'Overweight', 'weight_change_history': 'Fluctuating', 'exercise_frequency': 3, 'exercise_duration': 30, 'exercise_type': 'Mixed', 'daily_steps': 7500, 'physical_job_activity': 'Sedentary', 'work_schedule': 'Regular', 'sleep_duration': 7, 'sleep_quality': 'Fair', 'stress_level': 'High', 'meal_timing_regularity': 'Somewhat Regular', 'cooking_skills': 'Intermediate', 'available_cooking_time': 45, 'food_budget': 'Medium', 'alcohol_consumption': 'Occasional', 'smoking_status': 'Non-smoker', 'water_intake': 6, 'eating_out_frequency': 2, 'snacking_behavior': 'Evening Snacker', 'food_prep_time': 30, 'travel_frequency': 'Monthly', 'diet_type': 'Regular', 'meal_size_preference': 'Regular 3 meals', 'spice_tolerance': 'Medium', 'cuisine_preferences': 'Mediterranean', 'food_texture_preferences': 'Mixed', 'portion_control_ability': 'Fair', 'previous_diet_success': 'Moderate with low-carb', 'preferred_meal_complexity': 'Moderate', 'seasonal_food_preferences': 'Yes'}
+2025-04-10 23:02:44,803 - INFO - Creating 7-day meal plan
+2025-04-10 23:02:44,804 - INFO - Starting health filtering with 1000 recipes
+2025-04-10 23:02:44,924 - INFO - After health filtering: 516 recipes (removed 484)
+2025-04-10 23:02:44,925 - INFO - Starting lifestyle filtering with 516 recipes
+2025-04-10 23:02:45,041 - INFO - After lifestyle filtering: 124 recipes (removed 392)
+2025-04-10 23:02:45,042 - INFO - Starting preference filtering with 124 recipes
+2025-04-10 23:02:45,059 - INFO - Filtered to 46 recipes for Spring season
+2025-04-10 23:02:45,061 - INFO - After preference filtering: 46 recipes (removed 78)
+2025-04-10 23:02:45,061 - INFO - Target: 1751 calories/day with P:33.0% C:32.0% F:35.0%
+2025-04-10 23:02:45,128 - ERROR - Error generating shopping list: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 11712 and this is thread id 11396.
+2025-04-10 23:02:45,129 - INFO - Successfully generated personalized recommendations
+2025-04-10 23:02:45,129 - INFO - Successfully generated meal plan with 28 meals
+2025-04-10 23:02:45,137 - INFO - 127.0.0.1 - - [10/Apr/2025 23:02:45] "POST /api/recommend HTTP/1.1" 200 -
+2025-04-10 23:08:28,513 - INFO - Received recommendation request with 40 parameters
+2025-04-10 23:08:28,513 - INFO - Generating recommendations for: diabetes=None, hypertension=Yes, height=170, weight=70, target_weight=65
+2025-04-10 23:08:28,514 - INFO - Generating personalized recommendations
+2025-04-10 23:08:28,515 - INFO - User parameters: {'diabetes': 'None', 'hypertension': 'Yes', 'cardiovascular': 'Absent', 'digestive_disorder': 'None', 'food_allergies': 'None', 'food_intolerances': '', 'height': 170, 'weight': 70, 'target_weight': 65, 'bmi_category': 'Overweight', 'weight_change_history': 'Fluctuating', 'exercise_frequency': 3, 'exercise_duration': 30, 'exercise_type': 'Mixed', 'daily_steps': 7500, 'physical_job_activity': 'Sedentary', 'work_schedule': 'Regular', 'sleep_duration': 7, 'sleep_quality': 'Fair', 'stress_level': 'High', 'meal_timing_regularity': 'Somewhat Regular', 'cooking_skills': 'Intermediate', 'available_cooking_time': 45, 'food_budget': 'Medium', 'alcohol_consumption': 'Occasional', 'smoking_status': 'Non-smoker', 'water_intake': 6, 'eating_out_frequency': 2, 'snacking_behavior': 'Evening Snacker', 'food_prep_time': 30, 'travel_frequency': 'Monthly', 'diet_type': 'Regular', 'meal_size_preference': 'Regular 3 meals', 'spice_tolerance': 'Medium', 'cuisine_preferences': 'Mediterranean', 'food_texture_preferences': 'Mixed', 'portion_control_ability': 'Fair', 'previous_diet_success': 'Moderate with low-carb', 'preferred_meal_complexity': 'Moderate', 'seasonal_food_preferences': 'Yes'}
+2025-04-10 23:08:28,517 - INFO - Creating 7-day meal plan
+2025-04-10 23:08:28,518 - INFO - Starting health filtering with 1000 recipes
+2025-04-10 23:08:28,519 - INFO - After health filtering: 495 recipes (removed 505)
+2025-04-10 23:08:28,520 - INFO - Starting lifestyle filtering with 495 recipes
+2025-04-10 23:08:28,523 - INFO - After lifestyle filtering: 113 recipes (removed 382)
+2025-04-10 23:08:28,524 - INFO - Starting preference filtering with 113 recipes
+2025-04-10 23:08:28,526 - INFO - Filtered to 46 recipes for Spring season
+2025-04-10 23:08:28,527 - INFO - After preference filtering: 46 recipes (removed 67)
+2025-04-10 23:08:28,527 - INFO - Target: 1843 calories/day with P:27.0% C:55.00000000000001% F:18.0%
+2025-04-10 23:08:28,587 - ERROR - Error generating shopping list: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 11712 and this is thread id 4932.
+2025-04-10 23:08:28,587 - INFO - Successfully generated personalized recommendations
+2025-04-10 23:08:28,588 - INFO - Successfully generated meal plan with 28 meals
+2025-04-10 23:08:28,590 - INFO - 127.0.0.1 - - [10/Apr/2025 23:08:28] "POST /api/recommend HTTP/1.1" 200 -
