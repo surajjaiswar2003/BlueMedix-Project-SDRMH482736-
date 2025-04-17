@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -15,34 +14,29 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import AnimatedGradient from "@/components/ui/animated-gradient";
 import { motion } from "framer-motion";
-
-// Temporary credentials
-const TEMP_CREDENTIALS = {
-  user: { email: "user@example.com", password: "password123" },
-  dietitian: { email: "dietitian@example.com", password: "password123" },
-  admin: { email: "admin@example.com", password: "password123" }
-};
+import { Heart, Stethoscope, Shield, Eye, EyeOff } from "lucide-react";
+import { CREDENTIALS } from "@/config/credentials";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call with a timeout
     setTimeout(() => {
-      if (
-        (email === TEMP_CREDENTIALS.user.email && password === TEMP_CREDENTIALS.user.password) ||
-        (email === TEMP_CREDENTIALS.dietitian.email && password === TEMP_CREDENTIALS.dietitian.password) ||
-        (email === TEMP_CREDENTIALS.admin.email && password === TEMP_CREDENTIALS.admin.password)
-      ) {
-        toast.success("Login successful!");
+      const user = Object.values(CREDENTIALS).find(
+        (cred) => cred.email === email && cred.password === password
+      );
+
+      if (user) {
+        toast.success(`Welcome back, ${user.name}!`);
+        localStorage.setItem("user", JSON.stringify(user));
         navigate("/profile");
       } else {
         toast.error("Invalid email or password");
@@ -51,103 +45,124 @@ const Login = () => {
     }, 1000);
   };
 
-  const fillTestCredentials = (role: 'user' | 'dietitian' | 'admin') => {
-    setEmail(TEMP_CREDENTIALS[role].email);
-    setPassword(TEMP_CREDENTIALS[role].password);
-  };
-
   return (
-    <div className="min-h-screen flex flex-col relative">
-      <AnimatedGradient className="opacity-10" />
+    <div className="min-h-screen flex flex-col bg-slate-50">
       <Navbar />
-      <main className="flex-grow pt-24 pb-16 flex items-center justify-center">
-        <div className="w-full max-w-md px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="shadow-lg">
-              <CardHeader className="space-y-1">
-                <CardTitle className="text-2xl text-center">Log in</CardTitle>
-                <CardDescription className="text-center">
-                  Enter your credentials to access your account
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="yourname@example.com" 
+      <main className="flex-1 flex items-center justify-center pt-24 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md px-4"
+        >
+          <Card className="relative overflow-hidden border-0 shadow-lg bg-white">
+            <div className="absolute inset-0 bg-emerald-50" />
+            
+            <CardHeader className="space-y-1 relative z-10">
+              <div className="flex items-center justify-center mb-4">
+                <div className="p-3 rounded-full bg-emerald-100">
+                  <Heart className="w-8 h-8 text-emerald-600" />
+                </div>
+              </div>
+              <CardTitle className="text-2xl font-bold text-center text-gray-800">Welcome to HealthHub</CardTitle>
+              <CardDescription className="text-center text-gray-600">
+                Your journey to better health starts here
+              </CardDescription>
+            </CardHeader>
+            
+            <CardContent className="relative z-10">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-gray-700">Email</Label>
+                  <div className="relative">
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      className="pl-10 bg-white border-gray-200 focus:border-emerald-500 focus:ring-emerald-500"
                     />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="password">Password</Label>
-                      <Link to="/forgot-password" className="text-sm text-dietBlue hover:underline">
-                        Forgot password?
-                      </Link>
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
                     </div>
-                    <Input 
-                      id="password" 
-                      type="password" 
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? "Logging in..." : "Log in"}
-                  </Button>
-                </form>
-                
-                <div className="mt-6">
-                  <p className="text-sm text-center mb-2">Temporary test accounts:</p>
-                  <div className="grid grid-cols-3 gap-2">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={() => fillTestCredentials('user')}
-                      className="text-xs"
-                    >
-                      User
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={() => fillTestCredentials('dietitian')}
-                      className="text-xs"
-                    >
-                      Dietitian
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={() => fillTestCredentials('admin')}
-                      className="text-xs"
-                    >
-                      Admin
-                    </Button>
                   </div>
                 </div>
-              </CardContent>
-              <CardFooter className="flex justify-center">
-                <p className="text-sm text-muted-foreground">
-                  Don't have an account?{" "}
-                  <Link to="/register" className="text-dietBlue hover:underline">
-                    Create an account
-                  </Link>
-                </p>
-              </CardFooter>
-            </Card>
-          </motion.div>
-        </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="password" className="text-gray-700">Password</Label>
+                  <motion.div
+                    initial={false}
+                    animate={{ scale: showPassword ? 1.02 : 1 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative"
+                  >
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      onFocus={() => setShowPassword(true)}
+                      onBlur={() => setShowPassword(false)}
+                      required
+                      className="pl-10 bg-white border-gray-200 focus:border-emerald-500 focus:ring-emerald-500"
+                    />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Shield className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                      ) : (
+                        <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                      )}
+                    </button>
+                  </motion.div>
+                </div>
+                
+                <Button
+                  type="submit"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin mr-2" />
+                      Signing in...
+                    </div>
+                  ) : (
+                    "Sign in"
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+            
+            <CardFooter className="relative z-10 flex flex-col space-y-4">
+              <div className="text-sm text-center text-gray-600">
+                Don't have an account?{" "}
+                <Link
+                  to="/register"
+                  className="text-emerald-600 hover:text-emerald-700 font-medium"
+                >
+                  Sign up
+                </Link>
+              </div>
+              <div className="flex items-center justify-center space-x-4 text-gray-400">
+                <Stethoscope className="w-5 h-5" />
+                <span className="text-xs">Secure & HIPAA Compliant</span>
+                <Shield className="w-5 h-5" />
+              </div>
+            </CardFooter>
+          </Card>
+        </motion.div>
       </main>
       <Footer />
     </div>
