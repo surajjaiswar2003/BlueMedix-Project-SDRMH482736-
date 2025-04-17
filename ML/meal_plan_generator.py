@@ -398,8 +398,18 @@ def filter_recipes_for_user(recipes, user_data, strict=True):
     
     # Preparation time based on available cooking time
     available_time = user_data.get('available_cooking_time', 0)
-    if available_time and available_time > 0 and 'prep_time' in filtered.columns:
-        filtered = filtered[filtered['prep_time'] <= available_time]
+    if available_time:
+        try:
+            available_time_int = int(available_time)
+            if available_time_int > 0 and 'prep_time' in filtered.columns:
+                filtered = filtered[filtered['prep_time'] <= available_time_int]
+        except (ValueError, TypeError):
+            # Set a default value instead of just passing
+            available_time_int = 30  # Default to 30 minutes
+            print(f"Warning: Could not convert available_time '{available_time}' to integer, using default of {available_time_int} minutes")
+            if 'prep_time' in filtered.columns:
+                filtered = filtered[filtered['prep_time'] <= available_time_int]
+
     
     # If after all filtering we have too few recipes, return a less filtered set
     if len(filtered) < 5 and strict:

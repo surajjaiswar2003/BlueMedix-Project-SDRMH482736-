@@ -1,0 +1,365 @@
+{
+  "user_id": 3,
+  "cluster": 0,
+  "days": [
+    {
+      "day": 1,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-9 AM",
+          "recipe_id": 4,
+          "recipe_name": "Overnight Oats with Almond Butter",
+          "ingredients": "Rolled oats, almond milk, almond butter, banana, cinnamon",
+          "instructions": "Combine ingredients, refrigerate overnight, add banana before serving",
+          "calories": 310.0,
+          "proteins": 12.0,
+          "carbs": 45.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-2 PM",
+          "recipe_id": 21,
+          "recipe_name": "Turkey and Vegetable Wrap",
+          "ingredients": "Turkey breast, whole grain wrap, lettuce, tomato, bell pepper, hummus",
+          "instructions": "Spread hummus on wrap, add turkey and vegetables, roll up",
+          "calories": 320.0,
+          "proteins": 25.0,
+          "carbs": 30.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-8 PM",
+          "recipe_id": 6,
+          "recipe_name": "Whole Grain Pancakes with Berries",
+          "ingredients": "Whole grain flour, egg, milk, baking powder, berries, maple syrup",
+          "instructions": "Mix batter, cook pancakes, top with fresh berries and small amount of syrup",
+          "calories": 280.0,
+          "proteins": 10.0,
+          "carbs": 40.0,
+          "fats": 8.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 910.0,
+        "proteins": 47.0,
+        "carbs": 115.0,
+        "fats": 28.0,
+        "carb_percent": 50.5,
+        "protein_percent": 20.7,
+        "fat_percent": 27.7
+      }
+    },
+    {
+      "day": 2,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-9 AM",
+          "recipe_id": 2,
+          "recipe_name": "Avocado Toast with Poached Egg",
+          "ingredients": "Whole grain bread, avocado, egg, tomato, salt, pepper",
+          "instructions": "Toast bread, spread avocado, add sliced tomato, top with poached egg",
+          "calories": 320.0,
+          "proteins": 14.0,
+          "carbs": 28.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-2 PM",
+          "recipe_id": 17,
+          "recipe_name": "Grilled Chicken Salad with Avocado",
+          "ingredients": "Chicken breast, mixed greens, avocado, cherry tomatoes, olive oil",
+          "instructions": "Grill chicken, slice and add to salad with other ingredients",
+          "calories": 320.0,
+          "proteins": 30.0,
+          "carbs": 12.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-8 PM",
+          "recipe_id": 4,
+          "recipe_name": "Overnight Oats with Almond Butter",
+          "ingredients": "Rolled oats, almond milk, almond butter, banana, cinnamon",
+          "instructions": "Combine ingredients, refrigerate overnight, add banana before serving",
+          "calories": 310.0,
+          "proteins": 12.0,
+          "carbs": 45.0,
+          "fats": 10.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 950.0,
+        "proteins": 56.0,
+        "carbs": 85.0,
+        "fats": 40.0,
+        "carb_percent": 35.8,
+        "protein_percent": 23.6,
+        "fat_percent": 37.9
+      }
+    },
+    {
+      "day": 3,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-9 AM",
+          "recipe_id": 8,
+          "recipe_name": "Low-Carb Breakfast Bowl",
+          "ingredients": "Ground turkey, bell peppers, eggs, avocado, salsa",
+          "instructions": "Cook turkey with peppers, add eggs, top with avocado and salsa",
+          "calories": 290.0,
+          "proteins": 22.0,
+          "carbs": 8.0,
+          "fats": 18.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-2 PM",
+          "recipe_id": 15,
+          "recipe_name": "Protein-Packed Chia Pudding",
+          "ingredients": "Chia seeds, protein powder, almond milk, berries, honey",
+          "instructions": "Mix ingredients except berries, refrigerate overnight, top with berries",
+          "calories": 270.0,
+          "proteins": 15.0,
+          "carbs": 20.0,
+          "fats": 14.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-8 PM",
+          "recipe_id": 19,
+          "recipe_name": "Tuna Salad Stuffed Avocado",
+          "ingredients": "Canned tuna, greek yogurt, celery, red onion, lemon juice, avocado",
+          "instructions": "Mix tuna with yogurt and vegetables, stuff into avocado halves",
+          "calories": 320.0,
+          "proteins": 25.0,
+          "carbs": 10.0,
+          "fats": 20.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 880.0,
+        "proteins": 62.0,
+        "carbs": 38.0,
+        "fats": 52.0,
+        "carb_percent": 17.3,
+        "protein_percent": 28.2,
+        "fat_percent": 53.2
+      }
+    },
+    {
+      "day": 4,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-9 AM",
+          "recipe_id": 8,
+          "recipe_name": "Low-Carb Breakfast Bowl",
+          "ingredients": "Ground turkey, bell peppers, eggs, avocado, salsa",
+          "instructions": "Cook turkey with peppers, add eggs, top with avocado and salsa",
+          "calories": 290.0,
+          "proteins": 22.0,
+          "carbs": 8.0,
+          "fats": 18.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-2 PM",
+          "recipe_id": 19,
+          "recipe_name": "Tuna Salad Stuffed Avocado",
+          "ingredients": "Canned tuna, greek yogurt, celery, red onion, lemon juice, avocado",
+          "instructions": "Mix tuna with yogurt and vegetables, stuff into avocado halves",
+          "calories": 320.0,
+          "proteins": 25.0,
+          "carbs": 10.0,
+          "fats": 20.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-8 PM",
+          "recipe_id": 19,
+          "recipe_name": "Tuna Salad Stuffed Avocado",
+          "ingredients": "Canned tuna, greek yogurt, celery, red onion, lemon juice, avocado",
+          "instructions": "Mix tuna with yogurt and vegetables, stuff into avocado halves",
+          "calories": 320.0,
+          "proteins": 25.0,
+          "carbs": 10.0,
+          "fats": 20.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 930.0,
+        "proteins": 72.0,
+        "carbs": 28.0,
+        "fats": 58.0,
+        "carb_percent": 12.0,
+        "protein_percent": 31.0,
+        "fat_percent": 56.1
+      }
+    },
+    {
+      "day": 5,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-9 AM",
+          "recipe_id": 2,
+          "recipe_name": "Avocado Toast with Poached Egg",
+          "ingredients": "Whole grain bread, avocado, egg, tomato, salt, pepper",
+          "instructions": "Toast bread, spread avocado, add sliced tomato, top with poached egg",
+          "calories": 320.0,
+          "proteins": 14.0,
+          "carbs": 28.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-2 PM",
+          "recipe_id": 19,
+          "recipe_name": "Tuna Salad Stuffed Avocado",
+          "ingredients": "Canned tuna, greek yogurt, celery, red onion, lemon juice, avocado",
+          "instructions": "Mix tuna with yogurt and vegetables, stuff into avocado halves",
+          "calories": 320.0,
+          "proteins": 25.0,
+          "carbs": 10.0,
+          "fats": 20.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-8 PM",
+          "recipe_id": 4,
+          "recipe_name": "Overnight Oats with Almond Butter",
+          "ingredients": "Rolled oats, almond milk, almond butter, banana, cinnamon",
+          "instructions": "Combine ingredients, refrigerate overnight, add banana before serving",
+          "calories": 310.0,
+          "proteins": 12.0,
+          "carbs": 45.0,
+          "fats": 10.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 950.0,
+        "proteins": 51.0,
+        "carbs": 83.0,
+        "fats": 45.0,
+        "carb_percent": 34.9,
+        "protein_percent": 21.5,
+        "fat_percent": 42.6
+      }
+    },
+    {
+      "day": 6,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-9 AM",
+          "recipe_id": 2,
+          "recipe_name": "Avocado Toast with Poached Egg",
+          "ingredients": "Whole grain bread, avocado, egg, tomato, salt, pepper",
+          "instructions": "Toast bread, spread avocado, add sliced tomato, top with poached egg",
+          "calories": 320.0,
+          "proteins": 14.0,
+          "carbs": 28.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-2 PM",
+          "recipe_id": 17,
+          "recipe_name": "Grilled Chicken Salad with Avocado",
+          "ingredients": "Chicken breast, mixed greens, avocado, cherry tomatoes, olive oil",
+          "instructions": "Grill chicken, slice and add to salad with other ingredients",
+          "calories": 320.0,
+          "proteins": 30.0,
+          "carbs": 12.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-8 PM",
+          "recipe_id": 17,
+          "recipe_name": "Grilled Chicken Salad with Avocado",
+          "ingredients": "Chicken breast, mixed greens, avocado, cherry tomatoes, olive oil",
+          "instructions": "Grill chicken, slice and add to salad with other ingredients",
+          "calories": 320.0,
+          "proteins": 30.0,
+          "carbs": 12.0,
+          "fats": 15.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 960.0,
+        "proteins": 74.0,
+        "carbs": 52.0,
+        "fats": 45.0,
+        "carb_percent": 21.7,
+        "protein_percent": 30.8,
+        "fat_percent": 42.2
+      }
+    },
+    {
+      "day": 7,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-9 AM",
+          "recipe_id": 4,
+          "recipe_name": "Overnight Oats with Almond Butter",
+          "ingredients": "Rolled oats, almond milk, almond butter, banana, cinnamon",
+          "instructions": "Combine ingredients, refrigerate overnight, add banana before serving",
+          "calories": 310.0,
+          "proteins": 12.0,
+          "carbs": 45.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-2 PM",
+          "recipe_id": 17,
+          "recipe_name": "Grilled Chicken Salad with Avocado",
+          "ingredients": "Chicken breast, mixed greens, avocado, cherry tomatoes, olive oil",
+          "instructions": "Grill chicken, slice and add to salad with other ingredients",
+          "calories": 320.0,
+          "proteins": 30.0,
+          "carbs": 12.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-8 PM",
+          "recipe_id": 19,
+          "recipe_name": "Tuna Salad Stuffed Avocado",
+          "ingredients": "Canned tuna, greek yogurt, celery, red onion, lemon juice, avocado",
+          "instructions": "Mix tuna with yogurt and vegetables, stuff into avocado halves",
+          "calories": 320.0,
+          "proteins": 25.0,
+          "carbs": 10.0,
+          "fats": 20.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 950.0,
+        "proteins": 67.0,
+        "carbs": 67.0,
+        "fats": 45.0,
+        "carb_percent": 28.2,
+        "protein_percent": 28.2,
+        "fat_percent": 42.6
+      }
+    }
+  ],
+  "overall_stats": {
+    "avg_daily_calories": 933,
+    "avg_daily_proteins": 61,
+    "avg_daily_carbs": 67,
+    "avg_daily_fats": 45,
+    "overall_protein_percent": 26.8,
+    "overall_carb_percent": 29.2,
+    "overall_fat_percent": 44.0
+  }
+}
