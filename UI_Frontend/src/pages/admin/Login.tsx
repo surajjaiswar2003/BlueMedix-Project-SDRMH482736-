@@ -1,42 +1,32 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { toast } from 'sonner';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/config/firebase';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        credentials.email,
-        credentials.password
-      );
-      
-      // Check if the user is an admin (you'll need to implement this check)
-      const user = userCredential.user;
-      const idToken = await user.getIdToken();
-      
-      // Store the token and user info
-      localStorage.setItem('adminToken', idToken);
-      localStorage.setItem('adminEmail', user.email || '');
-      
-      toast.success('Login successful!');
-      navigate('/admin/dashboard');
+      // Placeholder for authentication logic
+      // You can replace this with your own authentication method
+
+      // Simulate a successful login
+      setTimeout(() => {
+        toast.success("Login successful!");
+        navigate("/admin/dashboard");
+      }, 1000);
     } catch (error: any) {
-      toast.error(error.message || 'Invalid credentials');
+      toast.error("Invalid credentials");
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +57,9 @@ const AdminLogin = () => {
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-dietGreen focus:border-dietGreen focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 value={credentials.email}
-                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
+                onChange={(e) =>
+                  setCredentials({ ...credentials, email: e.target.value })
+                }
               />
             </div>
             <div>
@@ -82,7 +74,9 @@ const AdminLogin = () => {
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-dietGreen focus:border-dietGreen focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={credentials.password}
-                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+                onChange={(e) =>
+                  setCredentials({ ...credentials, password: e.target.value })
+                }
               />
             </div>
           </div>
@@ -93,7 +87,7 @@ const AdminLogin = () => {
               disabled={isLoading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-dietGreen hover:bg-dietGreen-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dietGreen"
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? "Signing in..." : "Sign in"}
             </Button>
           </div>
         </form>
@@ -102,4 +96,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin; 
+export default AdminLogin;

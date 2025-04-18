@@ -1,42 +1,27 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { toast } from 'sonner';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/config/firebase';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 const DietitianLogin = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        credentials.email,
-        credentials.password
-      );
-      
-      // Check if the user is a dietitian (you'll need to implement this check)
-      const user = userCredential.user;
-      const idToken = await user.getIdToken();
-      
-      // Store the token and user info
-      localStorage.setItem('dietitianToken', idToken);
-      localStorage.setItem('dietitianEmail', user.email || '');
-      
-      toast.success('Login successful!');
-      navigate('/dietitian/dashboard');
-    } catch (error: any) {
-      toast.error(error.message || 'Invalid credentials');
+      // Mock login success
+      toast.success("Login successful!");
+      navigate("/dietitian/dashboard");
+    } catch (error) {
+      toast.error("Invalid credentials");
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +52,9 @@ const DietitianLogin = () => {
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-dietGreen focus:border-dietGreen focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 value={credentials.email}
-                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
+                onChange={(e) =>
+                  setCredentials({ ...credentials, email: e.target.value })
+                }
               />
             </div>
             <div>
@@ -82,7 +69,9 @@ const DietitianLogin = () => {
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-dietGreen focus:border-dietGreen focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={credentials.password}
-                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+                onChange={(e) =>
+                  setCredentials({ ...credentials, password: e.target.value })
+                }
               />
             </div>
           </div>
@@ -93,7 +82,7 @@ const DietitianLogin = () => {
               disabled={isLoading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-dietGreen hover:bg-dietGreen-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dietGreen"
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? "Signing in..." : "Sign in"}
             </Button>
           </div>
         </form>
@@ -102,4 +91,4 @@ const DietitianLogin = () => {
   );
 };
 
-export default DietitianLogin; 
+export default DietitianLogin;
