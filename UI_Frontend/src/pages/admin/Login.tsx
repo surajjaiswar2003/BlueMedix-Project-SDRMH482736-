@@ -17,20 +17,30 @@ const AdminLogin = () => {
     setIsLoading(true);
 
     try {
-      // Placeholder for authentication logic
-      // You can replace this with your own authentication method
+      const response = await fetch(
+        "http://localhost:5000/api/auth/admin/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(credentials),
+        }
+      );
+      const data = await response.json();
 
-      // Simulate a successful login
-      setTimeout(() => {
-        toast.success("Login successful!");
+      if (response.ok) {
+        toast.success(`Welcome, Admin ${data.firstName}!`);
+        localStorage.setItem("admin", JSON.stringify(data));
         navigate("/admin/dashboard");
-      }, 1000);
-    } catch (error: any) {
-      toast.error("Invalid credentials");
+      } else {
+        toast.error(data.message || "Invalid credentials");
+      }
+    } catch (err) {
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">

@@ -25,24 +25,30 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    setTimeout(() => {
-      const user = Object.values(CREDENTIALS).find(
-        (cred) => cred.email === email && cred.password === password
-      );
 
-      if (user) {
-        toast.success(`Welcome back, ${user.name}!`);
-        localStorage.setItem("user", JSON.stringify(user));
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success(`Welcome back, ${data.firstName}!`);
+        localStorage.setItem("user", JSON.stringify(data));
         navigate("/profile");
       } else {
-        toast.error("Invalid email or password");
+        toast.error(data.message || "Invalid email or password");
       }
+    } catch (err) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   return (

@@ -12,20 +12,35 @@ const DietitianLogin = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      // Mock login success
-      toast.success("Login successful!");
-      navigate("/dietitian/dashboard");
-    } catch (error) {
-      toast.error("Invalid credentials");
+      const response = await fetch(
+        "http://localhost:5000/api/auth/dietitian/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(credentials),
+        }
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success(`Welcome, ${data.firstName}!`);
+        localStorage.setItem("dietitian", JSON.stringify(data));
+        navigate("/dietitian/dashboard");
+      } else {
+        toast.error(data.message || "Invalid credentials");
+      }
+    } catch (err) {
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
