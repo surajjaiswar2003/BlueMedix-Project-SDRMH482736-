@@ -13,34 +13,68 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { Heart, Stethoscope, Shield, Eye, EyeOff } from "lucide-react";
 import { CREDENTIALS } from "@/config/credentials";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    userType: "user", // Default to user
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  };
+
+  const handleUserTypeChange = (value: string) => {
+    setFormData({ ...formData, userType: value });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      // Determine the correct endpoint based on user type
+      const endpoint =
+        formData.userType === "dietitian"
+          ? "http://localhost:5000/api/auth/dietitian/login"
+          : "http://localhost:5000/api/auth/login";
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
       });
+
       const data = await response.json();
 
       if (response.ok) {
         toast.success(`Welcome back, ${data.firstName}!`);
-        localStorage.setItem("user", JSON.stringify(data));
-        navigate("/profile");
+
+        // Store user data in the appropriate localStorage key
+        localStorage.setItem(
+          formData.userType === "dietitian" ? "dietitian" : "user",
+          JSON.stringify(data)
+        );
+
+        // Redirect to the appropriate dashboard
+        if (formData.userType === "dietitian") {
+          navigate("/dietitian/dashboard");
+        } else {
+          navigate("/user/dashboard");
+        }
       } else {
         toast.error(data.message || "Invalid email or password");
       }
@@ -63,43 +97,83 @@ const Login = () => {
         >
           <Card className="relative overflow-hidden border-0 shadow-lg bg-white">
             <div className="absolute inset-0 bg-emerald-50" />
-            
+
             <CardHeader className="space-y-1 relative z-10">
               <div className="flex items-center justify-center mb-4">
                 <div className="p-3 rounded-full bg-emerald-100">
                   <Heart className="w-8 h-8 text-emerald-600" />
                 </div>
               </div>
-              <CardTitle className="text-2xl font-bold text-center text-gray-800">Welcome to HealthHub</CardTitle>
+              <CardTitle className="text-2xl font-bold text-center text-gray-800">
+                Welcome to HealthHub
+              </CardTitle>
               <CardDescription className="text-center text-gray-600">
                 Your journey to better health starts here
               </CardDescription>
             </CardHeader>
-            
+
             <CardContent className="relative z-10">
+              <Tabs
+                defaultValue="user"
+                className="w-full mb-6"
+                onValueChange={handleUserTypeChange}
+              >
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="user">Login as User</TabsTrigger>
+                  <TabsTrigger value="dietitian">
+                    Login as Dietitian
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="user">
+                  <p className="text-sm text-muted-foreground mt-2 text-center">
+                    Access your personalized nutrition plans and health tracking
+                  </p>
+                </TabsContent>
+                <TabsContent value="dietitian">
+                  <p className="text-sm text-muted-foreground mt-2 text-center">
+                    Login to manage client diet plans and provide nutritional
+                    guidance
+                  </p>
+                </TabsContent>
+              </Tabs>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-700">Email</Label>
+                  <Label htmlFor="email" className="text-gray-700">
+                    Email
+                  </Label>
                   <div className="relative">
                     <Input
                       id="email"
                       type="email"
                       placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                       className="pl-10 bg-white border-gray-200 focus:border-emerald-500 focus:ring-emerald-500"
                     />
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      <svg
+                        className="h-5 w-5 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
                       </svg>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <Label htmlFor="password" className="text-gray-700">Password</Label>
+                  <Label htmlFor="password" className="text-gray-700">
+                    Password
+                  </Label>
                   <motion.div
                     initial={false}
                     animate={{ scale: showPassword ? 1.02 : 1 }}
@@ -110,8 +184,8 @@ const Login = () => {
                       id="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Enter your password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={formData.password}
+                      onChange={handleChange}
                       onFocus={() => setShowPassword(true)}
                       onBlur={() => setShowPassword(false)}
                       required
@@ -133,7 +207,7 @@ const Login = () => {
                     </button>
                   </motion.div>
                 </div>
-                
+
                 <Button
                   type="submit"
                   className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md"
@@ -150,7 +224,7 @@ const Login = () => {
                 </Button>
               </form>
             </CardContent>
-            
+
             <CardFooter className="relative z-10 flex flex-col space-y-4">
               <div className="text-sm text-center text-gray-600">
                 Don't have an account?{" "}

@@ -35,7 +35,6 @@ const Profile = () => {
   const [dietPlan, setDietPlan] = useState(null);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-    // Your existing form data state
     // Health Conditions
     diabetes: "",
     hypertension: "",

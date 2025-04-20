@@ -10,70 +10,114 @@
           "timing": "7-8 AM",
           "recipe_id": 14,
           "recipe_name": "Savory Breakfast Quinoa",
-          "ingredients": "Quinoa, vegetable broth, egg, avocado, cherry tomatoes",
+          "ingredients": [
+            "Quinoa",
+            " vegetable broth",
+            " egg",
+            " avocado",
+            " cherry tomatoes"
+          ],
           "instructions": "Cook quinoa in broth, top with fried egg, avocado, and tomatoes",
           "calories": 280.0,
           "proteins": 14.0,
           "carbs": 30.0,
-          "fats": 12.0
+          "fats": 12.0,
+          "mongodb_id": "68041e89c1a546fa8151b8d3"
         },
         {
           "meal_type": "morning_snack",
           "timing": "10-11 AM",
           "recipe_id": 47,
           "recipe_name": "Mushroom and Spinach Frittata",
-          "ingredients": "Eggs, mushrooms, spinach, onion, feta cheese, olive oil, herbs",
+          "ingredients": [
+            "Eggs",
+            " mushrooms",
+            " spinach",
+            " onion",
+            " feta cheese",
+            " olive oil",
+            " herbs"
+          ],
           "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
           "calories": 230.0,
           "proteins": 18.0,
           "carbs": 8.0,
-          "fats": 14.0
+          "fats": 14.0,
+          "mongodb_id": "68041e89c1a546fa8151b8f4"
         },
         {
           "meal_type": "lunch",
           "timing": "12-1 PM",
-          "recipe_id": 61,
-          "recipe_name": "Quinoa Tabbouleh Salad",
-          "ingredients": "Quinoa, parsley, mint, tomatoes, cucumber, lemon juice, olive oil, green onions",
-          "instructions": "Cook quinoa and cool. Mix with chopped herbs, vegetables, lemon juice, and olive oil.",
-          "calories": 310.0,
-          "proteins": 14.0,
-          "carbs": 42.0,
-          "fats": 10.0
+          "recipe_id": 62,
+          "recipe_name": "Lentil and Vegetable Soup",
+          "ingredients": [
+            "Green lentils",
+            " carrots",
+            " celery",
+            " onion",
+            " garlic",
+            " vegetable broth",
+            " tomatoes",
+            " spinach",
+            " herbs"
+          ],
+          "instructions": "Saut\u00e9 vegetables, add lentils, broth, and tomatoes. Simmer until lentils are tender. Add spinach at the end.",
+          "calories": 280.0,
+          "proteins": 18.0,
+          "carbs": 40.0,
+          "fats": 5.0,
+          "mongodb_id": "68041e89c1a546fa8151b903"
         },
         {
           "meal_type": "afternoon_snack",
           "timing": "3-4 PM",
           "recipe_id": 3,
           "recipe_name": "Spinach and Mushroom Omelette",
-          "ingredients": "Eggs, spinach, mushrooms, feta cheese, olive oil",
+          "ingredients": [
+            "Eggs",
+            " spinach",
+            " mushrooms",
+            " feta cheese",
+            " olive oil"
+          ],
           "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
           "calories": 280.0,
           "proteins": 20.0,
           "carbs": 5.0,
-          "fats": 16.0
+          "fats": 16.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c8"
         },
         {
           "meal_type": "dinner",
           "timing": "6-7 PM",
-          "recipe_id": 39,
-          "recipe_name": "Eggplant and Chickpea Stew",
-          "ingredients": "Eggplant, chickpeas, tomatoes, onions, garlic, herbs, spices",
-          "instructions": "Saut\u00e9 vegetables, add chickpeas and tomatoes, simmer",
-          "calories": 280.0,
-          "proteins": 12.0,
-          "carbs": 35.0,
-          "fats": 10.0
+          "recipe_id": 61,
+          "recipe_name": "Quinoa Tabbouleh Salad",
+          "ingredients": [
+            "Quinoa",
+            " parsley",
+            " mint",
+            " tomatoes",
+            " cucumber",
+            " lemon juice",
+            " olive oil",
+            " green onions"
+          ],
+          "instructions": "Cook quinoa and cool. Mix with chopped herbs, vegetables, lemon juice, and olive oil.",
+          "calories": 310.0,
+          "proteins": 14.0,
+          "carbs": 42.0,
+          "fats": 10.0,
+          "mongodb_id": "68041e89c1a546fa8151b902"
         }
       ],
       "daily_totals": {
         "calories": 1380.0,
-        "proteins": 78.0,
-        "carbs": 120.0,
-        "fats": 62.0,
-        "carb_percent": 34.8,
-        "protein_percent": 22.6,
-        "fat_percent": 40.4
+        "proteins": 84.0,
+        "carbs": 125.0,
+        "fats": 57.0,
+        "carb_percent": 36.2,
+        "protein_percent": 24.3,
+        "fat_percent": 37.2
       }
     },
     {
@@ -82,72 +126,113 @@
         {
           "meal_type": "breakfast",
           "timing": "7-8 AM",
-          "recipe_id": 14,
-          "recipe_name": "Savory Breakfast Quinoa",
-          "ingredients": "Quinoa, vegetable broth, egg, avocado, cherry tomatoes",
-          "instructions": "Cook quinoa in broth, top with fried egg, avocado, and tomatoes",
-          "calories": 280.0,
+          "recipe_id": 58,
+          "recipe_name": "Quinoa Breakfast Bowl with Roasted Vegetables",
+          "ingredients": [
+            "Quinoa",
+            " sweet potato",
+            " bell pepper",
+            " onion",
+            " olive oil",
+            " poached egg",
+            " avocado",
+            " herbs"
+          ],
+          "instructions": "Roast vegetables. Cook quinoa. Combine and top with poached egg and sliced avocado.",
+          "calories": 300.0,
           "proteins": 14.0,
-          "carbs": 30.0,
-          "fats": 12.0
+          "carbs": 35.0,
+          "fats": 12.0,
+          "mongodb_id": "68041e89c1a546fa8151b8ff"
         },
         {
           "meal_type": "morning_snack",
           "timing": "10-11 AM",
           "recipe_id": 47,
           "recipe_name": "Mushroom and Spinach Frittata",
-          "ingredients": "Eggs, mushrooms, spinach, onion, feta cheese, olive oil, herbs",
+          "ingredients": [
+            "Eggs",
+            " mushrooms",
+            " spinach",
+            " onion",
+            " feta cheese",
+            " olive oil",
+            " herbs"
+          ],
           "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
           "calories": 230.0,
           "proteins": 18.0,
           "carbs": 8.0,
-          "fats": 14.0
+          "fats": 14.0,
+          "mongodb_id": "68041e89c1a546fa8151b8f4"
         },
         {
           "meal_type": "lunch",
           "timing": "12-1 PM",
           "recipe_id": 18,
           "recipe_name": "Lentil Soup with Vegetables",
-          "ingredients": "Lentils, carrots, onions, celery, tomatoes, vegetable broth, spices",
+          "ingredients": [
+            "Lentils",
+            " carrots",
+            " onions",
+            " celery",
+            " tomatoes",
+            " vegetable broth",
+            " spices"
+          ],
           "instructions": "Saut\u00e9 vegetables, add lentils and broth, simmer until tender",
           "calories": 260.0,
           "proteins": 16.0,
           "carbs": 35.0,
-          "fats": 6.0
+          "fats": 6.0,
+          "mongodb_id": "68041e89c1a546fa8151b8d7"
         },
         {
           "meal_type": "afternoon_snack",
           "timing": "3-4 PM",
-          "recipe_id": 47,
-          "recipe_name": "Mushroom and Spinach Frittata",
-          "ingredients": "Eggs, mushrooms, spinach, onion, feta cheese, olive oil, herbs",
-          "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
-          "calories": 230.0,
+          "recipe_id": 1,
+          "recipe_name": "Greek Yogurt with Berries and Chia Seeds",
+          "ingredients": [
+            "Greek yogurt",
+            " mixed berries",
+            " chia seeds",
+            " honey"
+          ],
+          "instructions": "Mix 1 cup of Greek yogurt with 1/2 cup berries, 1 tbsp chia seeds, and a drizzle of honey",
+          "calories": 240.0,
           "proteins": 18.0,
-          "carbs": 8.0,
-          "fats": 14.0
+          "carbs": 25.0,
+          "fats": 6.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c6"
         },
         {
           "meal_type": "dinner",
           "timing": "6-7 PM",
           "recipe_id": 24,
           "recipe_name": "Egg and Vegetable Frittata",
-          "ingredients": "Eggs, bell peppers, spinach, onions, feta cheese",
+          "ingredients": [
+            "Eggs",
+            " bell peppers",
+            " spinach",
+            " onions",
+            " feta cheese"
+          ],
           "instructions": "Saut\u00e9 vegetables, add beaten eggs, cook until set",
           "calories": 260.0,
           "proteins": 20.0,
           "carbs": 10.0,
-          "fats": 15.0
+          "fats": 15.0,
+          "mongodb_id": "68041e89c1a546fa8151b8dd"
         }
       ],
       "daily_totals": {
-        "calories": 1260.0,
+        "calories": 1290.0,
         "proteins": 86.0,
-        "carbs": 91.0,
-        "fats": 61.0,
-        "carb_percent": 28.9,
-        "protein_percent": 27.3,
-        "fat_percent": 43.6
+        "carbs": 113.0,
+        "fats": 53.0,
+        "carb_percent": 35.0,
+        "protein_percent": 26.7,
+        "fat_percent": 37.0
       }
     },
     {
@@ -156,72 +241,114 @@
         {
           "meal_type": "breakfast",
           "timing": "7-8 AM",
-          "recipe_id": 58,
-          "recipe_name": "Quinoa Breakfast Bowl with Roasted Vegetables",
-          "ingredients": "Quinoa, sweet potato, bell pepper, onion, olive oil, poached egg, avocado, herbs",
-          "instructions": "Roast vegetables. Cook quinoa. Combine and top with poached egg and sliced avocado.",
-          "calories": 300.0,
+          "recipe_id": 14,
+          "recipe_name": "Savory Breakfast Quinoa",
+          "ingredients": [
+            "Quinoa",
+            " vegetable broth",
+            " egg",
+            " avocado",
+            " cherry tomatoes"
+          ],
+          "instructions": "Cook quinoa in broth, top with fried egg, avocado, and tomatoes",
+          "calories": 280.0,
           "proteins": 14.0,
-          "carbs": 35.0,
-          "fats": 12.0
+          "carbs": 30.0,
+          "fats": 12.0,
+          "mongodb_id": "68041e89c1a546fa8151b8d3"
         },
         {
           "meal_type": "morning_snack",
           "timing": "10-11 AM",
-          "recipe_id": 47,
-          "recipe_name": "Mushroom and Spinach Frittata",
-          "ingredients": "Eggs, mushrooms, spinach, onion, feta cheese, olive oil, herbs",
-          "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
-          "calories": 230.0,
-          "proteins": 18.0,
-          "carbs": 8.0,
-          "fats": 14.0
+          "recipe_id": 3,
+          "recipe_name": "Spinach and Mushroom Omelette",
+          "ingredients": [
+            "Eggs",
+            " spinach",
+            " mushrooms",
+            " feta cheese",
+            " olive oil"
+          ],
+          "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
+          "calories": 280.0,
+          "proteins": 20.0,
+          "carbs": 5.0,
+          "fats": 16.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c8"
         },
         {
           "meal_type": "lunch",
           "timing": "12-1 PM",
-          "recipe_id": 30,
-          "recipe_name": "Vegetable and Lentil Patties",
-          "ingredients": "Lentils, carrots, zucchini, oats, egg, spices",
-          "instructions": "Combine ingredients, form patties, bake until golden",
-          "calories": 240.0,
-          "proteins": 12.0,
-          "carbs": 30.0,
-          "fats": 8.0
+          "recipe_id": 62,
+          "recipe_name": "Lentil and Vegetable Soup",
+          "ingredients": [
+            "Green lentils",
+            " carrots",
+            " celery",
+            " onion",
+            " garlic",
+            " vegetable broth",
+            " tomatoes",
+            " spinach",
+            " herbs"
+          ],
+          "instructions": "Saut\u00e9 vegetables, add lentils, broth, and tomatoes. Simmer until lentils are tender. Add spinach at the end.",
+          "calories": 280.0,
+          "proteins": 18.0,
+          "carbs": 40.0,
+          "fats": 5.0,
+          "mongodb_id": "68041e89c1a546fa8151b903"
         },
         {
           "meal_type": "afternoon_snack",
           "timing": "3-4 PM",
           "recipe_id": 47,
           "recipe_name": "Mushroom and Spinach Frittata",
-          "ingredients": "Eggs, mushrooms, spinach, onion, feta cheese, olive oil, herbs",
+          "ingredients": [
+            "Eggs",
+            " mushrooms",
+            " spinach",
+            " onion",
+            " feta cheese",
+            " olive oil",
+            " herbs"
+          ],
           "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
           "calories": 230.0,
           "proteins": 18.0,
           "carbs": 8.0,
-          "fats": 14.0
+          "fats": 14.0,
+          "mongodb_id": "68041e89c1a546fa8151b8f4"
         },
         {
           "meal_type": "dinner",
           "timing": "6-7 PM",
-          "recipe_id": 82,
-          "recipe_name": "Eggplant and Chickpea Stew",
-          "ingredients": "Eggplant, chickpeas, tomatoes, onion, garlic, cumin, paprika, cinnamon, parsley, olive oil, lemon",
-          "instructions": "Saut\u00e9 eggplant, onion, and garlic. Add spices, tomatoes, and chickpeas. Simmer until eggplant is tender. Garnish with parsley and lemon.",
-          "calories": 310.0,
-          "proteins": 14.0,
-          "carbs": 42.0,
-          "fats": 10.0
+          "recipe_id": 30,
+          "recipe_name": "Vegetable and Lentil Patties",
+          "ingredients": [
+            "Lentils",
+            " carrots",
+            " zucchini",
+            " oats",
+            " egg",
+            " spices"
+          ],
+          "instructions": "Combine ingredients, form patties, bake until golden",
+          "calories": 240.0,
+          "proteins": 12.0,
+          "carbs": 30.0,
+          "fats": 8.0,
+          "mongodb_id": "68041e89c1a546fa8151b8e3"
         }
       ],
       "daily_totals": {
         "calories": 1310.0,
-        "proteins": 76.0,
-        "carbs": 123.0,
-        "fats": 58.0,
-        "carb_percent": 37.6,
-        "protein_percent": 23.2,
-        "fat_percent": 39.8
+        "proteins": 82.0,
+        "carbs": 113.0,
+        "fats": 55.0,
+        "carb_percent": 34.5,
+        "protein_percent": 25.0,
+        "fat_percent": 37.8
       }
     },
     {
@@ -230,72 +357,117 @@
         {
           "meal_type": "breakfast",
           "timing": "7-8 AM",
-          "recipe_id": 58,
-          "recipe_name": "Quinoa Breakfast Bowl with Roasted Vegetables",
-          "ingredients": "Quinoa, sweet potato, bell pepper, onion, olive oil, poached egg, avocado, herbs",
-          "instructions": "Roast vegetables. Cook quinoa. Combine and top with poached egg and sliced avocado.",
-          "calories": 300.0,
+          "recipe_id": 14,
+          "recipe_name": "Savory Breakfast Quinoa",
+          "ingredients": [
+            "Quinoa",
+            " vegetable broth",
+            " egg",
+            " avocado",
+            " cherry tomatoes"
+          ],
+          "instructions": "Cook quinoa in broth, top with fried egg, avocado, and tomatoes",
+          "calories": 280.0,
           "proteins": 14.0,
-          "carbs": 35.0,
-          "fats": 12.0
+          "carbs": 30.0,
+          "fats": 12.0,
+          "mongodb_id": "68041e89c1a546fa8151b8d3"
         },
         {
           "meal_type": "morning_snack",
           "timing": "10-11 AM",
-          "recipe_id": 3,
-          "recipe_name": "Spinach and Mushroom Omelette",
-          "ingredients": "Eggs, spinach, mushrooms, feta cheese, olive oil",
-          "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
-          "calories": 280.0,
-          "proteins": 20.0,
-          "carbs": 5.0,
-          "fats": 16.0
+          "recipe_id": 47,
+          "recipe_name": "Mushroom and Spinach Frittata",
+          "ingredients": [
+            "Eggs",
+            " mushrooms",
+            " spinach",
+            " onion",
+            " feta cheese",
+            " olive oil",
+            " herbs"
+          ],
+          "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
+          "calories": 230.0,
+          "proteins": 18.0,
+          "carbs": 8.0,
+          "fats": 14.0,
+          "mongodb_id": "68041e89c1a546fa8151b8f4"
         },
         {
           "meal_type": "lunch",
           "timing": "12-1 PM",
-          "recipe_id": 61,
-          "recipe_name": "Quinoa Tabbouleh Salad",
-          "ingredients": "Quinoa, parsley, mint, tomatoes, cucumber, lemon juice, olive oil, green onions",
-          "instructions": "Cook quinoa and cool. Mix with chopped herbs, vegetables, lemon juice, and olive oil.",
-          "calories": 310.0,
-          "proteins": 14.0,
-          "carbs": 42.0,
-          "fats": 10.0
+          "recipe_id": 62,
+          "recipe_name": "Lentil and Vegetable Soup",
+          "ingredients": [
+            "Green lentils",
+            " carrots",
+            " celery",
+            " onion",
+            " garlic",
+            " vegetable broth",
+            " tomatoes",
+            " spinach",
+            " herbs"
+          ],
+          "instructions": "Saut\u00e9 vegetables, add lentils, broth, and tomatoes. Simmer until lentils are tender. Add spinach at the end.",
+          "calories": 280.0,
+          "proteins": 18.0,
+          "carbs": 40.0,
+          "fats": 5.0,
+          "mongodb_id": "68041e89c1a546fa8151b903"
         },
         {
           "meal_type": "afternoon_snack",
           "timing": "3-4 PM",
-          "recipe_id": 3,
-          "recipe_name": "Spinach and Mushroom Omelette",
-          "ingredients": "Eggs, spinach, mushrooms, feta cheese, olive oil",
-          "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
-          "calories": 280.0,
-          "proteins": 20.0,
-          "carbs": 5.0,
-          "fats": 16.0
+          "recipe_id": 47,
+          "recipe_name": "Mushroom and Spinach Frittata",
+          "ingredients": [
+            "Eggs",
+            " mushrooms",
+            " spinach",
+            " onion",
+            " feta cheese",
+            " olive oil",
+            " herbs"
+          ],
+          "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
+          "calories": 230.0,
+          "proteins": 18.0,
+          "carbs": 8.0,
+          "fats": 14.0,
+          "mongodb_id": "68041e89c1a546fa8151b8f4"
         },
         {
           "meal_type": "dinner",
           "timing": "6-7 PM",
           "recipe_id": 39,
           "recipe_name": "Eggplant and Chickpea Stew",
-          "ingredients": "Eggplant, chickpeas, tomatoes, onions, garlic, herbs, spices",
+          "ingredients": [
+            "Eggplant",
+            " chickpeas",
+            " tomatoes",
+            " onions",
+            " garlic",
+            " herbs",
+            " spices"
+          ],
           "instructions": "Saut\u00e9 vegetables, add chickpeas and tomatoes, simmer",
           "calories": 280.0,
           "proteins": 12.0,
           "carbs": 35.0,
-          "fats": 10.0
+          "fats": 10.0,
+          "mongodb_id": "68041e89c1a546fa8151b8ec"
         }
       ],
       "daily_totals": {
-        "calories": 1450.0,
+        "calories": 1300.0,
         "proteins": 80.0,
-        "carbs": 122.0,
-        "fats": 64.0,
-        "carb_percent": 33.7,
-        "protein_percent": 22.1,
-        "fat_percent": 39.7
+        "carbs": 121.0,
+        "fats": 55.0,
+        "carb_percent": 37.2,
+        "protein_percent": 24.6,
+        "fat_percent": 38.1
       }
     },
     {
@@ -304,72 +476,114 @@
         {
           "meal_type": "breakfast",
           "timing": "7-8 AM",
-          "recipe_id": 14,
-          "recipe_name": "Savory Breakfast Quinoa",
-          "ingredients": "Quinoa, vegetable broth, egg, avocado, cherry tomatoes",
-          "instructions": "Cook quinoa in broth, top with fried egg, avocado, and tomatoes",
+          "recipe_id": 3,
+          "recipe_name": "Spinach and Mushroom Omelette",
+          "ingredients": [
+            "Eggs",
+            " spinach",
+            " mushrooms",
+            " feta cheese",
+            " olive oil"
+          ],
+          "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
           "calories": 280.0,
-          "proteins": 14.0,
-          "carbs": 30.0,
-          "fats": 12.0
+          "proteins": 20.0,
+          "carbs": 5.0,
+          "fats": 16.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c8"
         },
         {
           "meal_type": "morning_snack",
           "timing": "10-11 AM",
-          "recipe_id": 47,
-          "recipe_name": "Mushroom and Spinach Frittata",
-          "ingredients": "Eggs, mushrooms, spinach, onion, feta cheese, olive oil, herbs",
-          "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
-          "calories": 230.0,
-          "proteins": 18.0,
-          "carbs": 8.0,
-          "fats": 14.0
-        },
-        {
-          "meal_type": "lunch",
-          "timing": "12-1 PM",
-          "recipe_id": 64,
-          "recipe_name": "Chickpea and Vegetable Buddha Bowl",
-          "ingredients": "Chickpeas, quinoa, roasted sweet potatoes, kale, avocado, tahini dressing",
-          "instructions": "Arrange cooked quinoa, roasted sweet potatoes, chickpeas, and kale in a bowl. Top with avocado and drizzle with tahini dressing.",
-          "calories": 350.0,
-          "proteins": 15.0,
-          "carbs": 45.0,
-          "fats": 12.0
-        },
-        {
-          "meal_type": "afternoon_snack",
-          "timing": "3-4 PM",
           "recipe_id": 1,
           "recipe_name": "Greek Yogurt with Berries and Chia Seeds",
-          "ingredients": "Greek yogurt, mixed berries, chia seeds, honey",
+          "ingredients": [
+            "Greek yogurt",
+            " mixed berries",
+            " chia seeds",
+            " honey"
+          ],
           "instructions": "Mix 1 cup of Greek yogurt with 1/2 cup berries, 1 tbsp chia seeds, and a drizzle of honey",
           "calories": 240.0,
           "proteins": 18.0,
           "carbs": 25.0,
-          "fats": 6.0
+          "fats": 6.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c6"
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-1 PM",
+          "recipe_id": 61,
+          "recipe_name": "Quinoa Tabbouleh Salad",
+          "ingredients": [
+            "Quinoa",
+            " parsley",
+            " mint",
+            " tomatoes",
+            " cucumber",
+            " lemon juice",
+            " olive oil",
+            " green onions"
+          ],
+          "instructions": "Cook quinoa and cool. Mix with chopped herbs, vegetables, lemon juice, and olive oil.",
+          "calories": 310.0,
+          "proteins": 14.0,
+          "carbs": 42.0,
+          "fats": 10.0,
+          "mongodb_id": "68041e89c1a546fa8151b902"
+        },
+        {
+          "meal_type": "afternoon_snack",
+          "timing": "3-4 PM",
+          "recipe_id": 47,
+          "recipe_name": "Mushroom and Spinach Frittata",
+          "ingredients": [
+            "Eggs",
+            " mushrooms",
+            " spinach",
+            " onion",
+            " feta cheese",
+            " olive oil",
+            " herbs"
+          ],
+          "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
+          "calories": 230.0,
+          "proteins": 18.0,
+          "carbs": 8.0,
+          "fats": 14.0,
+          "mongodb_id": "68041e89c1a546fa8151b8f4"
         },
         {
           "meal_type": "dinner",
           "timing": "6-7 PM",
-          "recipe_id": 39,
-          "recipe_name": "Eggplant and Chickpea Stew",
-          "ingredients": "Eggplant, chickpeas, tomatoes, onions, garlic, herbs, spices",
-          "instructions": "Saut\u00e9 vegetables, add chickpeas and tomatoes, simmer",
-          "calories": 280.0,
-          "proteins": 12.0,
-          "carbs": 35.0,
-          "fats": 10.0
+          "recipe_id": 61,
+          "recipe_name": "Quinoa Tabbouleh Salad",
+          "ingredients": [
+            "Quinoa",
+            " parsley",
+            " mint",
+            " tomatoes",
+            " cucumber",
+            " lemon juice",
+            " olive oil",
+            " green onions"
+          ],
+          "instructions": "Cook quinoa and cool. Mix with chopped herbs, vegetables, lemon juice, and olive oil.",
+          "calories": 310.0,
+          "proteins": 14.0,
+          "carbs": 42.0,
+          "fats": 10.0,
+          "mongodb_id": "68041e89c1a546fa8151b902"
         }
       ],
       "daily_totals": {
-        "calories": 1380.0,
-        "proteins": 77.0,
-        "carbs": 143.0,
-        "fats": 54.0,
-        "carb_percent": 41.4,
-        "protein_percent": 22.3,
-        "fat_percent": 35.2
+        "calories": 1370.0,
+        "proteins": 84.0,
+        "carbs": 122.0,
+        "fats": 56.0,
+        "carb_percent": 35.6,
+        "protein_percent": 24.5,
+        "fat_percent": 36.8
       }
     },
     {
@@ -378,72 +592,114 @@
         {
           "meal_type": "breakfast",
           "timing": "7-8 AM",
-          "recipe_id": 14,
-          "recipe_name": "Savory Breakfast Quinoa",
-          "ingredients": "Quinoa, vegetable broth, egg, avocado, cherry tomatoes",
-          "instructions": "Cook quinoa in broth, top with fried egg, avocado, and tomatoes",
+          "recipe_id": 3,
+          "recipe_name": "Spinach and Mushroom Omelette",
+          "ingredients": [
+            "Eggs",
+            " spinach",
+            " mushrooms",
+            " feta cheese",
+            " olive oil"
+          ],
+          "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
           "calories": 280.0,
-          "proteins": 14.0,
-          "carbs": 30.0,
-          "fats": 12.0
+          "proteins": 20.0,
+          "carbs": 5.0,
+          "fats": 16.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c8"
         },
         {
           "meal_type": "morning_snack",
           "timing": "10-11 AM",
           "recipe_id": 47,
           "recipe_name": "Mushroom and Spinach Frittata",
-          "ingredients": "Eggs, mushrooms, spinach, onion, feta cheese, olive oil, herbs",
+          "ingredients": [
+            "Eggs",
+            " mushrooms",
+            " spinach",
+            " onion",
+            " feta cheese",
+            " olive oil",
+            " herbs"
+          ],
           "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
           "calories": 230.0,
           "proteins": 18.0,
           "carbs": 8.0,
-          "fats": 14.0
+          "fats": 14.0,
+          "mongodb_id": "68041e89c1a546fa8151b8f4"
         },
         {
           "meal_type": "lunch",
           "timing": "12-1 PM",
-          "recipe_id": 62,
-          "recipe_name": "Lentil and Vegetable Soup",
-          "ingredients": "Green lentils, carrots, celery, onion, garlic, vegetable broth, tomatoes, spinach, herbs",
-          "instructions": "Saut\u00e9 vegetables, add lentils, broth, and tomatoes. Simmer until lentils are tender. Add spinach at the end.",
-          "calories": 280.0,
-          "proteins": 18.0,
-          "carbs": 40.0,
-          "fats": 5.0
+          "recipe_id": 61,
+          "recipe_name": "Quinoa Tabbouleh Salad",
+          "ingredients": [
+            "Quinoa",
+            " parsley",
+            " mint",
+            " tomatoes",
+            " cucumber",
+            " lemon juice",
+            " olive oil",
+            " green onions"
+          ],
+          "instructions": "Cook quinoa and cool. Mix with chopped herbs, vegetables, lemon juice, and olive oil.",
+          "calories": 310.0,
+          "proteins": 14.0,
+          "carbs": 42.0,
+          "fats": 10.0,
+          "mongodb_id": "68041e89c1a546fa8151b902"
         },
         {
           "meal_type": "afternoon_snack",
           "timing": "3-4 PM",
           "recipe_id": 3,
           "recipe_name": "Spinach and Mushroom Omelette",
-          "ingredients": "Eggs, spinach, mushrooms, feta cheese, olive oil",
+          "ingredients": [
+            "Eggs",
+            " spinach",
+            " mushrooms",
+            " feta cheese",
+            " olive oil"
+          ],
           "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
           "calories": 280.0,
           "proteins": 20.0,
           "carbs": 5.0,
-          "fats": 16.0
+          "fats": 16.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c8"
         },
         {
           "meal_type": "dinner",
           "timing": "6-7 PM",
-          "recipe_id": 62,
-          "recipe_name": "Lentil and Vegetable Soup",
-          "ingredients": "Green lentils, carrots, celery, onion, garlic, vegetable broth, tomatoes, spinach, herbs",
-          "instructions": "Saut\u00e9 vegetables, add lentils, broth, and tomatoes. Simmer until lentils are tender. Add spinach at the end.",
+          "recipe_id": 39,
+          "recipe_name": "Eggplant and Chickpea Stew",
+          "ingredients": [
+            "Eggplant",
+            " chickpeas",
+            " tomatoes",
+            " onions",
+            " garlic",
+            " herbs",
+            " spices"
+          ],
+          "instructions": "Saut\u00e9 vegetables, add chickpeas and tomatoes, simmer",
           "calories": 280.0,
-          "proteins": 18.0,
-          "carbs": 40.0,
-          "fats": 5.0
+          "proteins": 12.0,
+          "carbs": 35.0,
+          "fats": 10.0,
+          "mongodb_id": "68041e89c1a546fa8151b8ec"
         }
       ],
       "daily_totals": {
-        "calories": 1350.0,
-        "proteins": 88.0,
-        "carbs": 123.0,
-        "fats": 52.0,
-        "carb_percent": 36.4,
-        "protein_percent": 26.1,
-        "fat_percent": 34.7
+        "calories": 1380.0,
+        "proteins": 84.0,
+        "carbs": 95.0,
+        "fats": 66.0,
+        "carb_percent": 27.5,
+        "protein_percent": 24.3,
+        "fat_percent": 43.0
       }
     },
     {
@@ -454,80 +710,123 @@
           "timing": "7-8 AM",
           "recipe_id": 3,
           "recipe_name": "Spinach and Mushroom Omelette",
-          "ingredients": "Eggs, spinach, mushrooms, feta cheese, olive oil",
+          "ingredients": [
+            "Eggs",
+            " spinach",
+            " mushrooms",
+            " feta cheese",
+            " olive oil"
+          ],
           "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
           "calories": 280.0,
           "proteins": 20.0,
           "carbs": 5.0,
-          "fats": 16.0
+          "fats": 16.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c8"
         },
         {
           "meal_type": "morning_snack",
           "timing": "10-11 AM",
-          "recipe_id": 47,
-          "recipe_name": "Mushroom and Spinach Frittata",
-          "ingredients": "Eggs, mushrooms, spinach, onion, feta cheese, olive oil, herbs",
-          "instructions": "Saut\u00e9 mushrooms and onions, add spinach until wilted. Pour beaten eggs over, add feta, and cook until set.",
-          "calories": 230.0,
+          "recipe_id": 1,
+          "recipe_name": "Greek Yogurt with Berries and Chia Seeds",
+          "ingredients": [
+            "Greek yogurt",
+            " mixed berries",
+            " chia seeds",
+            " honey"
+          ],
+          "instructions": "Mix 1 cup of Greek yogurt with 1/2 cup berries, 1 tbsp chia seeds, and a drizzle of honey",
+          "calories": 240.0,
           "proteins": 18.0,
-          "carbs": 8.0,
-          "fats": 14.0
+          "carbs": 25.0,
+          "fats": 6.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c6"
         },
         {
           "meal_type": "lunch",
           "timing": "12-1 PM",
           "recipe_id": 62,
           "recipe_name": "Lentil and Vegetable Soup",
-          "ingredients": "Green lentils, carrots, celery, onion, garlic, vegetable broth, tomatoes, spinach, herbs",
+          "ingredients": [
+            "Green lentils",
+            " carrots",
+            " celery",
+            " onion",
+            " garlic",
+            " vegetable broth",
+            " tomatoes",
+            " spinach",
+            " herbs"
+          ],
           "instructions": "Saut\u00e9 vegetables, add lentils, broth, and tomatoes. Simmer until lentils are tender. Add spinach at the end.",
           "calories": 280.0,
           "proteins": 18.0,
           "carbs": 40.0,
-          "fats": 5.0
+          "fats": 5.0,
+          "mongodb_id": "68041e89c1a546fa8151b903"
         },
         {
           "meal_type": "afternoon_snack",
           "timing": "3-4 PM",
           "recipe_id": 1,
           "recipe_name": "Greek Yogurt with Berries and Chia Seeds",
-          "ingredients": "Greek yogurt, mixed berries, chia seeds, honey",
+          "ingredients": [
+            "Greek yogurt",
+            " mixed berries",
+            " chia seeds",
+            " honey"
+          ],
           "instructions": "Mix 1 cup of Greek yogurt with 1/2 cup berries, 1 tbsp chia seeds, and a drizzle of honey",
           "calories": 240.0,
           "proteins": 18.0,
           "carbs": 25.0,
-          "fats": 6.0
+          "fats": 6.0,
+          "mongodb_id": "68041e89c1a546fa8151b8c6"
         },
         {
           "meal_type": "dinner",
           "timing": "6-7 PM",
-          "recipe_id": 62,
-          "recipe_name": "Lentil and Vegetable Soup",
-          "ingredients": "Green lentils, carrots, celery, onion, garlic, vegetable broth, tomatoes, spinach, herbs",
-          "instructions": "Saut\u00e9 vegetables, add lentils, broth, and tomatoes. Simmer until lentils are tender. Add spinach at the end.",
-          "calories": 280.0,
-          "proteins": 18.0,
-          "carbs": 40.0,
-          "fats": 5.0
+          "recipe_id": 82,
+          "recipe_name": "Eggplant and Chickpea Stew",
+          "ingredients": [
+            "Eggplant",
+            " chickpeas",
+            " tomatoes",
+            " onion",
+            " garlic",
+            " cumin",
+            " paprika",
+            " cinnamon",
+            " parsley",
+            " olive oil",
+            " lemon"
+          ],
+          "instructions": "Saut\u00e9 eggplant, onion, and garlic. Add spices, tomatoes, and chickpeas. Simmer until eggplant is tender. Garnish with parsley and lemon.",
+          "calories": 310.0,
+          "proteins": 14.0,
+          "carbs": 42.0,
+          "fats": 10.0,
+          "mongodb_id": "68041e89c1a546fa8151b917"
         }
       ],
       "daily_totals": {
-        "calories": 1310.0,
-        "proteins": 92.0,
-        "carbs": 118.0,
-        "fats": 46.0,
-        "carb_percent": 36.0,
-        "protein_percent": 28.1,
-        "fat_percent": 31.6
+        "calories": 1350.0,
+        "proteins": 88.0,
+        "carbs": 137.0,
+        "fats": 43.0,
+        "carb_percent": 40.6,
+        "protein_percent": 26.1,
+        "fat_percent": 28.7
       }
     }
   ],
   "overall_stats": {
-    "avg_daily_calories": 1349,
-    "avg_daily_proteins": 82,
-    "avg_daily_carbs": 120,
-    "avg_daily_fats": 57,
-    "overall_protein_percent": 25.0,
-    "overall_carb_percent": 36.4,
-    "overall_fat_percent": 38.7
+    "avg_daily_calories": 1340,
+    "avg_daily_proteins": 84,
+    "avg_daily_carbs": 118,
+    "avg_daily_fats": 55,
+    "overall_protein_percent": 25.8,
+    "overall_carb_percent": 36.2,
+    "overall_fat_percent": 38.0
   }
 }

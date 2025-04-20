@@ -1,82 +1,87 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+// App.tsx
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Features from "./pages/Features";
-import Profile from "./pages/Profile";
-import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/admin/Login";
-import AdminLayout from "./components/admin/AdminLayout";
-import Dashboard from "./pages/admin/Dashboard";
-import Users from "./pages/admin/Users";
-import Recipes from "./pages/admin/Recipes";
-import Plans from "./pages/admin/Plans";
-import Dietitians from "./pages/admin/Dietitians";
-import Approvals from "./pages/admin/Approvals";
-import DietitianLogin from "./pages/dietitian/Login";
-import DietitianLayout from "./components/dietitian/DietitianLayout";
-import DietitianDashboard from "./pages/dietitian/Dashboard";
-import UserLayout from "./components/user/UserLayout";
+import Profile from "./pages/Profile"
+
+// User pages
 import UserDashboard from "./pages/user/Dashboard";
+// import UserProfile from "./pages/user/Profile";
+// import UserTrack from "./pages/user/Track";
+// import UserReports from "./pages/user/Reports";
+// import UserDietPlan from "./pages/user/DietPlan";
+// import UserSuggestions from "./pages/user/Suggestions";
+// import UserChat from "./pages/user/Chat";
 
-const queryClient = new QueryClient();
+// Dietitian pages
+import DietitianDashboard from "./pages/dietitian/Dashboard";
+// import DietitianUsers from "./pages/dietitian/Users";
+// import DietitianPlans from "./pages/dietitian/Plans";
+// import DietitianLogs from "./pages/dietitian/Logs";
+// import DietitianInsights from "./pages/dietitian/Insights";
+// import DietitianApprove from "./pages/dietitian/Approve";
+// import DietitianFeedback from "./pages/dietitian/Feedback";
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          
-          {/* User Routes */}
-          <Route path="/user" element={<UserLayout><Outlet /></UserLayout>}>
-            <Route path="dashboard" element={<UserDashboard />} />
-            <Route path="records" element={<div>Medical Records Page</div>} />
-            <Route path="reports" element={<div>Reports Page</div>} />
-            <Route path="diet-plan" element={<div>Diet Plan Page</div>} />
-            <Route path="medicines" element={<div>Medicines Page</div>} />
-            <Route path="settings" element={<div>Settings Page</div>} />
-          </Route>
-          
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminLayout><Outlet /></AdminLayout>}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="users" element={<Users />} />
-            <Route path="recipes" element={<Recipes />} />
-            <Route path="plans" element={<Plans />} />
-            <Route path="dietitians" element={<Dietitians />} />
-            <Route path="approvals" element={<Approvals />} />
-          </Route>
+// Admin pages
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminLogin from "./pages/admin/Login";
+import AdminUsers from "./pages/admin/Users";
+import AdminRecipes from "./pages/admin/Recipes";
+// import AdminUpload from "./pages/admin/Upload";
+// import AdminModel from "./pages/admin/Model";
+// import AdminLogs from "./pages/admin/Logs";
+// import AdminFeedback from "./pages/admin/Feedback";
 
-          {/* Dietitian Routes */}
-          <Route path="/dietitian/login" element={<DietitianLogin />} />
-          <Route path="/dietitian" element={<DietitianLayout><Outlet /></DietitianLayout>}>
-            <Route path="dashboard" element={<DietitianDashboard />} />
-            <Route path="patients" element={<div>Patients Page</div>} />
-            <Route path="recipes" element={<div>Recipes Page</div>} />
-            <Route path="plans" element={<div>Plans Page</div>} />
-            <Route path="reports" element={<div>Reports Page</div>} />
-          </Route>
-          
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Routes>
+        {/* Public routes */}
+        <Route path="/" element={<Index />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        {/* User routes */}
+        <Route path="/user/dashboard" element={<UserDashboard />} />
+        {/* <Route path="/user/profile" element={<UserProfile />} />
+        <Route path="/user/track" element={<UserTrack />} />
+        <Route path="/user/reports" element={<UserReports />} />
+        <Route path="/user/diet-plan" element={<UserDietPlan />} />
+        <Route path="/user/suggestions" element={<UserSuggestions />} />
+        <Route path="/user/chat" element={<UserChat />} /> */}
+        {/* Dietitian routes */}
+        <Route path="/dietitian/dashboard" element={<DietitianDashboard />} />
+        {/* <Route path="/dietitian/users" element={<DietitianUsers />} />
+        <Route path="/dietitian/plans" element={<DietitianPlans />} />
+        <Route path="/dietitian/logs" element={<DietitianLogs />} />
+        <Route path="/dietitian/insights" element={<DietitianInsights />} />
+        <Route path="/dietitian/approve" element={<DietitianApprove />} />
+        <Route path="/dietitian/feedback" element={<DietitianFeedback />} /> */}
+        {/* Admin routes */}
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/Login" element={<AdminLogin />} />
+        <Route path="/admin/recipes" element={<AdminRecipes />} />
+        {/* <Route path="/admin/upload" element={<AdminUpload />} />
+        <Route path="/admin/model" element={<AdminModel />} />
+        <Route path="/admin/logs" element={<AdminLogs />} />
+        <Route path="/admin/feedback" element={<AdminFeedback />} /> */}
+        {/* Catch-all route */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;

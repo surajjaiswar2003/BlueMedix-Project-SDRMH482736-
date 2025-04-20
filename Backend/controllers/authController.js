@@ -1,4 +1,4 @@
-const User = require("../models/User")
+const User = require("../models/User");
 const Dietician = require("../models/Dietician");
 const Admin = require("../models/Admin");
 
@@ -30,7 +30,6 @@ exports.registerUser = async (req, res) => {
         lastName,
         email,
         password,
-        // Removed specialization field
       });
 
       if (dietician) {
@@ -39,7 +38,7 @@ exports.registerUser = async (req, res) => {
           firstName: dietician.firstName,
           lastName: dietician.lastName,
           email: dietician.email,
-          role: "dietitian", // Added role for consistency
+          role: "dietitian",
         });
       } else {
         res.status(400).json({ message: "Invalid dietician data" });
@@ -152,7 +151,6 @@ exports.loginDietitian = async (req, res) => {
       lastName: dietitian.lastName,
       email: dietitian.email,
       role: "dietitian",
-      // Removed specialization from response
     });
   } catch (error) {
     console.error(error);

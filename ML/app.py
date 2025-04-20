@@ -1,20 +1,27 @@
-# simplified_app.py
-from flask import Flask, request, jsonify
+# ML/app.py
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import pandas as pd
 import numpy as np
 import os
 import joblib
 import meal_plan_generator
+import sys
+
+# Get the absolute path to the ML directory
+ML_DIR = os.path.dirname(os.path.abspath(__file__))
+# Path to the frontend build directory
+FRONTEND_BUILD_DIR = os.path.join(os.path.dirname(ML_DIR), 'frontend', 'dist')
 
 # Initialize Flask app
-app = Flask(__name__)
+app = Flask(__name__, static_folder=FRONTEND_BUILD_DIR)
 CORS(app)  # Enable CORS for all routes
 
 # Load ML models
 try:
-    clustering_model = joblib.load('models/user_clustering_model.pkl')
-    preprocessor = joblib.load('processed_data/preprocessor.pkl')
+    # Use absolute paths to load models
+    clustering_model = joblib.load(os.path.join(ML_DIR, 'models/user_clustering_model.pkl'))
+    preprocessor = joblib.load(os.path.join(ML_DIR, 'processed_data/preprocessor.pkl'))
     meal_plan_generator_func = meal_plan_generator.generate_meal_plan
     print("ML models loaded successfully")
 except Exception as e:
@@ -83,8 +90,8 @@ def get_recipes():
     vegan = request.args.get('vegan')
     
     try:
-        # Try to load from CSV
-        recipes = pd.read_csv('data/recipes.csv')
+        # Try to load from CSV with absolute path
+        recipes = pd.read_csv(os.path.join(ML_DIR, 'data/recipes.csv'))
         
         # Apply filters
         if meal_type:
@@ -101,6 +108,21 @@ def get_recipes():
     except Exception as e:
         return jsonify({'error': f'Failed to load recipes: {str(e)}'}), 500
 
+# Serve React frontend
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_frontend(path):
+    # If the path is an API endpoint, let the other routes handle it
+    if path.startswith('api/'):
+        return app.response_class(status=404)
+    
+    # Check if the requested file exists in the static folder
+    if path and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    
+    # Otherwise, serve the index.html file (for client-side routing)
+    return send_from_directory(app.static_folder, 'index.html')
+
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)

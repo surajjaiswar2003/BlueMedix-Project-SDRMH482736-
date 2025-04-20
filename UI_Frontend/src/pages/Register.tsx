@@ -13,13 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
 const Register = () => {
@@ -29,7 +23,7 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    userType: "",
+    userType: "user", // Default to user
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -62,8 +56,16 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success("Registration successful! Please login.");
-        navigate("/login");
+        // Store user data in localStorage based on user type
+        if (formData.userType === "dietitian") {
+          localStorage.setItem("dietitian", JSON.stringify(data));
+          toast.success("Registration successful!");
+          navigate("/dietitian/dashboard");
+        } else {
+          localStorage.setItem("user", JSON.stringify(data));
+          toast.success("Registration successful!");
+          navigate("/user/dashboard");
+        }
       } else {
         toast.error(data.message || "Registration failed");
       }
@@ -89,6 +91,31 @@ const Register = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
+              <Tabs
+                defaultValue="user"
+                className="w-full mb-6"
+                onValueChange={handleUserTypeChange}
+              >
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="user">Register as User</TabsTrigger>
+                  <TabsTrigger value="dietitian">
+                    Register as Dietitian
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="user">
+                  <p className="text-sm text-muted-foreground mt-2 text-center">
+                    Create an account to get personalized nutrition advice and
+                    diet plans.
+                  </p>
+                </TabsContent>
+                <TabsContent value="dietitian">
+                  <p className="text-sm text-muted-foreground mt-2 text-center">
+                    Join as a dietitian to help users with professional
+                    nutrition guidance.
+                  </p>
+                </TabsContent>
+              </Tabs>
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -120,20 +147,6 @@ const Register = () => {
                     onChange={handleChange}
                     required
                   />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="userType">I am a</Label>
-                  <Select onValueChange={handleUserTypeChange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select user type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="user">
-                        User seeking nutrition advice
-                      </SelectItem>
-                      <SelectItem value="dietitian">Dietitian</SelectItem>
-                    </SelectContent>
-                  </Select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password">Password</Label>
