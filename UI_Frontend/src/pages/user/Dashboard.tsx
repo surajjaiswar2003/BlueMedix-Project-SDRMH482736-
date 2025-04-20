@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import DashboardLayout from "@/components/DashboardLayout";
+import MultiStepProfileForm from "@/components/profile/MultiStepProfileForm";
 import {
   Activity,
   Heart,
@@ -44,6 +45,13 @@ const UserDashboard: React.FC = () => {
   const [dietPlanStatus, setDietPlanStatus] = useState<"review" | "approved">(
     "review"
   );
+  const [healthFormData, setHealthFormData] = useState({
+    diabetes: "none",
+    hypertension: "no",
+    cardiovascular: "absent",
+    digestiveDisorders: "none",
+    foodAllergies: [],
+  });
 
   useEffect(() => {
     // Get user data from localStorage
@@ -74,6 +82,16 @@ const UserDashboard: React.FC = () => {
   return (
     <DashboardLayout requiredRole="user">
       <div className="space-y-6">
+        {/* Complete Profile */}
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardTitle>Complete Profile</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <MultiStepProfileForm />
+          </CardContent>
+        </Card>
+
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card className="shadow-md">
