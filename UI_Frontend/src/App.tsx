@@ -15,12 +15,12 @@ import Profile from "./pages/Profile"
 
 // User pages
 import UserDashboard from "./pages/user/Dashboard";
-// import UserProfile from "./pages/user/Profile";
-// import UserTrack from "./pages/user/Track";
-// import UserReports from "./pages/user/Reports";
-// import UserDietPlan from "./pages/user/DietPlan";
-// import UserSuggestions from "./pages/user/Suggestions";
-// import UserChat from "./pages/user/Chat";
+import UserProfile from "./pages/user/Profile";
+import UserTrack from "./pages/user/Track";
+import UserReports from "./pages/user/Reports";
+import UserDietPlan from "./pages/user/DietPlan";
+import UserSuggestions from "./pages/user/Suggestions";
+import UserChat from "./pages/user/Chat";
 
 // Dietitian pages
 import DietitianDashboard from "./pages/dietitian/Dashboard";
@@ -52,14 +52,16 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        
         {/* User routes */}
         <Route path="/user/dashboard" element={<UserDashboard />} />
-        {/* <Route path="/user/profile" element={<UserProfile />} />
+        <Route path="/user/profile" element={<UserProfile />} />
         <Route path="/user/track" element={<UserTrack />} />
         <Route path="/user/reports" element={<UserReports />} />
         <Route path="/user/diet-plan" element={<UserDietPlan />} />
         <Route path="/user/suggestions" element={<UserSuggestions />} />
-        <Route path="/user/chat" element={<UserChat />} /> */}
+        <Route path="/user/chat" element={<UserChat />} />
+        
         {/* Dietitian routes */}
         <Route path="/dietitian/dashboard" element={<DietitianDashboard />} />
         {/* <Route path="/dietitian/users" element={<DietitianUsers />} />
@@ -68,6 +70,7 @@ const App: React.FC = () => {
         <Route path="/dietitian/insights" element={<DietitianInsights />} />
         <Route path="/dietitian/approve" element={<DietitianApprove />} />
         <Route path="/dietitian/feedback" element={<DietitianFeedback />} /> */}
+        
         {/* Admin routes */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/users" element={<AdminUsers />} />
@@ -77,6 +80,7 @@ const App: React.FC = () => {
         <Route path="/admin/model" element={<AdminModel />} />
         <Route path="/admin/logs" element={<AdminLogs />} />
         <Route path="/admin/feedback" element={<AdminFeedback />} /> */}
+        
         {/* Catch-all route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
