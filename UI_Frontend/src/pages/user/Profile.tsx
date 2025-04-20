@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Camera, User, Mail, Phone, MapPin, Calendar, Shield } from "lucide-react";
+import { Camera, User, Mail, Phone, MapPin, Calendar, Shield, Heart, Activity, Droplet, Scale, Ruler, Pill, Apple, Dumbbell, Sun, Moon, Bell } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface UserData {
   _id: string;
@@ -17,6 +18,23 @@ interface UserData {
   address?: string;
   dateOfBirth?: string;
   profileImage?: string;
+  gender?: string;
+  height?: number;
+  weight?: number;
+  bloodGroup?: string;
+  allergies?: string[];
+  medications?: string[];
+  dietaryPreferences?: string[];
+  activityLevel?: string;
+  sleepSchedule?: {
+    bedtime: string;
+    wakeupTime: string;
+  };
+  notificationPreferences?: {
+    email: boolean;
+    sms: boolean;
+    push: boolean;
+  };
 }
 
 const UserProfile: React.FC = () => {
@@ -39,6 +57,10 @@ const UserProfile: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    setEditedData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
     setEditedData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -202,6 +224,314 @@ const UserProfile: React.FC = () => {
                   />
                 ) : (
                   <p className="text-gray-700">{userData.dateOfBirth || "Not provided"}</p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Health Information */}
+          <Card className="md:col-span-3">
+            <CardHeader>
+              <CardTitle>Health Information</CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label className="flex items-center">
+                  <Scale className="h-4 w-4 mr-2" />
+                  Weight (kg)
+                </Label>
+                {isEditing ? (
+                  <Input
+                    name="weight"
+                    type="number"
+                    value={editedData.weight}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <p className="text-gray-700">{userData.weight || "Not provided"}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label className="flex items-center">
+                  <Ruler className="h-4 w-4 mr-2" />
+                  Height (cm)
+                </Label>
+                {isEditing ? (
+                  <Input
+                    name="height"
+                    type="number"
+                    value={editedData.height}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <p className="text-gray-700">{userData.height || "Not provided"}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label className="flex items-center">
+                  <Droplet className="h-4 w-4 mr-2" />
+                  Blood Group
+                </Label>
+                {isEditing ? (
+                  <Select
+                    value={editedData.bloodGroup}
+                    onValueChange={(value) => handleSelectChange("bloodGroup", value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select blood group" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="A+">A+</SelectItem>
+                      <SelectItem value="A-">A-</SelectItem>
+                      <SelectItem value="B+">B+</SelectItem>
+                      <SelectItem value="B-">B-</SelectItem>
+                      <SelectItem value="AB+">AB+</SelectItem>
+                      <SelectItem value="AB-">AB-</SelectItem>
+                      <SelectItem value="O+">O+</SelectItem>
+                      <SelectItem value="O-">O-</SelectItem>
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <p className="text-gray-700">{userData.bloodGroup || "Not provided"}</p>
+                )}
+              </div>
+
+              <div className="space-y-2 md:col-span-3">
+                <Label className="flex items-center">
+                  <Pill className="h-4 w-4 mr-2" />
+                  Medications
+                </Label>
+                {isEditing ? (
+                  <Input
+                    name="medications"
+                    value={editedData.medications?.join(", ")}
+                    onChange={(e) => setEditedData(prev => ({
+                      ...prev,
+                      medications: e.target.value.split(",").map(m => m.trim())
+                    }))}
+                    placeholder="Enter medications separated by commas"
+                  />
+                ) : (
+                  <p className="text-gray-700">
+                    {userData.medications?.join(", ") || "Not provided"}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2 md:col-span-3">
+                <Label className="flex items-center">
+                  <Heart className="h-4 w-4 mr-2" />
+                  Allergies
+                </Label>
+                {isEditing ? (
+                  <Input
+                    name="allergies"
+                    value={editedData.allergies?.join(", ")}
+                    onChange={(e) => setEditedData(prev => ({
+                      ...prev,
+                      allergies: e.target.value.split(",").map(a => a.trim())
+                    }))}
+                    placeholder="Enter allergies separated by commas"
+                  />
+                ) : (
+                  <p className="text-gray-700">
+                    {userData.allergies?.join(", ") || "Not provided"}
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Lifestyle Preferences */}
+          <Card className="md:col-span-3">
+            <CardHeader>
+              <CardTitle>Lifestyle Preferences</CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label className="flex items-center">
+                  <Apple className="h-4 w-4 mr-2" />
+                  Dietary Preferences
+                </Label>
+                {isEditing ? (
+                  <Select
+                    value={editedData.dietaryPreferences?.[0]}
+                    onValueChange={(value) => setEditedData(prev => ({
+                      ...prev,
+                      dietaryPreferences: [value]
+                    }))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select dietary preference" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="vegetarian">Vegetarian</SelectItem>
+                      <SelectItem value="vegan">Vegan</SelectItem>
+                      <SelectItem value="pescatarian">Pescatarian</SelectItem>
+                      <SelectItem value="omnivore">Omnivore</SelectItem>
+                      <SelectItem value="keto">Keto</SelectItem>
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <p className="text-gray-700">
+                    {userData.dietaryPreferences?.[0] || "Not provided"}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label className="flex items-center">
+                  <Dumbbell className="h-4 w-4 mr-2" />
+                  Activity Level
+                </Label>
+                {isEditing ? (
+                  <Select
+                    value={editedData.activityLevel}
+                    onValueChange={(value) => handleSelectChange("activityLevel", value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select activity level" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="sedentary">Sedentary</SelectItem>
+                      <SelectItem value="light">Lightly Active</SelectItem>
+                      <SelectItem value="moderate">Moderately Active</SelectItem>
+                      <SelectItem value="very">Very Active</SelectItem>
+                      <SelectItem value="extra">Extra Active</SelectItem>
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <p className="text-gray-700">{userData.activityLevel || "Not provided"}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label className="flex items-center">
+                  <Sun className="h-4 w-4 mr-2" />
+                  Bedtime
+                </Label>
+                {isEditing ? (
+                  <Input
+                    type="time"
+                    value={editedData.sleepSchedule?.bedtime}
+                    onChange={(e) => setEditedData(prev => ({
+                      ...prev,
+                      sleepSchedule: {
+                        ...prev.sleepSchedule,
+                        bedtime: e.target.value
+                      }
+                    }))}
+                  />
+                ) : (
+                  <p className="text-gray-700">
+                    {userData.sleepSchedule?.bedtime || "Not provided"}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Label className="flex items-center">
+                  <Moon className="h-4 w-4 mr-2" />
+                  Wake-up Time
+                </Label>
+                {isEditing ? (
+                  <Input
+                    type="time"
+                    value={editedData.sleepSchedule?.wakeupTime}
+                    onChange={(e) => setEditedData(prev => ({
+                      ...prev,
+                      sleepSchedule: {
+                        ...prev.sleepSchedule,
+                        wakeupTime: e.target.value
+                      }
+                    }))}
+                  />
+                ) : (
+                  <p className="text-gray-700">
+                    {userData.sleepSchedule?.wakeupTime || "Not provided"}
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Notification Preferences */}
+          <Card className="md:col-span-3">
+            <CardHeader>
+              <CardTitle>Notification Preferences</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <Label className="flex items-center">
+                  <Mail className="h-4 w-4 mr-2" />
+                  Email Notifications
+                </Label>
+                {isEditing ? (
+                  <input
+                    type="checkbox"
+                    checked={editedData.notificationPreferences?.email}
+                    onChange={(e) => setEditedData(prev => ({
+                      ...prev,
+                      notificationPreferences: {
+                        ...prev.notificationPreferences,
+                        email: e.target.checked
+                      }
+                    }))}
+                  />
+                ) : (
+                  <p className="text-gray-700">
+                    {userData.notificationPreferences?.email ? "Enabled" : "Disabled"}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <Label className="flex items-center">
+                  <Phone className="h-4 w-4 mr-2" />
+                  SMS Notifications
+                </Label>
+                {isEditing ? (
+                  <input
+                    type="checkbox"
+                    checked={editedData.notificationPreferences?.sms}
+                    onChange={(e) => setEditedData(prev => ({
+                      ...prev,
+                      notificationPreferences: {
+                        ...prev.notificationPreferences,
+                        sms: e.target.checked
+                      }
+                    }))}
+                  />
+                ) : (
+                  <p className="text-gray-700">
+                    {userData.notificationPreferences?.sms ? "Enabled" : "Disabled"}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex items-center space-x-4">
+                <Label className="flex items-center">
+                  <Bell className="h-4 w-4 mr-2" />
+                  Push Notifications
+                </Label>
+                {isEditing ? (
+                  <input
+                    type="checkbox"
+                    checked={editedData.notificationPreferences?.push}
+                    onChange={(e) => setEditedData(prev => ({
+                      ...prev,
+                      notificationPreferences: {
+                        ...prev.notificationPreferences,
+                        push: e.target.checked
+                      }
+                    }))}
+                  />
+                ) : (
+                  <p className="text-gray-700">
+                    {userData.notificationPreferences?.push ? "Enabled" : "Disabled"}
+                  </p>
                 )}
               </div>
             </CardContent>

@@ -103,11 +103,6 @@ const Navbar: React.FC = () => {
           icon: <Home className="h-4 w-4 mr-2" />,
         },
         {
-          name: "My Profile",
-          path: "/user/profile",
-          icon: <User className="h-4 w-4 mr-2" />,
-        },
-        {
           name: "Track My Health",
           path: "/user/track",
           icon: <Activity className="h-4 w-4 mr-2" />,
