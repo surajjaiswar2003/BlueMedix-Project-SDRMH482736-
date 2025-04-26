@@ -17,6 +17,7 @@ interface BMIFormData {
   bmiCategory: string;
   targetWeight: string;
   weightChangeHistory: string;
+  "BMI Category"?: string;
 }
 
 interface BMIFormProps {
@@ -26,28 +27,40 @@ interface BMIFormProps {
 
 const BMIForm = ({ data, updateData }: BMIFormProps) => {
   // Calculate BMI when height or weight changes
+  // In BMIForm.tsx, update the useEffect hook:
+
   useEffect(() => {
     const height = parseFloat(data.height);
     const weight = parseFloat(data.weight);
-    
+
     if (height && weight && height > 0) {
       // BMI = weight(kg) / (height(m))^2
       const heightInMeters = height / 100;
       const bmi = weight / (heightInMeters * heightInMeters);
-      
+
       let category = "";
+      let apiCategory = ""; // For the API
+
       if (bmi < 18.5) {
         category = "underweight";
+        apiCategory = "Underweight";
       } else if (bmi >= 18.5 && bmi < 25) {
         category = "normal";
+        apiCategory = "Normal";
       } else if (bmi >= 25 && bmi < 30) {
         category = "overweight";
+        apiCategory = "Overweight";
       } else if (bmi >= 30) {
         category = "obese";
+        apiCategory = "Obese";
       }
-      
+
       if (category && category !== data.bmiCategory) {
-        updateData({ bmiCategory: category });
+        updateData({
+          bmiCategory: category,
+          // Add this hidden field for the API
+          "BMI Category": apiCategory,
+        });
       }
     }
   }, [data.height, data.weight]);
@@ -57,7 +70,8 @@ const BMIForm = ({ data, updateData }: BMIFormProps) => {
       <div>
         <h3 className="text-lg font-medium mb-4">Body Measurements & BMI</h3>
         <p className="text-sm text-muted-foreground mb-6">
-          These measurements help us calculate your BMI and personalize your nutrition plan.
+          These measurements help us calculate your BMI and personalize your
+          nutrition plan.
         </p>
       </div>
 
@@ -88,8 +102,8 @@ const BMIForm = ({ data, updateData }: BMIFormProps) => {
       {/* 8. BMI Category */}
       <div className="space-y-3">
         <Label htmlFor="bmiCategory">8. BMI Category</Label>
-        <Select 
-          value={data.bmiCategory} 
+        <Select
+          value={data.bmiCategory}
           onValueChange={(value) => updateData({ bmiCategory: value })}
           disabled
         >
@@ -97,7 +111,9 @@ const BMIForm = ({ data, updateData }: BMIFormProps) => {
             <SelectValue placeholder="Calculated from height and weight" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="underweight">Underweight (BMI &lt; 18.5)</SelectItem>
+            <SelectItem value="underweight">
+              Underweight (BMI &lt; 18.5)
+            </SelectItem>
             <SelectItem value="normal">Normal (BMI 18.5-24.9)</SelectItem>
             <SelectItem value="overweight">Overweight (BMI 25-29.9)</SelectItem>
             <SelectItem value="obese">Obese (BMI ≥ 30)</SelectItem>
@@ -129,7 +145,9 @@ const BMIForm = ({ data, updateData }: BMIFormProps) => {
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="stable" id="weight-stable" />
-            <Label htmlFor="weight-stable">Stable (within ±2 kg in the past year)</Label>
+            <Label htmlFor="weight-stable">
+              Stable (within ±2 kg in the past year)
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="gradual-loss" id="weight-gradual-loss" />
@@ -141,7 +159,9 @@ const BMIForm = ({ data, updateData }: BMIFormProps) => {
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="fluctuating" id="weight-fluctuating" />
-            <Label htmlFor="weight-fluctuating">Fluctuating (significant ups and downs)</Label>
+            <Label htmlFor="weight-fluctuating">
+              Fluctuating (significant ups and downs)
+            </Label>
           </div>
         </RadioGroup>
       </div>

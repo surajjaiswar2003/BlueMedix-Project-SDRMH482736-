@@ -1,14 +1,13 @@
-
 import React from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 
 interface DietaryPreferencesFormData {
@@ -22,6 +21,8 @@ interface DietaryPreferencesFormData {
   foodIntolerances: string[];
   preferredMealComplexity: string;
   seasonalFoodPreferences: string;
+  "Diet Type"?: string;
+  "Meal Size Preference"?: string;
 }
 
 interface DietaryPreferencesFormProps {
@@ -29,7 +30,10 @@ interface DietaryPreferencesFormProps {
   updateData: (data: Partial<DietaryPreferencesFormData>) => void;
 }
 
-const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, updateData }) => {
+const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({
+  data,
+  updateData,
+}) => {
   const cuisineOptions = [
     { id: "asian", label: "Asian" },
     { id: "western", label: "Western" },
@@ -40,7 +44,7 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
     { id: "indian", label: "Indian" },
     { id: "european", label: "European" },
   ];
-  
+
   const intoleranceOptions = [
     { id: "lactose", label: "Lactose" },
     { id: "gluten", label: "Gluten" },
@@ -57,7 +61,9 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
       });
     } else {
       updateData({
-        cuisinePreferences: data.cuisinePreferences.filter(item => item !== id),
+        cuisinePreferences: data.cuisinePreferences.filter(
+          (item) => item !== id
+        ),
       });
     }
   };
@@ -69,33 +75,77 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
       });
     } else {
       updateData({
-        foodIntolerances: data.foodIntolerances.filter(item => item !== id),
+        foodIntolerances: data.foodIntolerances.filter((item) => item !== id),
       });
     }
+  };
+
+  // This function maps our internal values to the API expected values
+  const mapDietTypeToAPI = (value: string) => {
+    const mapping: Record<string, string> = {
+      omnivore: "Non-spicy",
+      pescatarian: "Pescatarian",
+      vegetarian: "Vegetarian",
+      vegan: "Vegan",
+      keto: "Non-spicy",
+      paleo: "Non-spicy",
+      mediterranean: "Non-spicy",
+    };
+    return mapping[value] || "Non-spicy";
+  };
+
+  // This function maps our internal values to the API expected values
+  const mapMealSizeToAPI = (value: string) => {
+    const mapping: Record<string, string> = {
+      "small-frequent": "Small frequent",
+      regular: "Regular 3 meals",
+      "large-infrequent": "Large infrequent",
+    };
+    return mapping[value] || "Regular 3 meals";
+  };
+
+  // Update both our internal state and the API expected values
+  const handleDietTypeChange = (value: string) => {
+    updateData({
+      dietType: value,
+      // Add this hidden field for the API
+      "Diet Type": mapDietTypeToAPI(value),
+    });
+  };
+
+  // Update both our internal state and the API expected values
+  const handleMealSizeChange = (value: string) => {
+    updateData({
+      mealSizePreference: value,
+      // Add this hidden field for the API
+      "Meal Size Preference": mapMealSizeToAPI(value),
+    });
   };
 
   return (
     <div className="space-y-8">
       <div>
-        <h3 className="text-lg font-medium mb-4">Dietary Preferences & Restrictions</h3>
+        <h3 className="text-lg font-medium mb-4">
+          Dietary Preferences & Restrictions
+        </h3>
         <p className="text-sm text-muted-foreground mb-6">
-          Help us understand your food preferences and restrictions to create enjoyable meal plans.
+          Help us understand your food preferences and restrictions to create
+          enjoyable meal plans.
         </p>
       </div>
 
       {/* 31. Diet Type */}
       <div className="space-y-3">
         <Label htmlFor="dietType">31. Diet Type</Label>
-        <Select 
-          value={data.dietType} 
-          onValueChange={(value) => updateData({ dietType: value })}
-        >
+        <Select value={data.dietType} onValueChange={handleDietTypeChange}>
           <SelectTrigger>
             <SelectValue placeholder="Select diet type" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="omnivore">Omnivore (meat and plants)</SelectItem>
-            <SelectItem value="pescatarian">Pescatarian (fish and plants)</SelectItem>
+            <SelectItem value="pescatarian">
+              Pescatarian (fish and plants)
+            </SelectItem>
             <SelectItem value="vegetarian">Vegetarian (no meat)</SelectItem>
             <SelectItem value="vegan">Vegan (no animal products)</SelectItem>
             <SelectItem value="keto">Keto (low carb, high fat)</SelectItem>
@@ -110,11 +160,13 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
         <Label>32. Meal Size Preference</Label>
         <RadioGroup
           value={data.mealSizePreference}
-          onValueChange={(value) => updateData({ mealSizePreference: value })}
+          onValueChange={handleMealSizeChange}
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="small-frequent" id="meal-small" />
-            <Label htmlFor="meal-small">Small, frequent meals (5-6 per day)</Label>
+            <Label htmlFor="meal-small">
+              Small, frequent meals (5-6 per day)
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="regular" id="meal-regular" />
@@ -122,7 +174,9 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="large-infrequent" id="meal-large" />
-            <Label htmlFor="meal-large">Large, infrequent meals (1-2 per day)</Label>
+            <Label htmlFor="meal-large">
+              Large, infrequent meals (1-2 per day)
+            </Label>
           </div>
         </RadioGroup>
       </div>
@@ -156,10 +210,10 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {cuisineOptions.map((option) => (
             <div key={option.id} className="flex items-center space-x-2">
-              <Checkbox 
-                id={`cuisine-${option.id}`} 
+              <Checkbox
+                id={`cuisine-${option.id}`}
                 checked={data.cuisinePreferences?.includes(option.id)}
-                onCheckedChange={(checked) => 
+                onCheckedChange={(checked) =>
                   handleCuisineChange(option.id, checked === true)
                 }
               />
@@ -174,19 +228,27 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
         <Label>35. Food Texture Preferences</Label>
         <RadioGroup
           value={data.foodTexturePreferences}
-          onValueChange={(value) => updateData({ foodTexturePreferences: value })}
+          onValueChange={(value) =>
+            updateData({ foodTexturePreferences: value })
+          }
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="soft" id="texture-soft" />
-            <Label htmlFor="texture-soft">Soft (stews, soups, mashed foods)</Label>
+            <Label htmlFor="texture-soft">
+              Soft (stews, soups, mashed foods)
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="crunchy" id="texture-crunchy" />
-            <Label htmlFor="texture-crunchy">Crunchy (nuts, raw vegetables, crispy foods)</Label>
+            <Label htmlFor="texture-crunchy">
+              Crunchy (nuts, raw vegetables, crispy foods)
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="mixed" id="texture-mixed" />
-            <Label htmlFor="texture-mixed">Mixed (enjoy variety of textures)</Label>
+            <Label htmlFor="texture-mixed">
+              Mixed (enjoy variety of textures)
+            </Label>
           </div>
         </RadioGroup>
       </div>
@@ -196,7 +258,9 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
         <Label>36. Portion Control Ability</Label>
         <RadioGroup
           value={data.portionControlAbility}
-          onValueChange={(value) => updateData({ portionControlAbility: value })}
+          onValueChange={(value) =>
+            updateData({ portionControlAbility: value })
+          }
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="poor" id="portion-poor" />
@@ -218,7 +282,9 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
         <Label>37. Previous Diet Success History</Label>
         <RadioGroup
           value={data.previousDietSuccessHistory}
-          onValueChange={(value) => updateData({ previousDietSuccessHistory: value })}
+          onValueChange={(value) =>
+            updateData({ previousDietSuccessHistory: value })
+          }
           className="flex space-x-8"
         >
           <div className="flex items-center space-x-2">
@@ -238,10 +304,10 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {intoleranceOptions.map((option) => (
             <div key={option.id} className="flex items-center space-x-2">
-              <Checkbox 
-                id={`intolerance-${option.id}`} 
+              <Checkbox
+                id={`intolerance-${option.id}`}
                 checked={data.foodIntolerances?.includes(option.id)}
-                onCheckedChange={(checked) => 
+                onCheckedChange={(checked) =>
                   handleIntoleranceChange(option.id, checked === true)
                 }
               />
@@ -249,8 +315,8 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
             </div>
           ))}
           <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="intolerance-none" 
+            <Checkbox
+              id="intolerance-none"
               checked={data.foodIntolerances?.includes("none")}
               onCheckedChange={(checked) => {
                 if (checked) {
@@ -270,19 +336,27 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
         <Label>39. Preferred Meal Complexity</Label>
         <RadioGroup
           value={data.preferredMealComplexity}
-          onValueChange={(value) => updateData({ preferredMealComplexity: value })}
+          onValueChange={(value) =>
+            updateData({ preferredMealComplexity: value })
+          }
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="simple" id="complexity-simple" />
-            <Label htmlFor="complexity-simple">Simple (few ingredients, quick recipes)</Label>
+            <Label htmlFor="complexity-simple">
+              Simple (few ingredients, quick recipes)
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="moderate" id="complexity-moderate" />
-            <Label htmlFor="complexity-moderate">Moderate (balanced recipes)</Label>
+            <Label htmlFor="complexity-moderate">
+              Moderate (balanced recipes)
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="complex" id="complexity-complex" />
-            <Label htmlFor="complexity-complex">Complex (gourmet, many ingredients)</Label>
+            <Label htmlFor="complexity-complex">
+              Complex (gourmet, many ingredients)
+            </Label>
           </div>
         </RadioGroup>
       </div>
@@ -292,7 +366,9 @@ const DietaryPreferencesForm: React.FC<DietaryPreferencesFormProps> = ({ data, u
         <Label>40. Seasonal Food Preferences</Label>
         <RadioGroup
           value={data.seasonalFoodPreferences}
-          onValueChange={(value) => updateData({ seasonalFoodPreferences: value })}
+          onValueChange={(value) =>
+            updateData({ seasonalFoodPreferences: value })
+          }
           className="flex space-x-8"
         >
           <div className="flex items-center space-x-2">

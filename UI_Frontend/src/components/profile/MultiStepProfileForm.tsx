@@ -5,6 +5,7 @@ import LifestyleForm from "./LifestyleForm";
 import PhysicalActivityForm from "./PhysicalActivityForm";
 import DietaryPreferencesForm from "./DietaryPreferencesForm";
 import BMIForm from "./BMIForm";
+import GenerateDietPlan from "./GenerateDietPlan";
 
 interface FormData {
   // Health Conditions
@@ -39,19 +40,28 @@ interface FormData {
   physicalJobActivityLevel: string;
 
   // Dietary Preferences
-  dietaryRestrictions: string[];
-  preferredCuisines: string[];
-  mealFrequency: string;
-  portionSizePreference: string;
-  cookingFrequency: string;
-  foodPreferences: string[];
-  dislikes: string[];
+  dietType: string;
+  mealSizePreference: string;
+  spiceTolerance: string;
+  cuisinePreferences: string[];
+  foodTexturePreferences: string;
+  portionControlAbility: string;
+  previousDietSuccessHistory: string;
+  foodIntolerances: string[];
+  preferredMealComplexity: string;
+  seasonalFoodPreferences: string;
 
   // BMI
   height: string;
   weight: string;
-  age: string;
-  gender: string;
+  bmiCategory: string;
+  targetWeight: string;
+  weightChangeHistory: string;
+
+  // API specific fields
+  "Diet Type"?: string;
+  "Meal Size Preference"?: string;
+  "BMI Category"?: string;
 }
 
 const MultiStepProfileForm: React.FC = () => {
@@ -65,43 +75,52 @@ const MultiStepProfileForm: React.FC = () => {
     foodAllergies: [],
 
     // Lifestyle
-    workSchedule: "",
-    sleepDuration: "",
-    sleepQuality: "",
-    stressLevel: "",
-    mealTimingRegularity: "",
-    cookingSkills: "",
-    availableCookingTime: "",
-    foodBudget: "",
-    alcoholConsumption: "",
-    smokingStatus: "",
-    waterIntake: "",
-    eatingOutFrequency: "",
-    snackingBehavior: "",
-    foodPrepTimeAvailability: "",
-    travelFrequency: "",
+    workSchedule: "regular",
+    sleepDuration: "7-8",
+    sleepQuality: "good",
+    stressLevel: "medium",
+    mealTimingRegularity: "regular",
+    cookingSkills: "intermediate",
+    availableCookingTime: "30-60",
+    foodBudget: "medium",
+    alcoholConsumption: "occasional",
+    smokingStatus: "non-smoker",
+    waterIntake: "8",
+    eatingOutFrequency: "1-2",
+    snackingBehavior: "average",
+    foodPrepTimeAvailability: "few-days",
+    travelFrequency: "monthly",
 
     // Physical Activity
-    exerciseFrequency: "",
-    exerciseDuration: "",
-    exerciseType: "",
-    dailyStepsCount: "",
-    physicalJobActivityLevel: "",
+    exerciseFrequency: "3",
+    exerciseDuration: "30",
+    exerciseType: "mixed",
+    dailyStepsCount: "5000",
+    physicalJobActivityLevel: "sedentary",
 
     // Dietary Preferences
-    dietaryRestrictions: [],
-    preferredCuisines: [],
-    mealFrequency: "",
-    portionSizePreference: "",
-    cookingFrequency: "",
-    foodPreferences: [],
-    dislikes: [],
+    dietType: "omnivore",
+    mealSizePreference: "regular",
+    spiceTolerance: "medium",
+    cuisinePreferences: ["mediterranean"],
+    foodTexturePreferences: "mixed",
+    portionControlAbility: "good",
+    previousDietSuccessHistory: "yes",
+    foodIntolerances: [],
+    preferredMealComplexity: "moderate",
+    seasonalFoodPreferences: "yes",
 
     // BMI
-    height: "",
-    weight: "",
-    age: "",
-    gender: "",
+    height: "170",
+    weight: "70",
+    bmiCategory: "",
+    targetWeight: "70",
+    weightChangeHistory: "stable",
+
+    // API specific fields
+    "Diet Type": "Non-spicy",
+    "Meal Size Preference": "Regular 3 meals",
+    "BMI Category": "Normal",
   });
 
   const steps = [
@@ -110,21 +129,22 @@ const MultiStepProfileForm: React.FC = () => {
     { title: "Physical Activity", component: PhysicalActivityForm },
     { title: "Dietary Preferences", component: DietaryPreferencesForm },
     { title: "BMI", component: BMIForm },
+    { title: "Diet Plan", component: GenerateDietPlan },
   ];
 
   const updateFormData = (newData: Partial<FormData>) => {
-    setFormData(prev => ({ ...prev, ...newData }));
+    setFormData((prev) => ({ ...prev, ...newData }));
   };
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep((prev) => prev + 1);
     }
   };
 
   const prevStep = () => {
     if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
+      setCurrentStep((prev) => prev - 1);
     }
   };
 
@@ -138,19 +158,23 @@ const MultiStepProfileForm: React.FC = () => {
       <div className="space-y-2">
         <div className="flex justify-between items-center">
           <span className="text-sm font-medium">Profile Completion</span>
-          <span className="text-sm text-muted-foreground">{Math.round(progressPercentage)}%</span>
+          <span className="text-sm text-muted-foreground">
+            {Math.round(progressPercentage)}%
+          </span>
         </div>
         <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-          <div 
+          <div
             className="h-full bg-primary transition-all duration-300 ease-in-out"
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
         <div className="flex justify-between text-xs text-muted-foreground">
           {steps.map((step, index) => (
-            <span 
+            <span
               key={index}
-              className={`${index <= currentStep ? 'text-primary font-medium' : ''}`}
+              className={`${
+                index <= currentStep ? "text-primary font-medium" : ""
+              }`}
             >
               {step.title}
             </span>
@@ -165,23 +189,20 @@ const MultiStepProfileForm: React.FC = () => {
       <CurrentForm data={formData} updateData={updateFormData} />
 
       {/* Navigation Buttons */}
-      <div className="flex justify-between pt-6">
-        <Button
-          variant="outline"
-          onClick={prevStep}
-          disabled={currentStep === 0}
-        >
-          Previous
-        </Button>
-        <Button
-          onClick={nextStep}
-          disabled={currentStep === steps.length - 1}
-        >
-          Next
-        </Button>
-      </div>
+      {currentStep < steps.length - 1 && (
+        <div className="flex justify-between pt-6">
+          <Button
+            variant="outline"
+            onClick={prevStep}
+            disabled={currentStep === 0}
+          >
+            Previous
+          </Button>
+          <Button onClick={nextStep}>Next</Button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default MultiStepProfileForm; 
+export default MultiStepProfileForm;

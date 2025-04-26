@@ -7,7 +7,7 @@ import BMIForm from "@/components/profile/BMIForm";
 import PhysicalActivityForm from "@/components/profile/PhysicalActivityForm";
 import LifestyleForm from "@/components/profile/LifestyleForm";
 import DietaryPreferencesForm from "@/components/profile/DietaryPreferencesForm";
-import DietPlanView from "@/components/profile/DietPlanView";
+import DietPlanView from "@/components/profile/DietPlanDisplay";
 import { Button } from "@/components/ui/button";
 import {
   Card,
