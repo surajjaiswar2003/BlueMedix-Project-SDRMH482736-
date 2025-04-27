@@ -4,10 +4,8 @@ import pickle
 import pandas as pd
 import numpy as np
 import os
-
-# Create Flask app
-app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+from pymongo import MongoClient
+import traceback
 
 # Custom transformer class needed for loading the model
 class HealthPriorityTransformer:
@@ -21,6 +19,42 @@ class HealthPriorityTransformer:
     
     def transform(self, X):
         return X
+
+# Create Flask app
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
+# MongoDB connection
+MONGO_URI = "mongodb://localhost:27017/mydietdiary"
+try:
+    client = MongoClient(MONGO_URI)
+    db = client.get_database()  # This will use the database name from the URI
+    recipes_collection = db.recipes  # Collection name matches your MongoDB collection
+    
+    # Verify connection
+    client.admin.command('ping')
+    print("Successfully connected to MongoDB!")
+except Exception as e:
+    print(f"Failed to connect to MongoDB: {e}")
+
+# Function to fetch recipes from MongoDB
+def fetch_recipes_from_mongodb():
+    try:
+        # Fetch all recipes from MongoDB
+        recipes = list(recipes_collection.find({}))
+        
+        # Convert MongoDB _id to string to make it JSON serializable
+        for recipe in recipes:
+            if '_id' in recipe:
+                recipe['_id'] = str(recipe['_id'])
+        
+        # Convert to DataFrame for compatibility with existing code
+        recipes_df = pd.DataFrame(recipes)
+        print(f"Fetched {len(recipes_df)} recipes from MongoDB")
+        return recipes_df
+    except Exception as e:
+        print(f"Error fetching recipes from MongoDB: {e}")
+        return pd.DataFrame()  # Return empty DataFrame on error
 
 # Function to load all required models
 def load_models():
@@ -60,7 +94,13 @@ def load_models():
 models = load_models()
 
 # Diet plan generation function
-def generate_diet_plan(user_params, kmeans_model, pca, rf_model, recipes_df, cluster_analysis, days=7):
+def generate_diet_plan(user_params, kmeans_model, pca, rf_model, cluster_analysis, days=7):
+    # Fetch recipes from MongoDB instead of loading from CSV
+    recipes_df = fetch_recipes_from_mongodb()
+    
+    if recipes_df.empty:
+        raise Exception("Failed to fetch recipes from database")
+    
     # Create DataFrame with user parameters
     user_df = pd.DataFrame([user_params])
     
@@ -103,13 +143,21 @@ def generate_diet_plan(user_params, kmeans_model, pca, rf_model, recipes_df, clu
         # Check dietary preferences
         diet_suitable = True
         recipe_name = recipe['name'].lower() if 'name' in recipe and isinstance(recipe['name'], str) else ""
-        recipe_ingredients = recipe['ingredients'].lower() if 'ingredients' in recipe and isinstance(recipe['ingredients'], str) else ""
+        
+        # Handle ingredients based on MongoDB format (could be a list or string)
+        if 'ingredients' in recipe:
+            if isinstance(recipe['ingredients'], list):
+                recipe_ingredients = ' '.join(recipe['ingredients']).lower()
+            else:
+                recipe_ingredients = str(recipe['ingredients']).lower()
+        else:
+            recipe_ingredients = ""
         
         # Vegetarian check
         if diet_type == 'Vegetarian':
             non_veg_ingredients = ['chicken', 'beef', 'pork', 'turkey', 'lamb', 'fish', 'salmon', 'tuna', 
                                   'shrimp', 'meat', 'bacon', 'ham', 'sausage', 'seafood', 'cod', 'tilapia']
-            if any(ingredient in recipe_ingredients or ingredient in recipe_name for ingredient in non_veg_ingredients):
+            if any(ingredient in recipe_name or ingredient in recipe_ingredients for ingredient in non_veg_ingredients):
                 diet_suitable = False
                 
         # Vegan check
@@ -117,13 +165,13 @@ def generate_diet_plan(user_params, kmeans_model, pca, rf_model, recipes_df, clu
             non_vegan_ingredients = ['chicken', 'beef', 'pork', 'turkey', 'lamb', 'fish', 'salmon', 'tuna', 
                                     'shrimp', 'meat', 'bacon', 'ham', 'sausage', 'seafood', 'milk', 'cheese',
                                     'yogurt', 'cream', 'butter', 'egg', 'honey', 'dairy']
-            if any(ingredient in recipe_ingredients or ingredient in recipe_name for ingredient in non_vegan_ingredients):
+            if any(ingredient in recipe_name or ingredient in recipe_ingredients for ingredient in non_vegan_ingredients):
                 diet_suitable = False
                 
         # Pescatarian check
         elif diet_type == 'Pescatarian':
             non_pescatarian_ingredients = ['chicken', 'beef', 'pork', 'turkey', 'lamb', 'meat', 'bacon', 'ham', 'sausage']
-            if any(ingredient in recipe_ingredients or ingredient in recipe_name for ingredient in non_pescatarian_ingredients):
+            if any(ingredient in recipe_name or ingredient in recipe_ingredients for ingredient in non_pescatarian_ingredients):
                 diet_suitable = False
         
         # Add suitable recipes
@@ -187,8 +235,8 @@ def generate_diet_plan(user_params, kmeans_model, pca, rf_model, recipes_df, clu
                     'fat': float(selected_recipe['fat']),
                     'sodium': float(selected_recipe['sodium']),
                     'fiber': float(selected_recipe['fiber']),
-                    'ingredients': selected_recipe['ingredients'],  
-                    'instructions': selected_recipe['instructions']
+                    'ingredients': selected_recipe['ingredients'],  # Include ingredients
+                    'instructions': selected_recipe['instructions'] if 'instructions' in selected_recipe else ""  # Include instructions
                 }
             else:
                 meal_plan[f'Day {day}'][meal_type] = "No suitable recipe found"
@@ -281,13 +329,19 @@ def generate_diet_plan_api():
         user_params = request.json
         print(f"Received parameters: {user_params}")
         
-        # Generate diet plan
+        # Check if models are loaded
+        if not models:
+            return jsonify({
+                'success': False,
+                'error': "ML models not loaded"
+            }), 500
+        
+        # Generate diet plan using MongoDB recipes
         diet_plan, user_cluster, nutritional_analysis = generate_diet_plan(
             user_params, 
             models['kmeans_model'], 
             models['pca'], 
-            models['rf_model'], 
-            pd.read_csv('data/recipes_modified.csv'),
+            models['rf_model'],
             models['cluster_analysis']
         )
         
@@ -310,6 +364,6 @@ def generate_diet_plan_api():
 
 # Main entry point
 if __name__ == '__main__':
-    print(f"Starting Flask server...")
+    print("Starting Flask server...")
     print(f"Registered routes: {[str(rule) for rule in app.url_map.iter_rules()]}")
     app.run(debug=True, host='0.0.0.0', port=5001)
