@@ -61,7 +61,7 @@ app.use("/api/health-parameters", require("./routes/healthParamsRoutes"));
 // Add these routes as you develop them
 // app.use("/api/users", require("./routes/userRoutes"));
 // app.use("/api/dieticians", require("./routes/dieticianRoutes"));
-// app.use("/api/diet-plans", require("./routes/dietPlanRoutes"));
+app.use("/api/diet-plans", require("./routes/dietPlanRoutes"));
 
 // Basic route
 app.get("/", (req, res) => {

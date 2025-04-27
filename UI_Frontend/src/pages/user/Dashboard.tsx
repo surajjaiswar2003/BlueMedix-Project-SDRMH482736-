@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import DashboardLayout from "@/components/DashboardLayout";
+import { useNavigate } from "react-router-dom";
 import MultiStepProfileForm from "@/components/profile/MultiStepProfileForm";
 import {
   Activity,
@@ -28,8 +29,26 @@ interface UserData {
   email: string;
 }
 
-const UserDashboard: React.FC = () => {
+interface HealthParams {
+  diabetes?: string;
+  hypertension?: string;
+  cardiovascular?: string;
+  digestiveDisorders?: string;
+  height?: number;
+  weight?: number;
+  bmiCategory?: string;
+  dietType?: string;
+  exerciseFrequency?: number;
+  [key: string]: any;
+}
+
+const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [healthParams, setHealthParams] = useState<HealthParams | null>(null);
+  const [loadingHealthParams, setLoadingHealthParams] = useState<boolean>(true);
+  // Add state to control showing the multistep form
+  const [showMultiStepForm, setShowMultiStepForm] = useState<boolean>(false);
   const [healthMetrics, setHealthMetrics] = useState<{
     weight: HealthMetric;
     calories: HealthMetric;
@@ -45,50 +64,188 @@ const UserDashboard: React.FC = () => {
   const [dietPlanStatus, setDietPlanStatus] = useState<"review" | "approved">(
     "review"
   );
-  const [healthFormData, setHealthFormData] = useState({
-    diabetes: "none",
-    hypertension: "no",
-    cardiovascular: "absent",
-    digestiveDisorders: "none",
-    foodAllergies: [],
-  });
 
   useEffect(() => {
     // Get user data from localStorage
     const user = localStorage.getItem("user");
     if (user) {
-      setUserData(JSON.parse(user));
+      const parsedUser = JSON.parse(user);
+      setUserData(parsedUser);
+
+      // Fetch health parameters
+      const fetchHealthParams = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:5000/api/health-parameters/${parsedUser._id}`
+          );
+          setHealthParams(response.data);
+
+          // Update weight metric if available
+          if (response.data.weight) {
+            setHealthMetrics((prev) => ({
+              ...prev,
+              weight: {
+                ...prev.weight,
+                value: response.data.weight.toString(),
+              },
+            }));
+          }
+        } catch (error) {
+          // If 404 or other error, health parameters don't exist yet
+          console.log("No health parameters found or error:", error);
+          setHealthParams(null);
+        } finally {
+          setLoadingHealthParams(false);
+        }
+      };
+
+      fetchHealthParams();
     }
 
     // Fetch health metrics (mock for now)
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-
-    // In a real app, you would fetch from your API:
-    // const fetchHealthMetrics = async () => {
-    //   try {
-    //     const response = await axios.get('http://localhost:5000/api/user/health-metrics');
-    //     setHealthMetrics(response.data);
-    //   } catch (error) {
-    //     console.error('Error fetching health metrics:', error);
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
-    // fetchHealthMetrics();
   }, []);
+
+  // Handler for updating health parameters - now toggles form visibility
+  const handleUpdateHealthParams = () => {
+    setShowMultiStepForm(true);
+  };
+
+  // Handler for when form submission is complete
+  const handleFormComplete = () => {
+    setShowMultiStepForm(false);
+
+    // Refresh health parameters
+    if (userData && userData._id) {
+      fetchHealthParams(userData._id);
+    }
+  };
+
+  // Extract fetchHealthParams for reuse
+  const fetchHealthParams = async (userId: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/health-parameters/${userId}`
+      );
+      setHealthParams(response.data);
+
+      // Update weight metric if available
+      if (response.data.weight) {
+        setHealthMetrics((prev) => ({
+          ...prev,
+          weight: {
+            ...prev.weight,
+            value: response.data.weight.toString(),
+          },
+        }));
+      }
+    } catch (error) {
+      console.log("No health parameters found or error:", error);
+      setHealthParams(null);
+    } finally {
+      setLoadingHealthParams(false);
+    }
+  };
+
+  // Handler for generating diet plan
+  const handleGenerateDietPlan = () => {
+    navigate("/user/generate-diet-plan");
+  };
 
   return (
     <DashboardLayout requiredRole="user">
       <div className="space-y-6">
-        {/* Complete Profile */}
+        {/* Complete Profile or Health Parameters Section */}
         <Card className="shadow-md">
           <CardHeader>
-            <CardTitle>Complete Profile</CardTitle>
+            <CardTitle>
+              {loadingHealthParams
+                ? "Loading..."
+                : showMultiStepForm
+                ? "Update Health Profile"
+                : healthParams
+                ? "Your Health Profile"
+                : "Complete Your Health Profile"}
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <MultiStepProfileForm />
+            {loadingHealthParams ? (
+              <div className="h-24 bg-gray-200 animate-pulse rounded"></div>
+            ) : showMultiStepForm ? (
+              // Render MultiStepProfileForm directly in the dashboard
+              <MultiStepProfileForm onComplete={handleFormComplete} />
+            ) : healthParams ? (
+              <div className="space-y-4">
+                {/* Display saved health parameters */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">
+                      Height
+                    </p>
+                    <p className="text-lg">{healthParams.height} cm</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">
+                      Weight
+                    </p>
+                    <p className="text-lg">{healthParams.weight} kg</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">
+                      BMI Category
+                    </p>
+                    <p className="text-lg">{healthParams.bmiCategory}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">
+                      Diet Type
+                    </p>
+                    <p className="text-lg">{healthParams.dietType}</p>
+                  </div>
+                  {healthParams.diabetes && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">
+                        Diabetes
+                      </p>
+                      <p className="text-lg">{healthParams.diabetes}</p>
+                    </div>
+                  )}
+                  {healthParams.exerciseFrequency && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">
+                        Exercise Frequency
+                      </p>
+                      <p className="text-lg">
+                        {healthParams.exerciseFrequency} days/week
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <Button
+                  variant="outline"
+                  className="w-full mt-4"
+                  onClick={handleUpdateHealthParams}
+                >
+                  Update Health Parameters
+                </Button>
+              </div>
+            ) : (
+              <div className="text-center">
+                <p className="mb-4">
+                  You haven't completed your health profile yet. Complete it to
+                  get personalized diet plans.
+                </p>
+                <Button
+                  onClick={handleUpdateHealthParams}
+                  className="w-full md:w-auto"
+                >
+                  Complete Health Profile
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
 
@@ -238,34 +395,56 @@ const UserDashboard: React.FC = () => {
             <CardTitle>Your Diet Plan Status</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="font-medium text-lg">Personalized Diet Plan</h3>
-                <p className="text-sm text-gray-500">
-                  {dietPlanStatus === "review"
-                    ? "Your diet plan is currently under review by a dietitian."
-                    : "Your diet plan has been approved and is ready to follow."}
-                </p>
+            {loadingHealthParams ? (
+              <div className="h-16 bg-gray-200 animate-pulse rounded"></div>
+            ) : !healthParams ? (
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-medium text-lg">
+                    Complete Your Health Profile First
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    You need to complete your health profile before generating a
+                    diet plan.
+                  </p>
+                </div>
               </div>
-              <div
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  dietPlanStatus === "review"
-                    ? "bg-yellow-100 text-yellow-800"
-                    : "bg-green-100 text-green-800"
-                }`}
-              >
-                {dietPlanStatus === "review" ? "Under Review" : "Approved"}
+            ) : (
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-medium text-lg">
+                    Personalized Diet Plan
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    {dietPlanStatus === "review"
+                      ? "Your diet plan is currently under review by a dietitian."
+                      : "Your diet plan has been approved and is ready to follow."}
+                  </p>
+                </div>
+                <div
+                  className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    dietPlanStatus === "review"
+                      ? "bg-yellow-100 text-yellow-800"
+                      : "bg-green-100 text-green-800"
+                  }`}
+                >
+                  {dietPlanStatus === "review" ? "Under Review" : "Approved"}
+                </div>
               </div>
-            </div>
+            )}
+
             <div className="mt-4">
-              <Button
-                variant={dietPlanStatus === "review" ? "outline" : "default"}
-                className="w-full md:w-auto"
-              >
-                {dietPlanStatus === "review"
-                  ? "View Draft Plan"
-                  : "View Diet Plan"}
-              </Button>
+              {healthParams && (
+                <Button
+                  variant={dietPlanStatus === "review" ? "outline" : "default"}
+                  className="w-full md:w-auto"
+                  onClick={handleGenerateDietPlan}
+                >
+                  {dietPlanStatus === "review"
+                    ? "Generate Diet Plan"
+                    : "View Diet Plan"}
+                </Button>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -337,4 +516,4 @@ const UserDashboard: React.FC = () => {
   );
 };
 
-export default UserDashboard;
+export default Dashboard;

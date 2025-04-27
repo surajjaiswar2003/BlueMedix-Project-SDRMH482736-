@@ -1,3 +1,4 @@
+// components/profile/ReviewHealthParameters.tsx
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -72,19 +73,20 @@ const ReviewHealthParameters: React.FC<ReviewHealthParametersProps> = ({
   onSave,
   onBack,
 }) => {
-  const [isSaving, setIsSaving] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSave = async () => {
-    setIsSaving(true);
+  const handleGenerateDietPlan = async () => {
+    setIsGenerating(true);
     setError(null);
     try {
+      // Just move to the next step (Diet Plan generation)
+      // No saving happens at this point
       await onSave();
     } catch (err) {
-      setError("Failed to save parameters. Please try again.");
+      setError("Failed to proceed. Please try again.");
       console.error(err);
-    } finally {
-      setIsSaving(false);
+      setIsGenerating(false);
     }
   };
 
@@ -306,8 +308,8 @@ const ReviewHealthParameters: React.FC<ReviewHealthParametersProps> = ({
               <Button variant="outline" onClick={onBack}>
                 Back
               </Button>
-              <Button onClick={handleSave} disabled={isSaving}>
-                {isSaving ? "Saving..." : "Save Parameters"}
+              <Button onClick={handleGenerateDietPlan} disabled={isGenerating}>
+                {isGenerating ? "Processing..." : "Generate Diet Plan"}
               </Button>
             </div>
           </div>
