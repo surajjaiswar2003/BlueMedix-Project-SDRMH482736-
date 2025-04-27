@@ -57,6 +57,8 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/recipes", require("./routes/recipeRoutes"));
 app.use("/api/health-parameters", require("./routes/healthParamsRoutes"));
+app.use("/api/health-logs", require("./routes/healthLogRoutes"));
+
 
 // Add these routes as you develop them
 // app.use("/api/users", require("./routes/userRoutes"));
