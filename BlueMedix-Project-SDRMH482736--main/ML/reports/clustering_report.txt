@@ -1,0 +1,2 @@
+Recipe Clustering Silhouette Score: 0.214
+User Clustering Silhouette Score: 0.063

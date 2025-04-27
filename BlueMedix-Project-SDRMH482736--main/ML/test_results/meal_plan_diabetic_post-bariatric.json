@@ -1,0 +1,533 @@
+{
+  "user_id": 5,
+  "cluster": 0,
+  "days": [
+    {
+      "day": 1,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-8 AM",
+          "recipe_id": 4,
+          "recipe_name": "Overnight Oats with Almond Butter",
+          "ingredients": "Rolled oats, almond milk, almond butter, banana, cinnamon",
+          "instructions": "Combine ingredients, refrigerate overnight, add banana before serving",
+          "calories": 310.0,
+          "proteins": 12.0,
+          "carbs": 45.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "morning_snack",
+          "timing": "10-11 AM",
+          "recipe_id": 10,
+          "recipe_name": "Cottage Cheese with Fruit",
+          "ingredients": "Cottage cheese, pineapple, berries, walnuts",
+          "instructions": "Mix cottage cheese with fruits, top with nuts",
+          "calories": 230.0,
+          "proteins": 25.0,
+          "carbs": 20.0,
+          "fats": 5.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-1 PM",
+          "recipe_id": 17,
+          "recipe_name": "Grilled Chicken Salad with Avocado",
+          "ingredients": "Chicken breast, mixed greens, avocado, cherry tomatoes, olive oil",
+          "instructions": "Grill chicken, slice and add to salad with other ingredients",
+          "calories": 320.0,
+          "proteins": 30.0,
+          "carbs": 12.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "afternoon_snack",
+          "timing": "3-4 PM",
+          "recipe_id": 1,
+          "recipe_name": "Greek Yogurt with Berries and Chia Seeds",
+          "ingredients": "Greek yogurt, mixed berries, chia seeds, honey",
+          "instructions": "Mix 1 cup of Greek yogurt with 1/2 cup berries, 1 tbsp chia seeds, and a drizzle of honey",
+          "calories": 240.0,
+          "proteins": 18.0,
+          "carbs": 25.0,
+          "fats": 6.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-7 PM",
+          "recipe_id": 34,
+          "recipe_name": "Grilled Chicken with Quinoa and Vegetables",
+          "ingredients": "Chicken breast, quinoa, bell peppers, zucchini, olive oil, herbs",
+          "instructions": "Grill chicken, cook quinoa, saut\u00e9 vegetables, combine",
+          "calories": 350.0,
+          "proteins": 30.0,
+          "carbs": 35.0,
+          "fats": 10.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 1450.0,
+        "proteins": 115.0,
+        "carbs": 137.0,
+        "fats": 46.0,
+        "carb_percent": 37.8,
+        "protein_percent": 31.7,
+        "fat_percent": 28.6
+      }
+    },
+    {
+      "day": 2,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-8 AM",
+          "recipe_id": 2,
+          "recipe_name": "Avocado Toast with Poached Egg",
+          "ingredients": "Whole grain bread, avocado, egg, tomato, salt, pepper",
+          "instructions": "Toast bread, spread avocado, add sliced tomato, top with poached egg",
+          "calories": 320.0,
+          "proteins": 14.0,
+          "carbs": 28.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "morning_snack",
+          "timing": "10-11 AM",
+          "recipe_id": 13,
+          "recipe_name": "High-Fiber Breakfast Muffins",
+          "ingredients": "Oat flour, bran, banana, egg, yogurt, walnuts, cinnamon",
+          "instructions": "Mix ingredients, bake in muffin tin",
+          "calories": 220.0,
+          "proteins": 7.0,
+          "carbs": 25.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-1 PM",
+          "recipe_id": 19,
+          "recipe_name": "Tuna Salad Stuffed Avocado",
+          "ingredients": "Canned tuna, greek yogurt, celery, red onion, lemon juice, avocado",
+          "instructions": "Mix tuna with yogurt and vegetables, stuff into avocado halves",
+          "calories": 320.0,
+          "proteins": 25.0,
+          "carbs": 10.0,
+          "fats": 20.0
+        },
+        {
+          "meal_type": "afternoon_snack",
+          "timing": "3-4 PM",
+          "recipe_id": 5,
+          "recipe_name": "Breakfast Smoothie Bowl",
+          "ingredients": "Banana, spinach, protein powder, almond milk, berries, nuts",
+          "instructions": "Blend ingredients except toppings, pour in bowl, add toppings",
+          "calories": 270.0,
+          "proteins": 15.0,
+          "carbs": 35.0,
+          "fats": 8.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-7 PM",
+          "recipe_id": 31,
+          "recipe_name": "Baked Salmon with Roasted Vegetables",
+          "ingredients": "Salmon fillet, broccoli, carrots, olive oil, lemon, herbs",
+          "instructions": "Season salmon, arrange vegetables on baking sheet, bake",
+          "calories": 340.0,
+          "proteins": 30.0,
+          "carbs": 20.0,
+          "fats": 15.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 1470.0,
+        "proteins": 91.0,
+        "carbs": 118.0,
+        "fats": 68.0,
+        "carb_percent": 32.1,
+        "protein_percent": 24.8,
+        "fat_percent": 41.6
+      }
+    },
+    {
+      "day": 3,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-8 AM",
+          "recipe_id": 3,
+          "recipe_name": "Spinach and Mushroom Omelette",
+          "ingredients": "Eggs, spinach, mushrooms, feta cheese, olive oil",
+          "instructions": "Saut\u00e9 vegetables, add beaten eggs, fold with feta cheese",
+          "calories": 280.0,
+          "proteins": 20.0,
+          "carbs": 5.0,
+          "fats": 16.0
+        },
+        {
+          "meal_type": "morning_snack",
+          "timing": "10-11 AM",
+          "recipe_id": 15,
+          "recipe_name": "Protein-Packed Chia Pudding",
+          "ingredients": "Chia seeds, protein powder, almond milk, berries, honey",
+          "instructions": "Mix ingredients except berries, refrigerate overnight, top with berries",
+          "calories": 270.0,
+          "proteins": 15.0,
+          "carbs": 20.0,
+          "fats": 14.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-1 PM",
+          "recipe_id": 16,
+          "recipe_name": "Mediterranean Bowl with Chickpeas",
+          "ingredients": "Chickpeas, quinoa, cucumber, tomatoes, feta, olives, olive oil",
+          "instructions": "Combine all ingredients, drizzle with olive oil and lemon juice",
+          "calories": 360.0,
+          "proteins": 18.0,
+          "carbs": 45.0,
+          "fats": 12.0
+        },
+        {
+          "meal_type": "afternoon_snack",
+          "timing": "3-4 PM",
+          "recipe_id": 7,
+          "recipe_name": "Tofu Scramble with Vegetables",
+          "ingredients": "Firm tofu, bell peppers, spinach, turmeric, nutritional yeast",
+          "instructions": "Crumble and saut\u00e9 tofu with vegetables and spices",
+          "calories": 240.0,
+          "proteins": 16.0,
+          "carbs": 15.0,
+          "fats": 12.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-7 PM",
+          "recipe_id": 44,
+          "recipe_name": "Beef and Broccoli Stir-fry",
+          "ingredients": "Lean beef strips, broccoli, garlic, ginger, soy sauce, brown rice",
+          "instructions": "Stir-fry beef and broccoli with aromatics, serve over rice",
+          "calories": 330.0,
+          "proteins": 28.0,
+          "carbs": 20.0,
+          "fats": 15.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 1480.0,
+        "proteins": 97.0,
+        "carbs": 105.0,
+        "fats": 69.0,
+        "carb_percent": 28.4,
+        "protein_percent": 26.2,
+        "fat_percent": 42.0
+      }
+    },
+    {
+      "day": 4,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-8 AM",
+          "recipe_id": 12,
+          "recipe_name": "Smoked Salmon on Rye with Cream Cheese",
+          "ingredients": "Rye bread, smoked salmon, light cream cheese, capers, dill",
+          "instructions": "Spread bread with cream cheese, top with salmon, capers, and dill",
+          "calories": 280.0,
+          "proteins": 18.0,
+          "carbs": 20.0,
+          "fats": 14.0
+        },
+        {
+          "meal_type": "morning_snack",
+          "timing": "10-11 AM",
+          "recipe_id": 14,
+          "recipe_name": "Savory Breakfast Quinoa",
+          "ingredients": "Quinoa, vegetable broth, egg, avocado, cherry tomatoes",
+          "instructions": "Cook quinoa in broth, top with fried egg, avocado, and tomatoes",
+          "calories": 280.0,
+          "proteins": 14.0,
+          "carbs": 30.0,
+          "fats": 12.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-1 PM",
+          "recipe_id": 23,
+          "recipe_name": "Quinoa and Black Bean Bowl",
+          "ingredients": "Quinoa, black beans, corn, avocado, lime, cilantro",
+          "instructions": "Combine ingredients, dress with lime juice",
+          "calories": 310.0,
+          "proteins": 15.0,
+          "carbs": 45.0,
+          "fats": 8.0
+        },
+        {
+          "meal_type": "afternoon_snack",
+          "timing": "3-4 PM",
+          "recipe_id": 9,
+          "recipe_name": "Quinoa Breakfast Bowl",
+          "ingredients": "Quinoa, milk, cinnamon, apple, walnuts, maple syrup",
+          "instructions": "Cook quinoa with milk and cinnamon, top with apples and walnuts",
+          "calories": 280.0,
+          "proteins": 12.0,
+          "carbs": 38.0,
+          "fats": 9.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-7 PM",
+          "recipe_id": 42,
+          "recipe_name": "Sesame Salmon with Green Beans",
+          "ingredients": "Salmon, green beans, sesame seeds, soy sauce, ginger, garlic",
+          "instructions": "Pan-sear salmon with sesame seeds, serve with steamed green beans",
+          "calories": 340.0,
+          "proteins": 30.0,
+          "carbs": 15.0,
+          "fats": 18.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 1490.0,
+        "proteins": 89.0,
+        "carbs": 148.0,
+        "fats": 61.0,
+        "carb_percent": 39.7,
+        "protein_percent": 23.9,
+        "fat_percent": 36.8
+      }
+    },
+    {
+      "day": 5,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-8 AM",
+          "recipe_id": 2,
+          "recipe_name": "Avocado Toast with Poached Egg",
+          "ingredients": "Whole grain bread, avocado, egg, tomato, salt, pepper",
+          "instructions": "Toast bread, spread avocado, add sliced tomato, top with poached egg",
+          "calories": 320.0,
+          "proteins": 14.0,
+          "carbs": 28.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "morning_snack",
+          "timing": "10-11 AM",
+          "recipe_id": 11,
+          "recipe_name": "Buckwheat Porridge",
+          "ingredients": "Buckwheat groats, milk, banana, cinnamon, flaxseeds",
+          "instructions": "Cook buckwheat, add milk and flavorings",
+          "calories": 230.0,
+          "proteins": 8.0,
+          "carbs": 35.0,
+          "fats": 7.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-1 PM",
+          "recipe_id": 22,
+          "recipe_name": "Salmon Poke Bowl",
+          "ingredients": "Salmon, brown rice, avocado, cucumber, edamame, soy sauce",
+          "instructions": "Arrange ingredients in bowl, drizzle with sauce",
+          "calories": 400.0,
+          "proteins": 28.0,
+          "carbs": 40.0,
+          "fats": 14.0
+        },
+        {
+          "meal_type": "afternoon_snack",
+          "timing": "3-4 PM",
+          "recipe_id": 13,
+          "recipe_name": "High-Fiber Breakfast Muffins",
+          "ingredients": "Oat flour, bran, banana, egg, yogurt, walnuts, cinnamon",
+          "instructions": "Mix ingredients, bake in muffin tin",
+          "calories": 220.0,
+          "proteins": 7.0,
+          "carbs": 25.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-7 PM",
+          "recipe_id": 40,
+          "recipe_name": "Baked Chicken with Mediterranean Vegetables",
+          "ingredients": "Chicken thighs, zucchini, tomatoes, olives, feta cheese, herbs",
+          "instructions": "Arrange chicken and vegetables in baking dish, season, bake",
+          "calories": 320.0,
+          "proteins": 28.0,
+          "carbs": 25.0,
+          "fats": 12.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 1490.0,
+        "proteins": 85.0,
+        "carbs": 153.0,
+        "fats": 58.0,
+        "carb_percent": 41.1,
+        "protein_percent": 22.8,
+        "fat_percent": 35.0
+      }
+    },
+    {
+      "day": 6,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-8 AM",
+          "recipe_id": 2,
+          "recipe_name": "Avocado Toast with Poached Egg",
+          "ingredients": "Whole grain bread, avocado, egg, tomato, salt, pepper",
+          "instructions": "Toast bread, spread avocado, add sliced tomato, top with poached egg",
+          "calories": 320.0,
+          "proteins": 14.0,
+          "carbs": 28.0,
+          "fats": 15.0
+        },
+        {
+          "meal_type": "morning_snack",
+          "timing": "10-11 AM",
+          "recipe_id": 13,
+          "recipe_name": "High-Fiber Breakfast Muffins",
+          "ingredients": "Oat flour, bran, banana, egg, yogurt, walnuts, cinnamon",
+          "instructions": "Mix ingredients, bake in muffin tin",
+          "calories": 220.0,
+          "proteins": 7.0,
+          "carbs": 25.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-1 PM",
+          "recipe_id": 20,
+          "recipe_name": "Vegetable and Tofu Stir-fry",
+          "ingredients": "Tofu, broccoli, bell peppers, snap peas, soy sauce, brown rice",
+          "instructions": "Stir-fry tofu and vegetables, serve over rice",
+          "calories": 280.0,
+          "proteins": 15.0,
+          "carbs": 25.0,
+          "fats": 12.0
+        },
+        {
+          "meal_type": "afternoon_snack",
+          "timing": "3-4 PM",
+          "recipe_id": 10,
+          "recipe_name": "Cottage Cheese with Fruit",
+          "ingredients": "Cottage cheese, pineapple, berries, walnuts",
+          "instructions": "Mix cottage cheese with fruits, top with nuts",
+          "calories": 230.0,
+          "proteins": 25.0,
+          "carbs": 20.0,
+          "fats": 5.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-7 PM",
+          "recipe_id": 36,
+          "recipe_name": "Baked Cod with Sweet Potato and Asparagus",
+          "ingredients": "Cod fillet, sweet potato, asparagus, olive oil, lemon, herbs",
+          "instructions": "Bake cod and vegetables seasoned with herbs",
+          "calories": 290.0,
+          "proteins": 25.0,
+          "carbs": 30.0,
+          "fats": 8.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 1340.0,
+        "proteins": 86.0,
+        "carbs": 128.0,
+        "fats": 50.0,
+        "carb_percent": 38.2,
+        "protein_percent": 25.7,
+        "fat_percent": 33.6
+      }
+    },
+    {
+      "day": 7,
+      "meals": [
+        {
+          "meal_type": "breakfast",
+          "timing": "7-8 AM",
+          "recipe_id": 4,
+          "recipe_name": "Overnight Oats with Almond Butter",
+          "ingredients": "Rolled oats, almond milk, almond butter, banana, cinnamon",
+          "instructions": "Combine ingredients, refrigerate overnight, add banana before serving",
+          "calories": 310.0,
+          "proteins": 12.0,
+          "carbs": 45.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "morning_snack",
+          "timing": "10-11 AM",
+          "recipe_id": 13,
+          "recipe_name": "High-Fiber Breakfast Muffins",
+          "ingredients": "Oat flour, bran, banana, egg, yogurt, walnuts, cinnamon",
+          "instructions": "Mix ingredients, bake in muffin tin",
+          "calories": 220.0,
+          "proteins": 7.0,
+          "carbs": 25.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "lunch",
+          "timing": "12-1 PM",
+          "recipe_id": 21,
+          "recipe_name": "Turkey and Vegetable Wrap",
+          "ingredients": "Turkey breast, whole grain wrap, lettuce, tomato, bell pepper, hummus",
+          "instructions": "Spread hummus on wrap, add turkey and vegetables, roll up",
+          "calories": 320.0,
+          "proteins": 25.0,
+          "carbs": 30.0,
+          "fats": 10.0
+        },
+        {
+          "meal_type": "afternoon_snack",
+          "timing": "3-4 PM",
+          "recipe_id": 10,
+          "recipe_name": "Cottage Cheese with Fruit",
+          "ingredients": "Cottage cheese, pineapple, berries, walnuts",
+          "instructions": "Mix cottage cheese with fruits, top with nuts",
+          "calories": 230.0,
+          "proteins": 25.0,
+          "carbs": 20.0,
+          "fats": 5.0
+        },
+        {
+          "meal_type": "dinner",
+          "timing": "6-7 PM",
+          "recipe_id": 32,
+          "recipe_name": "Turkey Meatballs with Zucchini Noodles",
+          "ingredients": "Ground turkey, egg, almond flour, zucchini, tomato sauce, herbs",
+          "instructions": "Form meatballs, bake, serve with spiralized zucchini and sauce",
+          "calories": 280.0,
+          "proteins": 28.0,
+          "carbs": 15.0,
+          "fats": 12.0
+        }
+      ],
+      "daily_totals": {
+        "calories": 1360.0,
+        "proteins": 97.0,
+        "carbs": 135.0,
+        "fats": 47.0,
+        "carb_percent": 39.7,
+        "protein_percent": 28.5,
+        "fat_percent": 31.1
+      }
+    }
+  ],
+  "overall_stats": {
+    "avg_daily_calories": 1440,
+    "avg_daily_proteins": 94,
+    "avg_daily_carbs": 132,
+    "avg_daily_fats": 57,
+    "overall_protein_percent": 26.6,
+    "overall_carb_percent": 37.2,
+    "overall_fat_percent": 36.2
+  }
+}
