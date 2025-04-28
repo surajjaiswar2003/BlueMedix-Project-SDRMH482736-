@@ -1,17 +1,13 @@
-// models/DietPlan.js
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Meal schema - represents a single meal with recipe reference
+// Meal schema
 const mealSchema = new Schema({
   recipe: {
     type: Schema.Types.ObjectId,
     ref: "Recipe",
   },
-  name: {
-    type: String,
-    required: true,
-  },
+  name: { type: String, required: true },
   calories: Number,
   protein: Number,
   carbs: Number,
@@ -22,22 +18,16 @@ const mealSchema = new Schema({
   instructions: String,
 });
 
-// Daily plan schema - represents a single day in the diet plan
+// Daily plan schema
 const dailyPlanSchema = new Schema({
-  day_number: {
-    type: Number,
-    required: true,
-  },
-  day_label: {
-    type: String,
-    required: true,
-  },
+  day_number: { type: Number, required: true },
+  day_label: { type: String, required: true },
   Breakfast: mealSchema,
   Lunch: mealSchema,
   Dinner: mealSchema,
-  "Morning Snack": mealSchema,
-  "Afternoon Snack": mealSchema,
   Brunch: mealSchema,
+  MorningSnack: mealSchema, // <--- No spaces!
+  AfternoonSnack: mealSchema, // <--- No spaces!
 });
 
 // Main diet plan schema
@@ -70,23 +60,12 @@ const dietPlanSchema = new Schema(
     },
     meal_coverage: Number,
     user_cluster: Number,
-    status: {
-      type: String,
-      enum: ["review", "approved"],
-      default: "review",
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now,
-    },
+    status: { type: String, enum: ["review", "approved"], default: "review" },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );
 
 const DietPlan = mongoose.model("DietPlan", dietPlanSchema);
-
 module.exports = DietPlan;

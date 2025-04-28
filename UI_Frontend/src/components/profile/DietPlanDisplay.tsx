@@ -140,18 +140,20 @@ const DietPlanDisplay: React.FC<DietPlanDisplayProps> = ({
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {Object.entries(dietPlan[day]).map(([mealType, meal]) => (
-                        <div
-                          key={mealType}
-                          className="border-b pb-4 last:border-0"
-                        >
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <h4 className="font-medium">{mealType}</h4>
-                              {typeof meal === "string" ? (
-                                <p className="text-muted-foreground">{meal}</p>
-                              ) : (
-                                <>
+                      {Object.entries(dietPlan[day])
+                        .filter(
+                          ([mealType]) =>
+                            !["day_number", "day_label"].includes(mealType)
+                        )
+                        .map(([mealType, meal]) =>
+                          meal && typeof meal !== "string" ? (
+                            <div
+                              key={mealType}
+                              className="border-b pb-4 last:border-0"
+                            >
+                              <div className="flex justify-between items-start">
+                                <div>
+                                  <h4 className="font-medium">{mealType}</h4>
                                   <p className="font-medium mt-1">
                                     {meal.name}
                                   </p>
@@ -178,12 +180,11 @@ const DietPlanDisplay: React.FC<DietPlanDisplayProps> = ({
                                       {meal.fat.toFixed(0)}g fat
                                     </Badge>
                                   </div>
-                                </>
-                              )}
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                      ))}
+                          ) : null
+                        )}
                     </div>
                   </CardContent>
                 </Card>

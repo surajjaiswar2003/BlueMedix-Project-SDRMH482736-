@@ -1,10 +1,10 @@
-// pages/dietitian/Dashboard.tsx
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Users, Clipboard, MessageSquare, Activity } from "lucide-react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface StatItem {
   title: string;
@@ -20,15 +20,8 @@ interface Patient {
   status: "Active" | "Inactive";
 }
 
-interface PendingReview {
-  id: number;
-  patientName: string;
-  planType: string;
-  submittedDate: string;
-}
-
 const DietitianDashboard: React.FC = () => {
-  const [stats, setStats] = useState<StatItem[]>([
+  const [stats] = useState<StatItem[]>([
     {
       title: "Assigned Patients",
       value: "24",
@@ -59,55 +52,32 @@ const DietitianDashboard: React.FC = () => {
     },
   ]);
 
-  const [recentPatients, setRecentPatients] = useState<Patient[]>([
+  const [recentPatients] = useState<Patient[]>([
     { name: "John Doe", lastVisit: "2 days ago", status: "Active" },
     { name: "Jane Smith", lastVisit: "3 days ago", status: "Active" },
     { name: "Bob Wilson", lastVisit: "1 week ago", status: "Inactive" },
   ]);
 
-  const [pendingReviews, setPendingReviews] = useState<PendingReview[]>([
-    {
-      id: 1,
-      patientName: "John Doe",
-      planType: "Weight Loss",
-      submittedDate: "Yesterday",
-    },
-    {
-      id: 2,
-      patientName: "Jane Smith",
-      planType: "Muscle Gain",
-      submittedDate: "2 days ago",
-    },
-    {
-      id: 3,
-      patientName: "Bob Wilson",
-      planType: "Maintenance",
-      submittedDate: "3 days ago",
-    },
-  ]);
-
+  const [pendingReviews, setPendingReviews] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+  const navigate = useNavigate();
 
-    // In a real app, you would fetch from your API:
-    // const fetchDashboardData = async () => {
-    //   try {
-    //     const response = await axios.get('http://localhost:5000/api/dietitian/dashboard');
-    //     setStats(response.data.stats);
-    //     setRecentPatients(response.data.recentPatients);
-    //     setPendingReviews(response.data.pendingReviews);
-    //   } catch (error) {
-    //     console.error('Error fetching dashboard data:', error);
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
-    // fetchDashboardData();
+  useEffect(() => {
+    const fetchPendingReviews = async () => {
+      try {
+        setIsLoading(true);
+        const res = await axios.get(
+          "http://localhost:5000/api/diet-plans/review"
+        );
+        setPendingReviews(res.data);
+      } catch (err) {
+        console.error("Error fetching pending reviews:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchPendingReviews();
   }, []);
 
   return (
@@ -222,22 +192,29 @@ const DietitianDashboard: React.FC = () => {
                 ></div>
               ))}
             </div>
+          ) : pendingReviews.length === 0 ? (
+            <div className="text-gray-500">No plans pending review.</div>
           ) : (
             <div className="space-y-4">
-              {pendingReviews.map((review) => (
+              {pendingReviews.map((plan) => (
                 <div
-                  key={review.id}
+                  key={plan._id}
                   className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
                 >
                   <div>
                     <h3 className="font-medium text-gray-900">
-                      {review.patientName}
+                      {plan.userId.firstName} {plan.userId.lastName}
                     </h3>
                     <p className="text-sm text-gray-500">
-                      {review.planType} Plan • Submitted {review.submittedDate}
+                      Submitted: {new Date(plan.createdAt).toLocaleDateString()}
                     </p>
                   </div>
-                  <Button size="sm">Review Plan</Button>
+                  <Button
+                    size="sm"
+                    onClick={() => navigate(`/dietitian/review/${plan._id}`)}
+                  >
+                    Review Diet Plan
+                  </Button>
                 </div>
               ))}
             </div>

@@ -24,6 +24,7 @@ import UserChat from "./pages/user/Chat";
 
 // Dietitian pages
 import DietitianDashboard from "./pages/dietitian/Dashboard";
+import ReviewDietPlanPage from "./pages/dietitian/ReviewDietPlanPage";
 // import DietitianUsers from "./pages/dietitian/Users";
 // import DietitianPlans from "./pages/dietitian/Plans";
 // import DietitianLogs from "./pages/dietitian/Logs";
@@ -52,7 +53,7 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-        
+
         {/* User routes */}
         <Route path="/user/dashboard" element={<UserDashboard />} />
         <Route path="/user/profile" element={<UserProfile />} />
@@ -61,16 +62,20 @@ const App: React.FC = () => {
         <Route path="/user/diet-plan" element={<UserDietPlan />} />
         <Route path="/user/suggestions" element={<UserSuggestions />} />
         <Route path="/user/chat" element={<UserChat />} />
-        
+
         {/* Dietitian routes */}
         <Route path="/dietitian/dashboard" element={<DietitianDashboard />} />
+        <Route
+          path="/dietitian/review/:dietPlanId"
+          element={<ReviewDietPlanPage />}
+        />
         {/* <Route path="/dietitian/users" element={<DietitianUsers />} />
         <Route path="/dietitian/plans" element={<DietitianPlans />} />
         <Route path="/dietitian/logs" element={<DietitianLogs />} />
         <Route path="/dietitian/insights" element={<DietitianInsights />} />
         <Route path="/dietitian/approve" element={<DietitianApprove />} />
         <Route path="/dietitian/feedback" element={<DietitianFeedback />} /> */}
-        
+
         {/* Admin routes */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/users" element={<AdminUsers />} />
@@ -80,7 +85,7 @@ const App: React.FC = () => {
         <Route path="/admin/model" element={<AdminModel />} />
         <Route path="/admin/logs" element={<AdminLogs />} />
         <Route path="/admin/feedback" element={<AdminFeedback />} /> */}
-        
+
         {/* Catch-all route */}
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -9,6 +9,7 @@ const connectDB = require("./config/db");
 const { createDefaultAdmin } = require("./controllers/authController");
 const Recipe = require("./models/Recipe");
 const HealthParameters = require("./models/HealthParameters");
+const mlRoutes = require("./routes/mlRoutes");
 
 // Load environment variables
 dotenv.config();
@@ -58,6 +59,7 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/recipes", require("./routes/recipeRoutes"));
 app.use("/api/health-parameters", require("./routes/healthParamsRoutes"));
 app.use("/api/health-logs", require("./routes/healthLogRoutes"));
+app.use("/api/ml", mlRoutes);
 
 
 // Add these routes as you develop them
