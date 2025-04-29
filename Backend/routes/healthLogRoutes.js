@@ -1,9 +1,13 @@
-// routes/healthLogRoutes.js
 const express = require("express");
 const router = express.Router();
 const healthLogController = require("../controllers/healthLogController");
 
-// Get logs for a specific date range
+// --- DASHBOARD ENDPOINTS ---
+// Get recent patients by last health log activity
+router.get("/recent-patients", healthLogController.getRecentPatients);
+
+// --- HEALTH LOG CRUD ---
+// Get logs for a specific date range or all logs for a user
 router.get("/:userId", healthLogController.getUserLogs);
 
 // Add a new log entry

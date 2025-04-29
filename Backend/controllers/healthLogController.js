@@ -1,4 +1,3 @@
-// controllers/healthLogController.js
 const HealthLog = require("../models/HealthLog");
 const User = require("../models/User");
 
@@ -236,6 +235,45 @@ exports.deleteLogEntry = async (req, res) => {
     });
   } catch (error) {
     console.error("Error deleting health log entry:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Get recent patients by last health log activity
+exports.getRecentPatients = async (req, res) => {
+  try {
+    // Get all users with their latest health log date
+    const logs = await HealthLog.aggregate([
+      { $unwind: "$logs" },
+      {
+        $group: {
+          _id: "$userId",
+          lastLogDate: { $max: "$logs.date" },
+        },
+      },
+      { $sort: { lastLogDate: -1 } },
+      { $limit: 10 },
+    ]);
+
+    // Populate user info
+    const users = await User.find({
+      _id: { $in: logs.map((l) => l._id) },
+    }).select("firstName lastName email");
+
+    // Merge user info with lastLogDate
+    const recentPatients = logs.map((log) => {
+      const user = users.find((u) => u._id.equals(log._id));
+      return {
+        _id: log._id,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        email: user?.email,
+        lastLogDate: log.lastLogDate,
+      };
+    });
+
+    res.json(recentPatients);
+  } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };

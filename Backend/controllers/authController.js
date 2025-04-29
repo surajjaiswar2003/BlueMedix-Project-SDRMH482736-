@@ -2,7 +2,7 @@ const User = require("../models/User");
 const Dietician = require("../models/Dietician");
 const Admin = require("../models/Admin");
 
-// @desc    Register a new user
+// @desc    Register a new user or dietitian
 // @route   POST /api/auth/register
 // @access  Public
 exports.registerUser = async (req, res) => {
@@ -189,6 +189,21 @@ exports.loginAdmin = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// @desc    Get user by ID (for patient logs page)
+// @route   GET /api/auth/user/:id
+// @access  Public
+exports.getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select(
+      "firstName lastName email"
+    );
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json({ user });
+  } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };

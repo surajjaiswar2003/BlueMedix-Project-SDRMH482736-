@@ -12,6 +12,26 @@ const populatePaths = [
   { path: "days.AfternoonSnack.recipe", model: "Recipe" },
 ];
 
+// --- NEW: Get all diet plans with optional filtering (e.g., by status) ---
+exports.getDietPlans = async (req, res) => {
+  try {
+    const filter = {};
+    if (req.query.status) {
+      filter.status = req.query.status;
+    }
+    // You can add more filters here if needed
+
+    const plans = await DietPlan.find(filter).populate(
+      "userId",
+      "firstName lastName email"
+    );
+    res.json(plans);
+  } catch (error) {
+    console.error("Error fetching diet plans:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 // --- USER-SIDE ENDPOINTS ---
 
 exports.saveDietPlan = async (req, res) => {

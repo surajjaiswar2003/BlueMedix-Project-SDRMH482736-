@@ -25,6 +25,10 @@ import UserChat from "./pages/user/Chat";
 // Dietitian pages
 import DietitianDashboard from "./pages/dietitian/Dashboard";
 import ReviewDietPlanPage from "./pages/dietitian/ReviewDietPlanPage";
+import PatientLogsPage from "@/pages/dietitian/patient/PatientLogsPage";
+import UserDietPlansPage from "@/pages/dietitian/UserDietPlansPage";
+import ApprovedDietPlanPage from "@/pages/dietitian/ApprovedDietPlanPage";
+import TrackUsersPage from "@/pages/dietitian/TrackUsersPage";
 // import DietitianUsers from "./pages/dietitian/Users";
 // import DietitianPlans from "./pages/dietitian/Plans";
 // import DietitianLogs from "./pages/dietitian/Logs";
@@ -69,6 +73,19 @@ const App: React.FC = () => {
           path="/dietitian/review/:dietPlanId"
           element={<ReviewDietPlanPage />}
         />
+        <Route
+          path="/dietitian/patient/:id/logs"
+          element={<PatientLogsPage />}
+        />
+        <Route
+          path="/dietitian/user-diet-plans"
+          element={<UserDietPlansPage />}
+        />
+        <Route
+          path="/dietitian/approved-plan/:id"
+          element={<ApprovedDietPlanPage />}
+        />
+        <Route path="/dietitian/track-users" element={<TrackUsersPage />} />
         {/* <Route path="/dietitian/users" element={<DietitianUsers />} />
         <Route path="/dietitian/plans" element={<DietitianPlans />} />
         <Route path="/dietitian/logs" element={<DietitianLogs />} />
