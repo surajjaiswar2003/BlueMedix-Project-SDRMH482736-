@@ -9,7 +9,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, User, LogOut, Home, Clipboard, Users } from "lucide-react";
+import {
+  Menu,
+  X,
+  User,
+  LogOut,
+  Home,
+  Clipboard,
+  Users,
+  Activity,
+} from "lucide-react";
 
 // Define types for user data
 interface UserData {
@@ -71,14 +80,22 @@ const Navbar: React.FC = () => {
   // Define navigation links based on user role
   const getNavLinks = (): NavLink[] => {
     if (userType === "user") {
-      // ... (user links as before)
       return [
         {
           name: "Home",
           path: "/user/dashboard",
           icon: <Home className="h-4 w-4 mr-2" />,
         },
-        // Add more user links as needed
+        {
+          name: "Diet Plan",
+          path: "/user/diet-plan",
+          icon: <Clipboard className="h-4 w-4 mr-2" />,
+        },
+        {
+          name: "Track My Health",
+          path: "/user/track",
+          icon: <Activity className="h-4 w-4 mr-2" />,
+        },
       ];
     } else if (userType === "dietitian") {
       return [
@@ -99,7 +116,6 @@ const Navbar: React.FC = () => {
         },
       ];
     } else if (userType === "admin") {
-      // ... (admin links as before)
       return [
         {
           name: "Home",

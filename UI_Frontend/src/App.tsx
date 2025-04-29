@@ -18,9 +18,11 @@ import UserDashboard from "./pages/user/Dashboard";
 import UserProfile from "./pages/user/Profile";
 import UserTrack from "./pages/user/Track";
 import UserReports from "./pages/user/Reports";
-import UserDietPlan from "./pages/user/DietPlan";
+import DietPlanPage from "@/pages/user/DietPlan";
 import UserSuggestions from "./pages/user/Suggestions";
 import UserChat from "./pages/user/Chat";
+import ViewHealthLog from "@/pages/user/ViewHealthLog";
+import HealthTrackingFormPage from "@/pages/user/HealthTrackingFormPage";
 
 // Dietitian pages
 import DietitianDashboard from "./pages/dietitian/Dashboard";
@@ -63,9 +65,11 @@ const App: React.FC = () => {
         <Route path="/user/profile" element={<UserProfile />} />
         <Route path="/user/track" element={<UserTrack />} />
         <Route path="/user/reports" element={<UserReports />} />
-        <Route path="/user/diet-plan" element={<UserDietPlan />} />
+        <Route path="/user/diet-plan" element={<DietPlanPage />} />
         <Route path="/user/suggestions" element={<UserSuggestions />} />
         <Route path="/user/chat" element={<UserChat />} />
+        <Route path="/user/track/:date" element={<ViewHealthLog />} />
+        <Route path="/user/track/add" element={<HealthTrackingFormPage />} />
 
         {/* Dietitian routes */}
         <Route path="/dietitian/dashboard" element={<DietitianDashboard />} />

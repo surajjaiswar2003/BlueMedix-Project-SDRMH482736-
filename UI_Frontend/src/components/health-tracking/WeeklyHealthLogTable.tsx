@@ -1,6 +1,5 @@
-// components/health-tracking/WeeklyHealthLogTable.tsx
 import React from "react";
-import { format, startOfWeek, addDays } from "date-fns";
+import { format, startOfWeek, addDays, isSameDay } from "date-fns";
 import {
   Table,
   TableBody,
@@ -10,42 +9,46 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface WeeklyHealthLogTableProps {
   logs: any[];
-  onEdit: (log: any) => void;
-  onDelete: (logId: string, date: Date) => void;
+  onView: (log: any) => void;
 }
 
 const WeeklyHealthLogTable: React.FC<WeeklyHealthLogTableProps> = ({
   logs,
-  onEdit,
-  onDelete,
+  onView,
 }) => {
-  // Helper function to get the most recent week's logs
+  const navigate = useNavigate();
+
+  // Get current week's days (Monday to Sunday)
   const getWeekDays = (date = new Date()) => {
-    const start = startOfWeek(date, { weekStartsOn: 1 }); // Start on Monday
-    const days = [];
-
-    for (let i = 0; i < 7; i++) {
-      days.push(addDays(start, i));
-    }
-
-    return days;
+    const start = startOfWeek(date, { weekStartsOn: 1 });
+    return Array.from({ length: 7 }).map((_, i) => addDays(start, i));
   };
 
   const weekDays = getWeekDays();
 
-  // Find logs for each day of the week
+  // For each day, find the log (if any) using isSameDay for robust local comparison
   const weekLogs = weekDays.map((day) => {
-    const formattedDate = format(day, "yyyy-MM-dd");
+    const foundLog = logs.find((log) => {
+      const logDate = new Date(log.date);
+      const result = isSameDay(logDate, day);
+      // Debug:
+      // console.log(
+      //   "Comparing:",
+      //   logDate.toISOString(),
+      //   "vs",
+      //   day.toISOString(),
+      //   "=>",
+      //   result
+      // );
+      return result;
+    });
     return {
       date: day,
-      log: logs.find((log) => {
-        const logDate = new Date(log.date);
-        return format(logDate, "yyyy-MM-dd") === formattedDate;
-      }),
+      log: foundLog,
     };
   });
 
@@ -55,14 +58,11 @@ const WeeklyHealthLogTable: React.FC<WeeklyHealthLogTableProps> = ({
   };
 
   // Helper function to check if a meal has data
-  const hasMealData = (meal) => {
-    return meal && meal.name;
-  };
+  const hasMealData = (meal: any) => meal && meal.name;
 
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-medium">This Week's Health Logs</h3>
-
       <Table>
         <TableHeader>
           <TableRow>
@@ -146,27 +146,22 @@ const WeeklyHealthLogTable: React.FC<WeeklyHealthLogTableProps> = ({
               </TableCell>
               <TableCell>
                 {log ? (
-                  <div className="flex space-x-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => onEdit(log)}
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => onDelete(log._id, new Date(log.date))}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => onView(log)}
+                  >
+                    View
+                  </Button>
                 ) : (
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => onEdit({ date })}
+                    onClick={() =>
+                      navigate(
+                        `/user/track/add?date=${format(date, "yyyy-MM-dd")}`
+                      )
+                    }
                   >
                     Add
                   </Button>
