@@ -18,6 +18,7 @@ import {
   Clipboard,
   Users,
   Activity,
+  MessageCircle,
 } from "lucide-react";
 
 // Define types for user data
@@ -95,6 +96,11 @@ const Navbar: React.FC = () => {
           name: "Track My Health",
           path: "/user/track",
           icon: <Activity className="h-4 w-4 mr-2" />,
+        },
+        {
+          name: "Chat with Dietitian",
+          path: "/user/chat-dietitian",
+          icon: <MessageCircle className="h-4 w-4 mr-2" />,
         },
       ];
     } else if (userType === "dietitian") {

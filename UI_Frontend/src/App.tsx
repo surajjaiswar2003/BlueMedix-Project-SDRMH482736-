@@ -20,7 +20,7 @@ import UserTrack from "./pages/user/Track";
 import UserReports from "./pages/user/Reports";
 import DietPlanPage from "@/pages/user/DietPlan";
 import UserSuggestions from "./pages/user/Suggestions";
-import UserChat from "./pages/user/Chat";
+import ChatWithDietitian from "@/pages/user/ChatWithDietitian";;
 import ViewHealthLog from "@/pages/user/ViewHealthLog";
 import HealthTrackingFormPage from "@/pages/user/HealthTrackingFormPage";
 
@@ -67,7 +67,7 @@ const App: React.FC = () => {
         <Route path="/user/reports" element={<UserReports />} />
         <Route path="/user/diet-plan" element={<DietPlanPage />} />
         <Route path="/user/suggestions" element={<UserSuggestions />} />
-        <Route path="/user/chat" element={<UserChat />} />
+        <Route path="/user/chat-dietitian" element={<ChatWithDietitian />} />
         <Route path="/user/track/:date" element={<ViewHealthLog />} />
         <Route path="/user/track/add" element={<HealthTrackingFormPage />} />
 
