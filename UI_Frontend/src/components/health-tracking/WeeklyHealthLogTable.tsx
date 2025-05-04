@@ -35,15 +35,14 @@ const WeeklyHealthLogTable: React.FC<WeeklyHealthLogTableProps> = ({
     const foundLog = logs.find((log) => {
       const logDate = new Date(log.date);
       const result = isSameDay(logDate, day);
-      // Debug:
-      // console.log(
-      //   "Comparing:",
-      //   logDate.toISOString(),
-      //   "vs",
-      //   day.toISOString(),
-      //   "=>",
-      //   result
-      // );
+      console.log(
+        "Comparing:",
+        format(logDate, "yyyy-MM-dd"),
+        "vs",
+        format(day, "yyyy-MM-dd"),
+        "=>",
+        result
+      );
       return result;
     });
     return {
@@ -51,6 +50,10 @@ const WeeklyHealthLogTable: React.FC<WeeklyHealthLogTableProps> = ({
       log: foundLog,
     };
   });
+
+  // Debug: Log the received logs
+  console.log("Received logs:", logs);
+  console.log("Week logs:", weekLogs);
 
   // Helper function to render rating as stars
   const renderRating = (rating: number) => {

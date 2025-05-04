@@ -1,0 +1,30 @@
+[
+    {
+        "food_name": "Apple",
+        "unit_serving_energy_kcal": 95,
+        "unit_serving_protein_g": 0.5,
+        "unit_serving_carb_g": 25,
+        "unit_serving_fat_g": 0.3
+    },
+    {
+        "food_name": "Banana",
+        "unit_serving_energy_kcal": 105,
+        "unit_serving_protein_g": 1.3,
+        "unit_serving_carb_g": 27,
+        "unit_serving_fat_g": 0.4
+    },
+    {
+        "food_name": "Greek Yogurt",
+        "unit_serving_energy_kcal": 100,
+        "unit_serving_protein_g": 17,
+        "unit_serving_carb_g": 6,
+        "unit_serving_fat_g": 0
+    },
+    {
+        "food_name": "Almonds",
+        "unit_serving_energy_kcal": 164,
+        "unit_serving_protein_g": 6,
+        "unit_serving_carb_g": 6,
+        "unit_serving_fat_g": 14
+    }
+] 

@@ -17,11 +17,19 @@ exports.getUserLogs = async (req, res) => {
     // Filter logs by date range if provided
     let filteredLogs = userLog.logs;
     if (startDate && endDate) {
-      const start = new Date(startDate);
-      const end = new Date(endDate);
+      // Convert start and end from IST to UTC
+      function fromIST(date) {
+        return new Date(date.getTime() - (5.5 * 60 * 60 * 1000));
+      }
+      const startIST = new Date(startDate);
+      startIST.setHours(0, 0, 0, 0);
+      const endIST = new Date(endDate);
+      endIST.setHours(23, 59, 59, 999);
+      const startUTC = fromIST(startIST);
+      const endUTC = fromIST(endIST);
       filteredLogs = userLog.logs.filter((log) => {
         const logDate = new Date(log.date);
-        return logDate >= start && logDate <= end;
+        return logDate >= startUTC && logDate <= endUTC;
       });
     }
 
@@ -58,12 +66,12 @@ exports.addLogEntry = async (req, res) => {
     }
 
     // Check if log for this date already exists
-    const logDate = new Date(logData.date);
-    logDate.setHours(0, 0, 0, 0); // Normalize to start of day
-
+    let logDate = new Date(logData.date);
+    logDate = new Date(logDate.getTime() - (5.5 * 60 * 60 * 1000)); // Convert IST to UTC
+    logDate.setUTCHours(0, 0, 0, 0); // Normalize to start of day UTC
     const existingLogIndex = userLog.logs.findIndex((log) => {
       const date = new Date(log.date);
-      date.setHours(0, 0, 0, 0);
+      date.setUTCHours(0, 0, 0, 0);
       return date.getTime() === logDate.getTime();
     });
 
@@ -126,7 +134,8 @@ exports.updateLogEntry = async (req, res) => {
     const updateData = req.body;
 
     const logDate = new Date(date);
-    logDate.setHours(0, 0, 0, 0); // Normalize to start of day
+    const logDateUTC = new Date(logDate.getTime() - (5.5 * 60 * 60 * 1000));
+    logDateUTC.setUTCHours(0, 0, 0, 0); // Normalize to start of day UTC
 
     // Find user's health log document
     const userLog = await HealthLog.findOne({ userId });
@@ -138,8 +147,8 @@ exports.updateLogEntry = async (req, res) => {
     // Find the specific log entry by date
     const logIndex = userLog.logs.findIndex((log) => {
       const entryDate = new Date(log.date);
-      entryDate.setHours(0, 0, 0, 0);
-      return entryDate.getTime() === logDate.getTime();
+      entryDate.setUTCHours(0, 0, 0, 0);
+      return entryDate.getTime() === logDateUTC.getTime();
     });
 
     if (logIndex === -1) {
@@ -181,7 +190,7 @@ exports.updateLogEntry = async (req, res) => {
     userLog.logs[logIndex] = {
       ...userLog.logs[logIndex].toObject(),
       ...updateData,
-      date: logDate, // Preserve the original date
+      date: logDateUTC, // Preserve the original date
     };
 
     await userLog.save();
@@ -203,7 +212,8 @@ exports.deleteLogEntry = async (req, res) => {
     const { userId, date } = req.params;
 
     const logDate = new Date(date);
-    logDate.setHours(0, 0, 0, 0); // Normalize to start of day
+    const logDateUTC = new Date(logDate.getTime() - (5.5 * 60 * 60 * 1000));
+    logDateUTC.setUTCHours(0, 0, 0, 0); // Normalize to start of day UTC
 
     // Find user's health log document
     const userLog = await HealthLog.findOne({ userId });
@@ -215,8 +225,8 @@ exports.deleteLogEntry = async (req, res) => {
     // Find the specific log entry by date
     const logIndex = userLog.logs.findIndex((log) => {
       const entryDate = new Date(log.date);
-      entryDate.setHours(0, 0, 0, 0);
-      return entryDate.getTime() === logDate.getTime();
+      entryDate.setUTCHours(0, 0, 0, 0);
+      return entryDate.getTime() === logDateUTC.getTime();
     });
 
     if (logIndex === -1) {
