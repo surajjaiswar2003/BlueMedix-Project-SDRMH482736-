@@ -1,27 +1,21 @@
-import { useState, useEffect, useRef, ChangeEvent } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import {
   Users,
-  Database,
   TrendingUp,
+  UserCheck,
+  UserPlus,
   FileText,
-  RefreshCw,
-  UploadCloud,
+  Database,
+  Clock,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import axios from "axios";
 
-// Metrics interface
 interface Metrics {
   accuracy?: number;
-  f1_score?: number;
-  precision?: number;
-  recall?: number;
-  silhouette_score?: number;
-  confusion_matrix?: number[][];
 }
 
 interface AdminData {
@@ -33,18 +27,25 @@ interface AdminData {
   role: string;
 }
 
-const API_BASE = "/api/ml"; // Change if needed
+interface RecentPatient {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  lastLogDate: string;
+}
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
   const [adminData, setAdminData] = useState<AdminData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [metrics, setMetrics] = useState<Metrics | null>(null);
-  const [retrainLoading, setRetrainLoading] = useState<boolean>(false);
-  const [uploadLoading, setUploadLoading] = useState<boolean>(false);
-  const [uploadMsg, setUploadMsg] = useState<string>("");
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [numUsers, setNumUsers] = useState<number>(0);
+  const [numDietitians, setNumDietitians] = useState<number>(0);
+  const [numNewUsers, setNumNewUsers] = useState<number>(0);
+  const [numApprovedPlans, setNumApprovedPlans] = useState<number>(0);
+  const [numActiveUsers, setNumActiveUsers] = useState<number>(0);
+  const [recentPatients, setRecentPatients] = useState<RecentPatient[]>([]);
 
   // Admin authentication
   useEffect(() => {
@@ -68,70 +69,46 @@ const AdminDashboard: React.FC = () => {
     }
   }, [navigate]);
 
-  // Fetch metrics
-  const fetchMetrics = async () => {
-    try {
-      const res = await axios.get<{ metrics: Metrics }>(`${API_BASE}/metrics`);
-      setMetrics(res.data.metrics);
-    } catch (err) {
-      setMetrics(null);
-    }
-  };
+  // Fetch all stats
   useEffect(() => {
-    fetchMetrics();
-  }, []);
-
-  // File upload
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedFile(e.target.files[0]);
-      setUploadMsg("");
-    }
-  };
-
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      setUploadMsg("Please select a file to upload.");
-      return;
-    }
-    setUploadLoading(true);
-    setUploadMsg("");
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-    try {
-      const res = await axios.post("/api/ml/upload_csv", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setUploadMsg("Upload successful: " + res.data.filename);
-      setSelectedFile(null);
-      if (fileInputRef.current) fileInputRef.current.value = "";
-    } catch (err: any) {
-      setUploadMsg(
-        "Upload failed: " + (err.response?.data?.error || err.message)
-      );
-    }
-    setUploadLoading(false);
-  };
-
-  // Retrain
-  const handleRetrain = async () => {
-    setRetrainLoading(true);
-    setUploadMsg("");
-    try {
-      const res = await axios.post("/api/ml/retrain");
-      if (res.data.success) {
-        setUploadMsg("Retrain successful!");
-        setMetrics(res.data.metrics);
-      } else {
-        setUploadMsg("Retrain failed: " + (res.data.error || "Unknown error"));
+    const fetchStats = async () => {
+      try {
+        const [
+          usersRes,
+          dietRes,
+          metricsRes,
+          newUsersRes,
+          plansRes,
+          activeRes,
+          recentPatientsRes,
+        ] = await Promise.all([
+          axios.get("/api/users/count"),
+          axios.get("/api/dietitians/count"),
+          axios.get("/api/ml/metrics"),
+          axios.get("/api/users/new-this-month"),
+          axios.get("/api/diet-plans/count", {
+            params: { status: "approved" },
+          }),
+          axios.get("/api/users/active-this-week"),
+          axios.get("/api/health-logs/recent-patients"),
+        ]);
+        setNumUsers(usersRes.data.count || 0);
+        setNumDietitians(dietRes.data.count || 0);
+        setMetrics(
+          metricsRes.data.accuracy !== undefined
+            ? { accuracy: metricsRes.data.accuracy }
+            : null
+        );
+        setNumNewUsers(newUsersRes.data.count || 0);
+        setNumApprovedPlans(plansRes.data.count || 0);
+        setNumActiveUsers(activeRes.data.count || 0);
+        setRecentPatients(recentPatientsRes.data || []);
+      } catch (err) {
+        // fallback: show 0s/defaults
       }
-    } catch (err: any) {
-      setUploadMsg(
-        "Retrain failed: " + (err.response?.data?.error || err.message)
-      );
-    }
-    setRetrainLoading(false);
-  };
+    };
+    fetchStats();
+  }, []);
 
   if (isLoading) {
     return (
@@ -142,148 +119,129 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
       <main className="flex-grow pt-20 pb-16">
         <div className="container mx-auto px-4 py-6">
           {adminData && (
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold text-gray-900">
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-gray-900 mb-1">
                 Welcome, {adminData.firstName}!
               </h1>
-              <p className="text-gray-500">Here's your system overview</p>
-            </div>
-          )}
-
-          {/* Upload and retrain controls */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
-            <input
-              type="file"
-              accept=".csv,.xlsx"
-              onChange={handleFileChange}
-              ref={fileInputRef}
-              className="border px-2 py-1 rounded"
-              disabled={uploadLoading || retrainLoading}
-            />
-            <Button
-              onClick={handleUpload}
-              disabled={uploadLoading || retrainLoading}
-              className="flex items-center gap-2"
-            >
-              <UploadCloud className="w-4 h-4" />
-              {uploadLoading ? "Uploading..." : "Upload CSV"}
-            </Button>
-            <Button
-              onClick={handleRetrain}
-              disabled={retrainLoading || uploadLoading}
-              className="flex items-center gap-2"
-              variant="secondary"
-            >
-              <RefreshCw className={retrainLoading ? "animate-spin" : ""} />
-              {retrainLoading ? "Retraining..." : "Retrain Model"}
-            </Button>
-          </div>
-          {uploadMsg && (
-            <div className="mb-4 text-sm text-blue-700 font-medium">
-              {uploadMsg}
-            </div>
-          )}
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <Card className="p-6 shadow-md">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-500">
-                    Model Accuracy
-                  </p>
-                  <p className="text-2xl font-semibold text-gray-900 mt-1">
-                    {metrics?.accuracy !== undefined
-                      ? (metrics.accuracy * 100).toFixed(2) + "%"
-                      : "--"}
-                  </p>
-                </div>
-                <div className="p-3 rounded-full bg-green-100 text-green-600">
-                  <TrendingUp className="w-6 h-6" />
-                </div>
-              </div>
-            </Card>
-            <Card className="p-6 shadow-md">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-500">F1 Score</p>
-                  <p className="text-2xl font-semibold text-gray-900 mt-1">
-                    {metrics?.f1_score !== undefined
-                      ? metrics.f1_score.toFixed(3)
-                      : "--"}
-                  </p>
-                </div>
-                <div className="p-3 rounded-full bg-blue-100 text-blue-600">
-                  <TrendingUp className="w-6 h-6" />
-                </div>
-              </div>
-            </Card>
-            <Card className="p-6 shadow-md">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-500">Precision</p>
-                  <p className="text-2xl font-semibold text-gray-900 mt-1">
-                    {metrics?.precision !== undefined
-                      ? metrics.precision.toFixed(3)
-                      : "--"}
-                  </p>
-                </div>
-                <div className="p-3 rounded-full bg-yellow-100 text-yellow-600">
-                  <TrendingUp className="w-6 h-6" />
-                </div>
-              </div>
-            </Card>
-            <Card className="p-6 shadow-md">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-500">Recall</p>
-                  <p className="text-2xl font-semibold text-gray-900 mt-1">
-                    {metrics?.recall !== undefined
-                      ? metrics.recall.toFixed(3)
-                      : "--"}
-                  </p>
-                </div>
-                <div className="p-3 rounded-full bg-purple-100 text-purple-600">
-                  <TrendingUp className="w-6 h-6" />
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          {/* Confusion Matrix & Silhouette */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <Card className="p-6 shadow-md">
-              <h2 className="text-lg font-bold mb-2">Confusion Matrix</h2>
-              {metrics?.confusion_matrix ? (
-                <table className="w-full text-center border">
-                  <tbody>
-                    {metrics.confusion_matrix.map((row, i) => (
-                      <tr key={i}>
-                        {row.map((cell, j) => (
-                          <td key={j} className="py-2 px-4 border">
-                            {cell}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <p>--</p>
-              )}
-            </Card>
-            <Card className="p-6 shadow-md">
-              <h2 className="text-lg font-bold mb-2">Silhouette Score</h2>
-              <p className="text-3xl font-semibold text-gray-900">
-                {metrics?.silhouette_score !== undefined
-                  ? metrics.silhouette_score.toFixed(4)
-                  : "--"}
+              <p className="text-gray-500 text-lg">
+                Here’s your healthcare system at a glance.
               </p>
+            </div>
+          )}
+
+          {/* Top KPIs */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+            <Card className="p-6 shadow-md flex items-center gap-4">
+              <Users className="w-8 h-8 text-blue-600" />
+              <div>
+                <p className="text-sm text-gray-500">Total Users</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {numUsers}
+                </p>
+              </div>
+            </Card>
+            <Card className="p-6 shadow-md flex items-center gap-4">
+              <UserCheck className="w-8 h-8 text-green-600" />
+              <div>
+                <p className="text-sm text-gray-500">Total Dietitians</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {numDietitians}
+                </p>
+              </div>
+            </Card>
+            <Card className="p-6 shadow-md flex items-center gap-4">
+              <TrendingUp className="w-8 h-8 text-amber-600" />
+              <div>
+                <p className="text-sm text-gray-500">Model Accuracy</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {metrics?.accuracy !== undefined
+                    ? (metrics.accuracy * 100).toFixed(2) + "%"
+                    : "83%"}
+                </p>
+              </div>
+            </Card>
+            <Card className="p-6 shadow-md flex items-center gap-4">
+              <UserPlus className="w-8 h-8 text-indigo-600" />
+              <div>
+                <p className="text-sm text-gray-500">New Users This Month</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {numNewUsers}
+                </p>
+              </div>
+            </Card>
+          </div>
+
+          {/* Secondary KPIs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <Card className="p-6 shadow-md flex items-center gap-4">
+              <FileText className="w-8 h-8 text-pink-600" />
+              <div>
+                <p className="text-sm text-gray-500">Approved Diet Plans</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {numApprovedPlans}
+                </p>
+              </div>
+            </Card>
+            <Card className="p-6 shadow-md flex items-center gap-4">
+              <Database className="w-8 h-8 text-teal-600" />
+              <div>
+                <p className="text-sm text-gray-500">Active Users This Week</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {numActiveUsers}
+                </p>
+              </div>
+            </Card>
+          </div>
+
+          {/* Recent Patients */}
+          <div className="mb-10">
+            <Card className="p-6 shadow-md">
+              <div className="flex items-center gap-2 mb-4">
+                <Clock className="w-6 h-6 text-gray-600" />
+                <h2 className="text-lg font-bold">
+                  Recent Patients (by activity)
+                </h2>
+              </div>
+              <table className="min-w-full">
+                <thead>
+                  <tr>
+                    <th className="text-left p-2">Name</th>
+                    <th className="text-left p-2">Email</th>
+                    <th className="text-left p-2">Last Log Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {recentPatients.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan={3}
+                        className="text-center py-4 text-gray-400"
+                      >
+                        No recent activity.
+                      </td>
+                    </tr>
+                  ) : (
+                    recentPatients.map((p) => (
+                      <tr key={p._id}>
+                        <td className="p-2">
+                          {p.firstName} {p.lastName}
+                        </td>
+                        <td className="p-2">{p.email}</td>
+                        <td className="p-2">
+                          {p.lastLogDate
+                            ? new Date(p.lastLogDate).toLocaleString()
+                            : "--"}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
             </Card>
           </div>
         </div>

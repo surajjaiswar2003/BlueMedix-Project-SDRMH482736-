@@ -43,6 +43,8 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import AdminLogin from "./pages/admin/Login";
 import AdminUsers from "./pages/admin/Users";
 import AdminRecipes from "./pages/admin/Recipes";
+import ModelRetrainingPage from "@/pages/admin/ModelRetrainingPage";
+import RecipeMaster from "@/pages/admin/RecipeMaster";
 // import AdminUpload from "./pages/admin/Upload";
 // import AdminModel from "./pages/admin/Model";
 // import AdminLogs from "./pages/admin/Logs";
@@ -102,6 +104,9 @@ const App: React.FC = () => {
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/Login" element={<AdminLogin />} />
         <Route path="/admin/recipes" element={<AdminRecipes />} />
+        <Route path="/admin/model-retrain" element={<ModelRetrainingPage />} />
+        <Route path="/admin/recipemaster" element={<RecipeMaster />} />
+
         {/* <Route path="/admin/upload" element={<AdminUpload />} />
         <Route path="/admin/model" element={<AdminModel />} />
         <Route path="/admin/logs" element={<AdminLogs />} />

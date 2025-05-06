@@ -56,6 +56,8 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // Routes
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/dietitians", require("./routes/dietitianRoutes"));
+app.use("/api/health-logs", require("./routes/healthLogRoutes"));
 app.use("/api/recipes", require("./routes/recipeRoutes"));
 app.use("/api/health-parameters", require("./routes/healthParamsRoutes"));
 app.use("/api/health-logs", require("./routes/healthLogRoutes"));

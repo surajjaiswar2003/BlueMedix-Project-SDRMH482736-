@@ -272,6 +272,39 @@ exports.getRecentPatients = async (req, res) => {
       };
     });
 
+    // GET /api/health-logs/recent-patients
+    exports.getRecentPatients = async (req, res) => {
+      try {
+        const logs = await HealthLog.aggregate([
+          { $unwind: "$logs" },
+          {
+            $group: {
+              _id: "$userId",
+              lastLogDate: { $max: "$logs.date" },
+            },
+          },
+          { $sort: { lastLogDate: -1 } },
+          { $limit: 10 },
+        ]);
+        const users = await User.find({
+          _id: { $in: logs.map((l) => l._id) },
+        }).select("firstName lastName email");
+        const recentPatients = logs.map((log) => {
+          const user = users.find((u) => u._id.equals(log._id));
+          return {
+            _id: log._id,
+            firstName: user?.firstName,
+            lastName: user?.lastName,
+            email: user?.email,
+            lastLogDate: log.lastLogDate,
+          };
+        });
+        res.json(recentPatients);
+      } catch (error) {
+        res.status(500).json([]);
+      }
+    };
+
     res.json(recentPatients);
   } catch (error) {
     res.status(500).json({ message: "Server error" });

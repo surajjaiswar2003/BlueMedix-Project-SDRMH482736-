@@ -11,6 +11,7 @@ router.get("/current/:userId", dietPlanController.getCurrentDietPlan);
 router.get("/review", dietPlanController.getPlansForReview);
 router.get("/", dietPlanController.getDietPlans); // <-- ADD THIS LINE
 router.get("/:id", dietPlanController.getDietPlanDetails);
+router.get("/count", dietPlanController.getDietPlanCount);
 router.put("/:id/meal", dietPlanController.updateMealInDietPlan);
 router.put("/:id/approve", dietPlanController.approveDietPlan);
 

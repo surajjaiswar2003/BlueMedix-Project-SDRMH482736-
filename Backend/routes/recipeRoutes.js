@@ -18,4 +18,12 @@ router.get("/meal/:mealType", recipeController.getRecipesByMealType);
 // Get recipe by ID
 router.get("/:id", recipeController.getRecipeById);
 
+// Create a new recipe
+router.post("/", recipeController.createRecipe);
+
+// Update a recipe by ID
+router.put("/:id", recipeController.updateRecipe);
+
+// Delete a recipe by ID
+router.delete("/:id", recipeController.deleteRecipe);
 module.exports = router;

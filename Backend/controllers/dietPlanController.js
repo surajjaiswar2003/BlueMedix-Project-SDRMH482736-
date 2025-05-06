@@ -200,6 +200,18 @@ exports.updateMealInDietPlan = async (req, res) => {
   }
 };
 
+// GET /api/diet-plans/count
+exports.getDietPlanCount = async (req, res) => {
+  try {
+    const filter = {};
+    if (req.query.status) filter.status = req.query.status;
+    const count = await DietPlan.countDocuments(filter);
+    res.json({ count });
+  } catch (err) {
+    res.status(500).json({ count: 0 });
+  }
+};
+
 exports.approveDietPlan = async (req, res) => {
   try {
     const { id } = req.params;

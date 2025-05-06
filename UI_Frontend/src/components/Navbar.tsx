@@ -19,9 +19,11 @@ import {
   Users,
   Activity,
   MessageCircle,
+  FileText,
+  TrendingUp,
+  UserCheck,
 } from "lucide-react";
 
-// Define types for user data
 interface UserData {
   _id: string;
   firstName: string;
@@ -31,7 +33,6 @@ interface UserData {
   adminLevel?: string;
 }
 
-// Define types for navigation links
 interface NavLink {
   name: string;
   path: string;
@@ -46,7 +47,6 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Check for user data in localStorage
     const user = localStorage.getItem("user");
     const dietitian = localStorage.getItem("dietitian");
     const admin = localStorage.getItem("admin");
@@ -68,7 +68,6 @@ const Navbar: React.FC = () => {
   };
 
   const handleLogout = (): void => {
-    // Clear user data from localStorage
     localStorage.removeItem("user");
     localStorage.removeItem("dietitian");
     localStorage.removeItem("admin");
@@ -78,7 +77,6 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(false);
   };
 
-  // Define navigation links based on user role
   const getNavLinks = (): NavLink[] => {
     if (userType === "user") {
       return [
@@ -128,7 +126,21 @@ const Navbar: React.FC = () => {
           path: "/admin/dashboard",
           icon: <Home className="h-4 w-4 mr-2" />,
         },
-        // Add more admin links as needed
+        {
+          name: "Recipe Master",
+          path: "/admin/recipemaster",
+          icon: <FileText className="h-4 w-4 mr-2" />,
+        },
+        {
+          name: "Model Retraining",
+          path: "/admin/model-retrain",
+          icon: <TrendingUp className="h-4 w-4 mr-2" />,
+        },
+        {
+          name: "Users",
+          path: "/admin/users",
+          icon: <Users className="h-4 w-4 mr-2" />,
+        },
       ];
     }
     // Default public links
@@ -139,7 +151,6 @@ const Navbar: React.FC = () => {
 
   const navLinks = getNavLinks();
 
-  // Check if the current path matches a nav link
   const isActive = (path: string): boolean => {
     return location.pathname === path;
   };
@@ -153,7 +164,6 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4">
-          {/* Navigation Links */}
           {navLinks.map((link) => (
             <Link
               key={link.path}
@@ -169,7 +179,6 @@ const Navbar: React.FC = () => {
             </Link>
           ))}
 
-          {/* Authentication Buttons or User Profile */}
           {userData ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -228,7 +237,6 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-background border-t py-4">
           <div className="container mx-auto px-4 flex flex-col space-y-2">
-            {/* User Info (if logged in) */}
             {userData && (
               <div className="border-b pb-4 mb-2">
                 <p className="font-medium">
@@ -240,7 +248,6 @@ const Navbar: React.FC = () => {
               </div>
             )}
 
-            {/* Navigation Links */}
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -257,7 +264,6 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
 
-            {/* Authentication Buttons */}
             {userData ? (
               <Button
                 variant="outline"

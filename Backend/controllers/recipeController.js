@@ -121,3 +121,50 @@ exports.getRecipesByMealType = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+// Create a new recipe
+exports.createRecipe = async (req, res) => {
+  try {
+    // Ensure recipe_id is unique
+    const existing = await Recipe.findOne({ recipe_id: req.body.recipe_id });
+    if (existing) {
+      return res.status(400).json({ message: "Recipe ID must be unique" });
+    }
+    const recipe = await Recipe.create(req.body);
+    res.status(201).json(recipe);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Update recipe by ID
+exports.updateRecipe = async (req, res) => {
+  try {
+    const recipe = await Recipe.findOneAndUpdate(
+      { recipe_id: req.params.id },
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!recipe) {
+      return res.status(404).json({ message: "Recipe not found" });
+    }
+    res.json(recipe);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Delete recipe by ID
+exports.deleteRecipe = async (req, res) => {
+  try {
+    const recipe = await Recipe.findOneAndDelete({ recipe_id: req.params.id });
+    if (!recipe) {
+      return res.status(404).json({ message: "Recipe not found" });
+    }
+    res.json({ message: "Recipe deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
