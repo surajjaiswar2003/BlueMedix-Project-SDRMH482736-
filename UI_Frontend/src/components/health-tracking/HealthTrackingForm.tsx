@@ -1,5 +1,5 @@
 // components/health-tracking/HealthTrackingForm.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,6 +11,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
+import { useToast } from '@/components/ui/use-toast';
 
 interface MealInputProps {
   label: string;
@@ -19,6 +20,33 @@ interface MealInputProps {
 }
 
 const MealInput: React.FC<MealInputProps> = ({ label, meal, onChange }) => {
+  const { toast } = useToast();
+
+  const handleFoodNameChange = async (name: string) => {
+    onChange('name', name);
+    
+    if (name) {
+      try {
+        const response = await fetch(`http://localhost:5000/api/food-data/nutrition/${encodeURIComponent(name)}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            onChange('calories', data.data.calories);
+            onChange('protein', data.data.protein);
+            onChange('carbs', data.data.carbs);
+            onChange('fat', data.data.fats);
+            toast({
+              title: "Nutrition data loaded",
+              description: "Nutrition values have been automatically filled from the database.",
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching nutrition data:', error);
+      }
+    }
+  };
+
   return (
     <div className="space-y-4 p-4 border rounded-md">
       <h4 className="font-medium">{label}</h4>
@@ -27,7 +55,7 @@ const MealInput: React.FC<MealInputProps> = ({ label, meal, onChange }) => {
         <Input
           id={`${label.toLowerCase()}-name`}
           value={meal?.name || ""}
-          onChange={(e) => onChange("name", e.target.value)}
+          onChange={(e) => handleFoodNameChange(e.target.value)}
           placeholder="e.g., Grilled Chicken Salad"
         />
       </div>
@@ -35,20 +63,21 @@ const MealInput: React.FC<MealInputProps> = ({ label, meal, onChange }) => {
         <div className="space-y-2">
           <Label htmlFor={`${label.toLowerCase()}-calories`}>Calories</Label>
           <Input
-            id={`${label.toLowerCase()}-calories`}
             type="number"
-            min="0"
+            step="0.1"
+            id={`${label.toLowerCase()}-calories`}
+            placeholder="Enter calories"
             value={meal?.calories || ""}
-            onChange={(e) => onChange("calories", parseInt(e.target.value) || 0)}
+            onChange={(e) => onChange("calories", parseFloat(e.target.value) || 0)}
           />
         </div>
         <div className="space-y-2">
           <Label htmlFor={`${label.toLowerCase()}-protein`}>Protein (g)</Label>
           <Input
-            id={`${label.toLowerCase()}-protein`}
             type="number"
-            min="0"
             step="0.1"
+            id={`${label.toLowerCase()}-protein`}
+            placeholder="Enter protein"
             value={meal?.protein || ""}
             onChange={(e) => onChange("protein", parseFloat(e.target.value) || 0)}
           />
@@ -56,10 +85,10 @@ const MealInput: React.FC<MealInputProps> = ({ label, meal, onChange }) => {
         <div className="space-y-2">
           <Label htmlFor={`${label.toLowerCase()}-carbs`}>Carbs (g)</Label>
           <Input
-            id={`${label.toLowerCase()}-carbs`}
             type="number"
-            min="0"
             step="0.1"
+            id={`${label.toLowerCase()}-carbs`}
+            placeholder="Enter carbs"
             value={meal?.carbs || ""}
             onChange={(e) => onChange("carbs", parseFloat(e.target.value) || 0)}
           />
@@ -67,10 +96,10 @@ const MealInput: React.FC<MealInputProps> = ({ label, meal, onChange }) => {
         <div className="space-y-2">
           <Label htmlFor={`${label.toLowerCase()}-fat`}>Fat (g)</Label>
           <Input
-            id={`${label.toLowerCase()}-fat`}
             type="number"
-            min="0"
             step="0.1"
+            id={`${label.toLowerCase()}-fat`}
+            placeholder="Enter fat"
             value={meal?.fat || ""}
             onChange={(e) => onChange("fat", parseFloat(e.target.value) || 0)}
           />
@@ -137,9 +166,16 @@ const HealthTrackingForm: React.FC<HealthTrackingFormProps> = ({
     }));
   };
 
+  // Helper to get IST midnight
+  function toISTMidnight(date: Date) {
+    // Create a new date at midnight IST for the given date
+    const istOffset = 5.5 * 60; // IST is UTC+5:30 in minutes
+    const utc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+    return new Date(utc + istOffset * 60 * 1000);
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     // Calculate daily nutrition totals
     const dailyNutritionTotals = {
       calories: 0,
@@ -147,7 +183,6 @@ const HealthTrackingForm: React.FC<HealthTrackingFormProps> = ({
       carbs: 0,
       fat: 0
     };
-
     // Add up nutrition from all meals
     ['breakfast', 'lunch', 'dinner', 'afternoonSnack', 'eveningSnack'].forEach(meal => {
       if (formData[meal]) {
@@ -157,9 +192,10 @@ const HealthTrackingForm: React.FC<HealthTrackingFormProps> = ({
         dailyNutritionTotals.fat += formData[meal].fat || 0;
       }
     });
-    
+    // Always send date as IST midnight
+    const istMidnight = toISTMidnight(date);
     onSubmit({
-      date,
+      date: istMidnight,
       ...formData,
       dailyNutritionTotals
     });
@@ -241,8 +277,8 @@ const HealthTrackingForm: React.FC<HealthTrackingFormProps> = ({
                   min={0}
                   max={24}
                   step={0.5}
-                  value={formData.sleep.hours}
-                  onChange={(e) => handleChange("sleep", "hours", parseFloat(e.target.value))}
+                  value={formData.sleep.hours || ""}
+                  onChange={(e) => handleChange("sleep", "hours", parseFloat(e.target.value) || 0)}
                   className="w-20"
                 />
                 <span>hours</span>
@@ -264,8 +300,9 @@ const HealthTrackingForm: React.FC<HealthTrackingFormProps> = ({
                   id="exerciseMinutes"
                   type="number"
                   min={0}
-                  value={formData.exercise.minutes}
-                  onChange={(e) => handleChange("exercise", "minutes", parseInt(e.target.value))}
+                  step={0.5}
+                  value={formData.exercise.minutes || ""}
+                  onChange={(e) => handleChange("exercise", "minutes", parseFloat(e.target.value) || 0)}
                   className="w-20"
                 />
                 <span>minutes</span>
@@ -313,8 +350,9 @@ const HealthTrackingForm: React.FC<HealthTrackingFormProps> = ({
                   id="waterGlasses"
                   type="number"
                   min={0}
-                  value={formData.water.glasses}
-                  onChange={(e) => handleChange("water", "glasses", parseInt(e.target.value))}
+                  step={0.5}
+                  value={formData.water.glasses || ""}
+                  onChange={(e) => handleChange("water", "glasses", parseFloat(e.target.value) || 0)}
                   className="w-20"
                 />
                 <span>glasses</span>

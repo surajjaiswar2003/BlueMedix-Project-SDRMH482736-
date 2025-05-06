@@ -95,9 +95,9 @@ exports.getRecipesByNutrition = async (req, res) => {
 
     const query = {};
 
-    if (minProtein) query.protein = { $gte: parseInt(minProtein) };
-    if (maxCarbs) query.carbs = { $lte: parseInt(maxCarbs) };
-    if (maxCalories) query.calories = { $lte: parseInt(maxCalories) };
+    if (minProtein) query.protein = { $gte: parseFloat(minProtein) };
+    if (maxCarbs) query.carbs = { $lte: parseFloat(maxCarbs) };
+    if (maxCalories) query.calories = { $lte: parseFloat(maxCalories) };
 
     const recipes = await Recipe.find(query).limit(20);
 

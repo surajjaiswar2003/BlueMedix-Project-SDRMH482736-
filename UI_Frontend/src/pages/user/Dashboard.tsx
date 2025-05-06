@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import MultiStepProfileForm from "@/components/profile/MultiStepProfileForm";
 import { Utensils, Calendar, Smile } from "lucide-react";
 import axios from "axios";
+import ChatWidget from "@/components/ChatWidget";
 
 interface UserData {
   _id: string;
@@ -94,7 +95,7 @@ const Dashboard: React.FC = () => {
                   )
                   .map(([mealType, meal]) => ({
                     mealType,
-                    ...meal,
+                    ...(typeof meal === 'object' && meal !== null ? meal : {}),
                   }));
                 setTodayMeals(meals);
               }
@@ -173,7 +174,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <DashboardLayout requiredRole="user">
-      <div className="space-y-6">
+      <div className="space-y-6 relative">
         {/* Health Profile Section */}
         <Card className="shadow-md">
           <CardHeader>
@@ -439,6 +440,9 @@ const Dashboard: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+      </div>
+      <div className="fixed bottom-4 right-4 z-50">
+        <ChatWidget />
       </div>
     </DashboardLayout>
   );
