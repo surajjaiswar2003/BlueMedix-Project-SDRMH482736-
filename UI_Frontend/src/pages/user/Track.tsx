@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
 import WeeklyHealthLogTable from "@/components/health-tracking/WeeklyHealthLogTable";
+import HealthLogsChart from "@/components/health-tracking/HealthLogsChart";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { startOfWeek, endOfWeek, format } from "date-fns";
 import axios from "axios";
@@ -109,7 +110,10 @@ const UserTrack: React.FC = () => {
             Loading health logs...
           </div>
         ) : (
-          <WeeklyHealthLogTable logs={logs} onView={handleViewLog} />
+          <>
+            <HealthLogsChart logs={logs} />
+            <WeeklyHealthLogTable logs={logs} onView={handleViewLog} />
+          </>
         )}
       </div>
     </DashboardLayout>

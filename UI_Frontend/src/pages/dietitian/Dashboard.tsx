@@ -159,7 +159,7 @@ const DietitianDashboard: React.FC = () => {
                 >
                   <div>
                     <h3 className="font-medium text-gray-900">
-                      {plan.userId.firstName} {plan.userId.lastName}
+                      {plan.userId ? `${plan.userId.firstName} ${plan.userId.lastName}` : 'Unknown User'}
                     </h3>
                     <p className="text-sm text-gray-500">
                       Submitted: {new Date(plan.createdAt).toLocaleDateString()}
