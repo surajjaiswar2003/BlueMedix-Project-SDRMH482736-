@@ -375,6 +375,13 @@ def generate_diet_plan(user_params, kmeans_model, pca, rf_model, cluster_analysi
     for _, recipe in recipes_df.iterrows():
         recipe_features = recipe[['calories', 'protein', 'carbs', 'fat', 'sodium', 'fiber']].values
         features_with_cluster = np.append(recipe_features, user_cluster)
+        # Add meal type features
+        is_breakfast = 1 if recipe.get('meal_type') == 'breakfast' else 0
+        is_lunch = 1 if recipe.get('meal_type') == 'lunch' else 0
+        is_dinner = 1 if recipe.get('meal_type') == 'dinner' else 0
+        features_with_cluster = np.append(features_with_cluster, [is_breakfast, is_lunch, is_dinner])
+        suitability = models['rf_model'].predict([features_with_cluster])[0]
+
         suitability = models['rf_model'].predict([features_with_cluster])[0]
         diet_suitable = True
         recipe_name = recipe['name'].lower() if 'name' in recipe and isinstance(recipe['name'], str) else ""
