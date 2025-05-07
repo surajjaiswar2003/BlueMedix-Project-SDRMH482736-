@@ -12,6 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
 import { useToast } from '@/components/ui/use-toast';
+import { FoodSuggestionDropdown } from "@/components/FoodSuggestionDropdown";
 
 interface MealInputProps {
   label: string;
@@ -22,28 +23,17 @@ interface MealInputProps {
 const MealInput: React.FC<MealInputProps> = ({ label, meal, onChange }) => {
   const { toast } = useToast();
 
-  const handleFoodNameChange = async (name: string) => {
+  const handleFoodSuggestion = (name: string, nutritionData?: any) => {
     onChange('name', name);
-    
-    if (name) {
-      try {
-        const response = await fetch(`http://localhost:5000/api/food-data/nutrition/${encodeURIComponent(name)}`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.success) {
-            onChange('calories', data.data.calories);
-            onChange('protein', data.data.protein);
-            onChange('carbs', data.data.carbs);
-            onChange('fat', data.data.fats);
-            toast({
-              title: "Nutrition data loaded",
-              description: "Nutrition values have been automatically filled from the database.",
-            });
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching nutrition data:', error);
-      }
+    if (nutritionData) {
+      onChange('calories', nutritionData.calories);
+      onChange('protein', nutritionData.protein);
+      onChange('carbs', nutritionData.carbs);
+      onChange('fat', nutritionData.fat);
+      toast({
+        title: "Nutrition data loaded",
+        description: "Nutrition values have been automatically filled from the database.",
+      });
     }
   };
 
@@ -52,11 +42,10 @@ const MealInput: React.FC<MealInputProps> = ({ label, meal, onChange }) => {
       <h4 className="font-medium">{label}</h4>
       <div className="space-y-2">
         <Label htmlFor={`${label.toLowerCase()}-name`}>Meal/Recipe Name</Label>
-        <Input
-          id={`${label.toLowerCase()}-name`}
+        <FoodSuggestionDropdown
           value={meal?.name || ""}
-          onChange={(e) => handleFoodNameChange(e.target.value)}
-          placeholder="e.g., Grilled Chicken Salad"
+          onChange={handleFoodSuggestion}
+          placeholder="Search for food..."
         />
       </div>
       <div className="grid grid-cols-2 gap-4">

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "sonner";
 
 const UserDietPlansPage = () => {
   const [pendingPlans, setPendingPlans] = useState<any[]>([]);
@@ -19,13 +20,15 @@ const UserDietPlansPage = () => {
         const pendingRes = await axios.get(
           "http://localhost:5000/api/diet-plans/review"
         );
-        setPendingPlans(pendingRes.data);
+        setPendingPlans(Array.isArray(pendingRes.data) ? pendingRes.data : []);
 
         const approvedRes = await axios.get(
           "http://localhost:5000/api/diet-plans?status=approved"
         );
-        setApprovedPlans(approvedRes.data);
+        setApprovedPlans(Array.isArray(approvedRes.data) ? approvedRes.data : []);
       } catch (err) {
+        console.error("Error fetching diet plans:", err);
+        toast.error("Failed to load diet plans");
         setPendingPlans([]);
         setApprovedPlans([]);
       } finally {
@@ -58,7 +61,7 @@ const UserDietPlansPage = () => {
                 >
                   <div>
                     <h3 className="font-medium text-gray-900">
-                      {plan.userId.firstName} {plan.userId.lastName}
+                      {plan.userId ? `${plan.userId.firstName} ${plan.userId.lastName}` : 'Unknown User'}
                     </h3>
                     <p className="text-sm text-gray-500">
                       Submitted: {new Date(plan.createdAt).toLocaleDateString()}
@@ -91,7 +94,7 @@ const UserDietPlansPage = () => {
                 >
                   <div>
                     <h3 className="font-medium text-gray-900">
-                      {plan.userId.firstName} {plan.userId.lastName}
+                      {plan.userId ? `${plan.userId.firstName} ${plan.userId.lastName}` : 'Unknown User'}
                     </h3>
                     <p className="text-sm text-gray-500">
                       Approved: {new Date(plan.updatedAt).toLocaleDateString()}

@@ -19,7 +19,7 @@ exports.getUserLogs = async (req, res) => {
     if (startDate && endDate) {
       // Convert start and end from IST to UTC
       function fromIST(date) {
-        return new Date(date.getTime() - 5.5 * 60 * 60 * 1000);
+        return new Date(date.getTime() - (5.5 * 60 * 60 * 1000));
       }
       const startIST = new Date(startDate);
       startIST.setHours(0, 0, 0, 0);
@@ -27,6 +27,13 @@ exports.getUserLogs = async (req, res) => {
       endIST.setHours(23, 59, 59, 999);
       const startUTC = fromIST(startIST);
       const endUTC = fromIST(endIST);
+
+      // If the date range is in the future, return empty array
+      const now = new Date();
+      if (startUTC > now) {
+        return res.status(200).json({ logs: [] });
+      }
+
       filteredLogs = userLog.logs.filter((log) => {
         const logDate = new Date(log.date);
         return logDate >= startUTC && logDate <= endUTC;
@@ -67,7 +74,7 @@ exports.addLogEntry = async (req, res) => {
 
     // Check if log for this date already exists
     let logDate = new Date(logData.date);
-    logDate = new Date(logDate.getTime() - 5.5 * 60 * 60 * 1000); // Convert IST to UTC
+    logDate = new Date(logDate.getTime() - (5.5 * 60 * 60 * 1000)); // Convert IST to UTC
     logDate.setUTCHours(0, 0, 0, 0); // Normalize to start of day UTC
     const existingLogIndex = userLog.logs.findIndex((log) => {
       const date = new Date(log.date);
@@ -134,7 +141,7 @@ exports.updateLogEntry = async (req, res) => {
     const updateData = req.body;
 
     const logDate = new Date(date);
-    const logDateUTC = new Date(logDate.getTime() - 5.5 * 60 * 60 * 1000);
+    const logDateUTC = new Date(logDate.getTime() - (5.5 * 60 * 60 * 1000));
     logDateUTC.setUTCHours(0, 0, 0, 0); // Normalize to start of day UTC
 
     // Find user's health log document
@@ -212,7 +219,7 @@ exports.deleteLogEntry = async (req, res) => {
     const { userId, date } = req.params;
 
     const logDate = new Date(date);
-    const logDateUTC = new Date(logDate.getTime() - 5.5 * 60 * 60 * 1000);
+    const logDateUTC = new Date(logDate.getTime() - (5.5 * 60 * 60 * 1000));
     logDateUTC.setUTCHours(0, 0, 0, 0); // Normalize to start of day UTC
 
     // Find user's health log document

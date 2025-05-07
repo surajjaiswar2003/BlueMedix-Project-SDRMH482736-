@@ -61,12 +61,13 @@ app.use("/api/health-logs", require("./routes/healthLogRoutes"));
 app.use("/api/recipes", require("./routes/recipeRoutes"));
 app.use("/api/health-parameters", require("./routes/healthParamsRoutes"));
 app.use("/api/ml", mlRoutes);
-app.use(
-  "/api/dietitian-dashboard",
-  require("./routes/dietitianDashboardRoutes")
-);
+app.use("/api/dietitian-dashboard", require("./routes/dietitianDashboardRoutes"));
+
+
+// Add these routes as you develop them
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/diet-plans", require("./routes/dietPlanRoutes"));
+app.use("/api/food-data", require("./routes/foodDataRoutes"));
 
 // Basic route
 app.get("/", (req, res) => {
