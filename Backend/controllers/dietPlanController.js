@@ -225,3 +225,38 @@ exports.approveDietPlan = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// GET /api/diet-plans/stats
+exports.getDietPlanStats = async (req, res) => {
+  try {
+    const stats = await DietPlan.aggregate([
+      {
+        $group: {
+          _id: "$status",
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          status: "$_id",
+          count: 1
+        }
+      }
+    ]);
+
+    // Transform the data to include all possible statuses
+    const allStatuses = ["pending", "review", "approved", "rejected"];
+    const transformedStats = allStatuses.map(status => {
+      const stat = stats.find(s => s.status === status);
+      return {
+        status: status.charAt(0).toUpperCase() + status.slice(1),
+        count: stat ? stat.count : 0
+      };
+    });
+
+    res.json(transformedStats);
+  } catch (err) {
+    res.status(500).json([]);
+  }
+};
