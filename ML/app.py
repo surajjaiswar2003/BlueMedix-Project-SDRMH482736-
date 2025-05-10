@@ -129,24 +129,24 @@ def retrain_pipeline(train_user_params_df, recipes_df):
     high_priority_cols = ['Diabetes', 'Hypertension', 'Cardiovascular', 'Digestive Disorders', 'Food Allergies']
     medium_priority_cols = ['BMI Category', 'Weight (kg)', 'Target Weight (kg)']
     low_priority_cols = ['Meal Size Preference', 'Diet Type', 'Food Intolerances']
+    # Define columns based on the actual CSV structure
     categorical_cols = [
         'Diabetes', 'Hypertension', 'Cardiovascular', 'Digestive Disorders', 
-        'Food Allergies', 'BMI Category', 'Meal Size Preference', 
-        'Diet Type', 'Food Intolerances', 'Exercise Type', 'Physical Job Activity Level',
-        'Work Schedule', 'Sleep Quality', 'Stress Level', 'Meal Timing Regularity',
-        'Cooking Skills', 'Food Budget', 'Alcohol Consumption', 'Smoking Status',
-        'Snacking Behavior', 'Travel Frequency', 'Cuisine Preferences',
+        'Food Allergies', 'BMI Category', 'Weight Change History', 'Exercise Type', 
+        'Physical Job Activity Level', 'Work Schedule', 'Sleep Quality', 'Stress Level', 
+        'Meal Timing Regularity', 'Cooking Skills', 'Food Budget', 'Alcohol Consumption', 
+        'Smoking Status', 'Snacking Behavior', 'Travel Frequency', 'Diet Type', 
+        'Meal Size Preference', 'Spice Tolerance', 'Cuisine Preferences',
         'Food Texture Preferences', 'Portion Control Ability', 'Previous Diet Success History',
-        'Meal Complexity Preference', 'Seasonal Diet Preference', 'Weight Change History',
-        'Spice Tolerance'
+        'Food Intolerances', 'Meal Complexity Preference', 'Seasonal Diet Preference'
     ]
+
     numerical_cols = [
         'Height (cm)', 'Weight (kg)', 'Target Weight (kg)', 'Exercise Frequency', 
         'Exercise Duration (min)', 'Daily Steps Count', 'Sleep Duration (hrs)',
         'Available Cooking Time (min)', 'Water Intake (cups)', 'Eating Out Frequency',
         'Food Prep Time Availability (min)'
     ]
-
     # 3. Preprocessing pipeline
     numerical_transformer = Pipeline(steps=[('scaler', StandardScaler())])
     categorical_transformer = Pipeline(steps=[('onehot', OneHotEncoder(handle_unknown='ignore'))])
