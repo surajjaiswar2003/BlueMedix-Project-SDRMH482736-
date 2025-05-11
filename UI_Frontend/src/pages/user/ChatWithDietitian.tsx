@@ -1,39 +1,46 @@
 // pages/user/ChatWithDietitian.tsx
-import { useRef, useState } from "react";
+import { useEffect } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import emailjs from "@emailjs/browser";
 
-const SERVICE_ID = "your_service_id"; // Replace with your EmailJS service ID
-const TEMPLATE_ID = "your_template_id"; // Replace with your EmailJS template ID
-const PUBLIC_KEY = "your_public_key"; // Replace with your EmailJS public key
+declare global {
+  interface Window {
+    Tawk_API?: any;
+    Tawk_LoadStart?: Date;
+  }
+}
 
 const ChatWithDietitian = () => {
-  const form = useRef<HTMLFormElement | null>(null);
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    // Initialize Tawk.to
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_LoadStart = new Date();
 
-  const handleSend = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSending(true);
-    setSent(false);
-    setError(null);
+    const s1 = document.createElement("script");
+    const s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/682015fe9c7ecf190fb1c438/1iqulbqkj';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode?.insertBefore(s1, s0);
 
-    if (!form.current) return;
+    // Initialize the chat widget
+    window.Tawk_API.onLoad = function() {
+      window.Tawk_API.maximize();
+    };
 
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
-      () => {
-        setSent(true);
-        setSending(false);
-      },
-      (err) => {
-        setError("Failed to send message. Please try again.");
-        setSending(false);
+    // Cleanup function
+    return () => {
+      // Hide and destroy the chat widget when leaving the page
+      if (window.Tawk_API) {
+        window.Tawk_API.hideWidget();
+        window.Tawk_API = undefined;
       }
-    );
-  };
+      if (s1.parentNode) {
+        s1.parentNode.removeChild(s1);
+      }
+    };
+  }, []);
 
   return (
     <DashboardLayout requiredRole="user">
@@ -43,49 +50,19 @@ const ChatWithDietitian = () => {
             <CardTitle>Chat with Dietitian</CardTitle>
           </CardHeader>
           <CardContent>
-            <form ref={form} onSubmit={handleSend} className="space-y-4">
-              <div>
-                <label className="block mb-1 font-medium">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  className="w-full border rounded px-3 py-2"
-                  disabled={sending}
-                />
+            <div className="space-y-4">
+              <p className="text-gray-600">
+                Our dietitians are here to help you with your nutrition and health goals. 
+                The chat window will open automatically. If it doesn't, please refresh the page.
+              </p>
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium text-blue-800 mb-2">Chat Hours</h3>
+                <p className="text-blue-600">
+                  Monday - Friday: 9:00 AM - 6:00 PM<br />
+                  Saturday: 10:00 AM - 4:00 PM<br />
+                  Sunday: Closed
+                </p>
               </div>
-              <div>
-                <label className="block mb-1 font-medium">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  className="w-full border rounded px-3 py-2"
-                  disabled={sending}
-                />
-              </div>
-              <div>
-                <label className="block mb-1 font-medium">Message</label>
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  className="w-full border rounded px-3 py-2"
-                  disabled={sending}
-                />
-              </div>
-              <Button type="submit" disabled={sending}>
-                {sending ? "Sending..." : "Send"}
-              </Button>
-              {sent && (
-                <div className="text-green-600 mt-2">
-                  Message sent successfully!
-                </div>
-              )}
-              {error && <div className="text-red-600 mt-2">{error}</div>}
-            </form>
-            <div className="text-xs text-gray-500 mt-4">
-              Your message will be sent directly to utsabnandi2004@gmail.com.
             </div>
           </CardContent>
         </Card>
