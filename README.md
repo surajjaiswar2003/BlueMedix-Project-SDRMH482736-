@@ -8,13 +8,6 @@ A smart **Diet Planner** that uses **Machine Learning** to generate personalized
 
 ---
 
-## 🔥 Live Demo
-
-[🌐 Visit Live Website](https://your-deployed-site-link.com)  
-*(Replace with actual link if deployed)*
-
----
-
 ## 🧠 Features
 
 - 📄 Upload health reports (PDF) for smart parameter extraction
@@ -36,27 +29,19 @@ A smart **Diet Planner** that uses **Machine Learning** to generate personalized
 ---
 
 ## 📸 Screenshots
+
 ![upload](https://github.com/surajjaiswar2003/My_Diet_Diary/blob/main/UI_Frontend/Screenshot%202025-04-30%20113226.png)
-|  AI Diet Plan 🥗 | Report 🧾 |
+
+| AI Diet Plan 🥗 | Report 🧾 |
 |------------------|----------------|
-| ![upload](https://github.com/surajjaiswar2003/My_Diet_Diary/blob/main/UI_Frontend/Screenshot%202025-05-11%20083716.png) | ![result](https://github.com/surajjaiswar2003/My_Diet_Diary/blob/main/UI_Frontend/Screenshot%202025-05-11%20083615.png)|
+| ![upload](https://github.com/surajjaiswar2003/My_Diet_Diary/blob/main/UI_Frontend/Screenshot%202025-05-11%20083716.png) | ![result](https://github.com/surajjaiswar2003/My_Diet_Diary/blob/main/UI_Frontend/Screenshot%202025-05-11%20083615.png) |
 
 ---
 
-## 🛠️ Installation
+## 🛠️ Installation & Setup
+
+### 🔁 Clone the Repository
 
 ```bash
-# Clone the repo
-git clone https://github.com/surajjaiswar2003/Diet-Recommendation-System.git
-cd Diet-Recommendation-System
-
-# Create virtual env
-python -m venv venv
-source venv/bin/activate  # on Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the app
-python app.py
-
+git clone https://github.com/surajjaiswar2003/BlueMedix-Project-SDRMH482736-.git
+cd BlueMedix-Project-SDRMH482736-
