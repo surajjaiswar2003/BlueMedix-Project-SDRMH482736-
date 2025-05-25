@@ -1,8 +1,3 @@
-Here is your **complete `README.md` file** for the **Diet Recommendation System**, including project description, features, screenshots, and a detailed **installation & setup process**:
-
----
-
-````markdown
 # 🥗 Diet Recommendation System
 
 [![Made with ❤️ by Suraj Jaiswar](https://img.shields.io/badge/Made%20with%20%E2%9D%A4%EF%B8%8F%20by-Suraj%20Jaiswar-blueviolet)](https://www.linkedin.com/in/suraj-jaiswar-7007251b6/)
@@ -43,14 +38,13 @@ A smart **Diet Planner** that uses **Machine Learning** to generate personalized
 
 ---
 
-## 🛠️ Installation & Setup Guide
+## 🛠️ Installation & Setup
 
-### 📦 Clone the Repository
+### 🔁 Clone the Repository
 
 ```bash
 git clone https://github.com/surajjaiswar2003/BlueMedix-Project-SDRMH482736-.git
 cd BlueMedix-Project-SDRMH482736-
-````
 
 ---
 
