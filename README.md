@@ -37,7 +37,7 @@ A smart **Diet Planner** that uses **Machine Learning** to generate personalized
 
 ## 📸 Screenshots
 
-| Upload Report 🧾 | AI Diet Plan 🥗 |
+|  AI Diet Plan 🥗 | Report 🧾 |
 |------------------|----------------|
 | ![upload](https://github.com/surajjaiswar2003/My_Diet_Diary/blob/main/UI_Frontend/Screenshot%202025-05-11%20083716.png) | ![result](https://github.com/surajjaiswar2003/My_Diet_Diary/blob/main/UI_Frontend/Screenshot%202025-05-11%20083615.png?raw=true)|
 
